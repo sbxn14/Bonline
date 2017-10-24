@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonline", "Bonline\Bonline.csproj", "{CC3AC84F-0493-4BC1-A143-B33AD05710E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonline.Tests", "Bonline.Tests\Bonline.Tests.csproj", "{68B2A37F-D32B-44AD-8F9D-A16610F5ECDA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC3AC84F-0493-4BC1-A143-B33AD05710E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3AC84F-0493-4BC1-A143-B33AD05710E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3AC84F-0493-4BC1-A143-B33AD05710E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3AC84F-0493-4BC1-A143-B33AD05710E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B2A37F-D32B-44AD-8F9D-A16610F5ECDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B2A37F-D32B-44AD-8F9D-A16610F5ECDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B2A37F-D32B-44AD-8F9D-A16610F5ECDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B2A37F-D32B-44AD-8F9D-A16610F5ECDA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B31BF4EC-069A-44DA-8DAE-32E57F9BE34A}
+	EndGlobalSection
+EndGlobal
