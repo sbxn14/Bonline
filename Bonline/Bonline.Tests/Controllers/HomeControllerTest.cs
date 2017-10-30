@@ -9,7 +9,7 @@ using Bonline.Controllers;
 
 namespace Bonline.Tests.Controllers
 {
-    [TestClass]
+    [TestClass] 
     public class HomeControllerTest
     {
         [TestMethod]
