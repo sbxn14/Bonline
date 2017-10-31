@@ -8,7 +8,7 @@ namespace Bonline.Models
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public Plaats PL { get; set; }
+        public Locatie Loc { get; set; }
         public DateTime Date { get; set; }
         public string Query { get; set; }
 
@@ -21,7 +21,7 @@ namespace Bonline.Models
         {
             Id = reader.GetInt32(reader.GetOrdinal("Id"));
             Description = reader.GetString(reader.GetOrdinal("Description"));
-            // Plaats
+            // Locatie //
             Date = reader.GetDateTime(reader.GetOrdinal("Date"));
         }
     }
