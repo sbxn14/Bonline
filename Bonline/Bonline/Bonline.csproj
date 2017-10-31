@@ -145,17 +145,17 @@
     <Compile Include="Context\IAccountContext.cs" />
     <Compile Include="Context\IBonContext.cs" />
     <Compile Include="Context\IOrganisatieContext.cs" />
-    <Compile Include="Context\IPlaatsContext.cs" />
+    <Compile Include="Context\ILocatieContext.cs" />
     <Compile Include="Context\MSSQL\MssqlAccountContext.cs" />
     <Compile Include="Context\MSSQL\MssqlBonContext.cs" />
     <Compile Include="Context\MSSQL\MssqlOrganisatieContext.cs" />
-    <Compile Include="Context\MSSQL\MssqlPlaatsContext.cs" />
+    <Compile Include="Context\MSSQL\MssqlLocatieContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrganisatieController.cs" />
-    <Compile Include="Controllers\PlaatsController.cs" />
-    <Compile Include="Database\Database.cs" />
+    <Compile Include="Controllers\LocatieController.cs" />
+    <Compile Include="Database\DB.cs" />
     <Compile Include="Database\IQuery.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -163,12 +163,12 @@
     <Compile Include="IRepositories\AccountRepository.cs" />
     <Compile Include="IRepositories\BonRepository.cs" />
     <Compile Include="IRepositories\OrganisatieRepository.cs" />
-    <Compile Include="IRepositories\PlaatsRepository.cs" />
+    <Compile Include="IRepositories\LocatieRepository.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Bon.cs" />
     <Compile Include="Models\Organisatie.cs" />
-    <Compile Include="Models\PasswordMan.cs" />
-    <Compile Include="Models\Plaats.cs" />
+    <Compile Include="Models\PasswordManager.cs" />
+    <Compile Include="Models\Locatie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -214,8 +214,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Bon\" />
+    <Folder Include="Views\Locatie\" />
     <Folder Include="Views\Organisatie\" />
-    <Folder Include="Views\Plaats\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

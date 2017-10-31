@@ -9,7 +9,7 @@ namespace Bonline.Database
 {
  public interface IQuery
  {
-	 void Parse(SqlDataReader reader);
-	 string Query { get; set; }
+        string Query { get; set; }
+        void Parse(SqlDataReader reader);
  }
 }

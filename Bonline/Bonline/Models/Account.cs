@@ -3,27 +3,28 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using Bonline.Database;
 
 namespace Bonline.Models
 {
- public class Account
- {
-  public int ID { get; set; }
-  public string Email { get; set; }
-  public string Wachtwoord { get; set; }
-  public string Query { get; set; }
+    public class Account : IQuery
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string Query { get; set; }
 
-  public Account()
-  {
-   Query = "Select * from account";
-  }
+        public Account()
+        {
+            Query = "Select * from dbo.Accounts";
+        }
 
-  public void Parse(SqlDataReader reader)
-  {
-   ID = reader.GetInt32(reader.GetOrdinal("ID"));
-   Email = reader.GetString(reader.GetOrdinal("email"));
-   Wachtwoord = reader.GetString(reader.GetOrdinal("email"));
-  }
+        public void Parse(SqlDataReader reader)
+        {
+            Id = reader.GetInt32(reader.GetOrdinal("Id"));
+            Email = reader.GetString(reader.GetOrdinal("Emailaddress"));
+            Password = reader.GetString(reader.GetOrdinal("Password"));
+        }
 
- }
+    }
 }
