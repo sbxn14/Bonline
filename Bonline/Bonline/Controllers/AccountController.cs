@@ -62,7 +62,7 @@ namespace Bonline.Controllers
                     return View();
                 }
                 string id = AccCon.LoginId(acc);
-
+	          
                 if (id != null)
                 {
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, id, DateTime.Now, DateTime.Now.AddHours(3), false, "", FormsAuthentication.FormsCookiePath);

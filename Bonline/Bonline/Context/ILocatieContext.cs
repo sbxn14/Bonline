@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bonline.Models;
 
 namespace Bonline.Context
 {
  interface ILocatieContext
  {
+	 void Insert(Locatie account);
+	 List<Locatie> Select();
+	 void Delete(int id);
  }
 }
