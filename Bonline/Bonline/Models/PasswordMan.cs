@@ -19,7 +19,7 @@ namespace Bonline.Models
 		 {
 			 hashString += String.Format("{0:x2}", x);
 		 }
-		 return hashString + "supernaturalsaltkeepsthedemonsout";
+		 return hashString + "JYSI23DdsfUgdIGH32dsDfgU65IH";
 	 }
 
  }
