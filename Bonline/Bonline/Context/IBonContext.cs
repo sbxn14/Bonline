@@ -7,7 +7,7 @@ using Bonline.Models;
 
 namespace Bonline.Context
 {
- interface IBonContext
+ public interface IBonContext
  {
 	 void Insert(Bon b);
 	 List<Bon> Select();

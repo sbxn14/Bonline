@@ -13,13 +13,14 @@ namespace Bonline.Models
   public int Id { get; set; }
   public string Email { get; set; }
   public string Password { get; set; }
+  public bool Inactief { get; set; }
   public bool Admin { get; set; }
   public string Query { get; set; }
 
 
   public Account()
   {
-   Query = "Select * from dbo.Accounts";
+   Query = "SELECT * FROM dbo.Accounts";
   }
 
   public void Parse(SqlDataReader reader)
@@ -27,6 +28,7 @@ namespace Bonline.Models
    Id = reader.GetInt32(reader.GetOrdinal("Id"));
    Email = reader.GetString(reader.GetOrdinal("Emailaddress"));
    Password = reader.GetString(reader.GetOrdinal("Password"));
+   Inactief = reader.GetBoolean(reader.GetOrdinal("Inactief"));
    Admin = reader.GetBoolean(reader.GetOrdinal("Admin"));
   }
 

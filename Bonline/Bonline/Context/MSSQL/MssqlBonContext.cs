@@ -8,26 +8,27 @@ using Bonline.Models;
 
 namespace Bonline.Context.MSSQL
 {
- public class MssqlBonContext : IBonContext
+ public class MssqlBonContext : Database.DB, IBonContext
  {
-  public void Insert(Bon b)
+  public void Insert(Bon bon)
   {
-   string description = b.Description;
-   DateTime date = b.Date;
-   Locatie loc = b.Loc;
+   using (SqlConnection conn = new SqlConnection(ConnectionString))
+   {
+    conn.Open();
+    string query = "INSERT INTO bon (description, date, location) VALUES (@description, @date, @location)";
+    SqlCommand cmd = new SqlCommand(query, conn);
 
-   string query = "INSERT INTO bon (description, date, location) VALUES (@description, @date, @location)";
-   SqlCommand cmd = new SqlCommand(query);
-
-   cmd.Parameters.AddWithValue("@description", description);
-   cmd.Parameters.AddWithValue("@date", date);
-   cmd.Parameters.AddWithValue("@location", loc);
-   DB.RunNonQuery(cmd);
+    cmd.Parameters.AddWithValue("@description", bon.Description);
+    cmd.Parameters.AddWithValue("@date", bon.Date);
+    cmd.Parameters.AddWithValue("@location", bon.Loc);
+    cmd.ExecuteNonQuery();
+    conn.Close();
+   }
   }
 
   public List<Bon> Select()
   {
-   throw new NotImplementedException();
+   return DB.RunQuery(new Bon());
   }
  }
 }

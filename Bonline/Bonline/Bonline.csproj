@@ -160,10 +160,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="IRepositories\AccountRepository.cs" />
-    <Compile Include="IRepositories\BonRepository.cs" />
-    <Compile Include="IRepositories\OrganisatieRepository.cs" />
-    <Compile Include="IRepositories\LocatieRepository.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\BonRepository.cs" />
+    <Compile Include="Repositories\OrganisatieRepository.cs" />
+    <Compile Include="Repositories\LocatieRepository.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Bon.cs" />
     <Compile Include="Models\Organisatie.cs" />

@@ -7,7 +7,7 @@ using Bonline.Models;
 
 namespace Bonline.Context
 {
- interface ILocatieContext
+public interface ILocatieContext
  {
 	 void Insert(Locatie account);
 	 List<Locatie> Select();

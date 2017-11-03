@@ -7,11 +7,11 @@ using Bonline.Models;
 
 namespace Bonline.Context
 {
- interface IOrganisatieContext
+ public interface IOrganisatieContext
  {
-	 void Insert(Organisatie org);
-	 List<Organisatie> Select();
-	 void Update(int id, string NieuwNaam);
-	 void Delete(int id);
+  void Insert(Organisatie org);
+  List<Organisatie> Select();
+  void Update(int id, string NieuwNaam);
+  void Delete(int id);
  }
 }
