@@ -28,26 +28,24 @@ namespace Bonline.Controllers
 
    if (!isMailMatch)
    {
-    ViewBag.Message = "Please enter a valid Emailaddress";
+    ViewBag.Message1 = "Please enter a valid Emailaddress";
     return View();
    }
 
    if (!isPassMatch)
    {
-    ViewBag.Message = "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit";
+    ViewBag.Message2 = "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit";
     return View();
    }
    Account account = new Account
    {
     Email = Request.Form["email"],
     Password = Request.Form["password"],
-    Admin = false,
-    Inactief = false
    };
    PasswordManager.Hash(account.Email);
    PasswordManager.Hash(account.Password);
    accountRepository.AddAccount(account);
-   return View();
+   return View("Login");
   }
 
   [HttpGet]
@@ -65,23 +63,23 @@ namespace Bonline.Controllers
     Account acc = new Account
     {
 	Email = Request.Form["Email"],
-	Password = PasswordManager.Hash(Request.Form["Password"])
+	Password = Request.Form["Password"]
     };
 
     bool auth = accountRepository.LoginAccount(acc);
-    bool Inactief = accountRepository.CheckInactiefAccount(acc);
+    bool inactief = accountRepository.CheckInactiefAccount(acc);
     string id = accountRepository.LoginId(acc);
 
-    if (Inactief)
+    if (inactief)
     {
-	ViewBag.Message = "Uw account is inactief";
-	return View();
+	ViewBag.Message1 = "Uw account is inactief";
+	return View("Login");
     }
 
     if (auth == false)
     {
-	ViewBag.Message = "This is not a registered Account. Check your Email or Password.";
-	return View();
+	ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
+	return View("Login");
     }
 
     if (id != null)
@@ -89,10 +87,10 @@ namespace Bonline.Controllers
 	FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, id, DateTime.Now, DateTime.Now.AddHours(3), false, "", FormsAuthentication.FormsCookiePath);
 	HttpCookie c = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
 	HttpContext.Response.Cookies.Add(c);
-	return RedirectToAction("Index", "Home");
+	return RedirectToAction("Index", "Bon");
     }
    }
-   return View();
+	  return RedirectToAction("Index", "Bon");
   }
 
   [HttpGet]

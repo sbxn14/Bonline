@@ -17,7 +17,7 @@ namespace Bonline.Context.MSSQL
    using (SqlConnection conn = new SqlConnection(ConnectionString))
    {
     conn.Open();
-    string query = "INSERT INTO dbo.Account (Administrator, Inactief, Email, Password) VALUES (@Administrator, @Inactief, @Email, @Password, @admin)";
+    string query = "INSERT INTO dbo.Account (Administrator, Inactief, Email, Password) VALUES (@Administrator, @Inactief, @Email, @Password)";
     SqlCommand cmd = new SqlCommand(query, conn);
     cmd.Parameters.AddWithValue("@Administrator", account.Admin);
     cmd.Parameters.AddWithValue("@Inactief", account.Inactief);

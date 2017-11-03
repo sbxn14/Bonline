@@ -11,7 +11,7 @@ namespace Bonline.Database
 
   static DB()
   {
-   ConnectionString = "LAPTOP-GICS0PBT";
+   ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
   }
 
   public static List<T> RunQuery<T>(T value) where T : IQuery, new()

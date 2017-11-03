@@ -20,16 +20,16 @@ namespace Bonline.Models
 
   public Account()
   {
-   Query = "SELECT * FROM dbo.Accounts";
+   Query = "SELECT * FROM dbo.Account";
   }
 
   public void Parse(SqlDataReader reader)
   {
-   Id = reader.GetInt32(reader.GetOrdinal("Id"));
-   Email = reader.GetString(reader.GetOrdinal("Emailaddress"));
+   Id = reader.GetInt32(reader.GetOrdinal("ID"));
+   Email = reader.GetString(reader.GetOrdinal("Email"));
    Password = reader.GetString(reader.GetOrdinal("Password"));
    Inactief = reader.GetBoolean(reader.GetOrdinal("Inactief"));
-   Admin = reader.GetBoolean(reader.GetOrdinal("Admin"));
+   Admin = reader.GetBoolean(reader.GetOrdinal("Administrator"));
   }
 
  }

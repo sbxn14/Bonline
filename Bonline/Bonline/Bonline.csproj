@@ -209,10 +209,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Bon\Bon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Bon\" />
     <Folder Include="Views\Locatie\" />
     <Folder Include="Views\Organisatie\" />
   </ItemGroup>
