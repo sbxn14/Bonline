@@ -21,6 +21,5 @@ namespace Bonline.Models
    }
    return hashString + "JYSI23DdsfUgdIGH3cjdfhraeiufhq37ryq73ufhkjrhfel292sefsda2dsDfgU65IH";
   }
-
  }
 }

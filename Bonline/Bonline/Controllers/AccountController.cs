@@ -39,11 +39,9 @@ namespace Bonline.Controllers
    }
    Account account = new Account
    {
-    Email = Request.Form["email"],
-    Password = Request.Form["password"],
+    Email = PasswordManager.Hash(Request.Form["email"]),
+    Password = PasswordManager.Hash(Request.Form["password"]),
    };
-   PasswordManager.Hash(account.Email);
-   PasswordManager.Hash(account.Password);
    accountRepository.AddAccount(account);
    return View("Login");
   }
@@ -62,8 +60,8 @@ namespace Bonline.Controllers
    {
     Account acc = new Account
     {
-	Email = Request.Form["Email"],
-	Password = Request.Form["Password"]
+	Email = PasswordManager.Hash(Request.Form["Email"]),
+	Password = PasswordManager.Hash(Request.Form["Password"])
     };
 
     bool auth = accountRepository.LoginAccount(acc);
