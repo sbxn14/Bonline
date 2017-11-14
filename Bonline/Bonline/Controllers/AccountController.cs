@@ -45,7 +45,7 @@ namespace Bonline.Controllers
    accountRepository.AddAccount(account);
    return View("Login");
   }
-
+  
   [HttpGet]
   public ActionResult Register()
   {

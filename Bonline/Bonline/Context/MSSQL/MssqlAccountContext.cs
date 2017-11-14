@@ -9,12 +9,12 @@ using Bonline.Models;
 
 namespace Bonline.Context.MSSQL
 {
- public class MssqlAccountContext : Database.DB, IAccountContext
+ public class MssqlAccountContext : IAccountContext
  {
 
   public void Insert(Account account)
   {
-   using (SqlConnection conn = new SqlConnection(ConnectionString))
+   using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
    {
     conn.Open();
                 //changed query: waardes komen overeen met de db

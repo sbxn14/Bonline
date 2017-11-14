@@ -561,7 +561,7 @@ var i,
 	hasDuplicate,
 
 	// Local document vars
-	setDocument,
+	setrocument,
 	document,
 	docElem,
 	documentIsHTML,
@@ -708,11 +708,11 @@ var i,
 	},
 
 	// Used for iframes
-	// See setDocument()
+	// See setrocument()
 	// Removing the function wrapper causes a "Permission Denied"
 	// error in IE
 	unloadHandler = function() {
-		setDocument();
+		setrocument();
 	},
 
 	disabledAncestor = addCombinator(
@@ -771,7 +771,7 @@ function Sizzle( selector, context, results, seed ) {
 	if ( !seed ) {
 
 		if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
-			setDocument( context );
+			setrocument( context );
 		}
 		context = context || document;
 
@@ -1105,7 +1105,7 @@ isXML = Sizzle.isXML = function( elem ) {
  * @param {Element|Object} [doc] An element or document object to use to set the document
  * @returns {Object} Returns the current document
  */
-setDocument = Sizzle.setDocument = function( node ) {
+setrocument = Sizzle.setrocument = function( node ) {
 	var hasCompare, subWindow,
 		doc = node ? node.ownerDocument || node : preferredDoc;
 
@@ -1434,7 +1434,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 		// Disconnected nodes
 		if ( compare & 1 ||
-			(!support.sortDetached && b.compareDocumentPosition( a ) === compare) ) {
+			(!support.sortretached && b.compareDocumentPosition( a ) === compare) ) {
 
 			// Choose the first element that is related to our preferred document
 			if ( a === document || a.ownerDocument === preferredDoc && contains(preferredDoc, a) ) {
@@ -1516,7 +1516,7 @@ Sizzle.matches = function( expr, elements ) {
 Sizzle.matchesSelector = function( elem, expr ) {
 	// Set document vars if needed
 	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
+		setrocument( elem );
 	}
 
 	// Make sure that attribute selectors are quoted
@@ -1546,7 +1546,7 @@ Sizzle.matchesSelector = function( elem, expr ) {
 Sizzle.contains = function( context, elem ) {
 	// Set document vars if needed
 	if ( ( context.ownerDocument || context ) !== document ) {
-		setDocument( context );
+		setrocument( context );
 	}
 	return contains( context, elem );
 };
@@ -1554,7 +1554,7 @@ Sizzle.contains = function( context, elem ) {
 Sizzle.attr = function( elem, name ) {
 	// Set document vars if needed
 	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
+		setrocument( elem );
 	}
 
 	var fn = Expr.attrHandle[ name.toLowerCase() ],
@@ -1591,7 +1591,7 @@ Sizzle.uniqueSort = function( results ) {
 		i = 0;
 
 	// Unless we *know* we can detect duplicates, assume their presence
-	hasDuplicate = !support.detectDuplicates;
+	hasDuplicate = !support.detectruplicates;
 	sortInput = !support.sortStable && results.slice( 0 );
 	results.sort( sortOrder );
 
@@ -2530,7 +2530,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				if ( byElement && elem ) {
 					j = 0;
 					if ( !context && elem.ownerDocument !== document ) {
-						setDocument( elem );
+						setrocument( elem );
 						xml = !documentIsHTML;
 					}
 					while ( (matcher = elementMatchers[j++]) ) {
@@ -2730,14 +2730,14 @@ support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
 
 // Support: Chrome 14-35+
 // Always assume duplicates if they aren't passed to the comparison function
-support.detectDuplicates = !!hasDuplicate;
+support.detectruplicates = !!hasDuplicate;
 
 // Initialize against the default document
-setDocument();
+setrocument();
 
 // Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
 // Detached nodes confoundingly follow *each other*
-support.sortDetached = assert(function( el ) {
+support.sortretached = assert(function( el ) {
 	// Should return 1, but returns 4 (following)
 	return el.compareDocumentPosition( document.createElement("fieldset") ) & 1;
 });
@@ -3196,7 +3196,7 @@ jQuery.each( {
 	},
 	contents: function( elem ) {
         if ( nodeName( elem, "iframe" ) ) {
-            return elem.contentDocument;
+            return elem.contentrocument;
         }
 
         // Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
@@ -4012,7 +4012,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 
 	return len ? fn( elems[ 0 ], key ) : emptyGet;
 };
-var acceptData = function( owner ) {
+var acceptrata = function( owner ) {
 
 	// Accepts only:
 	//  - Node
@@ -4046,7 +4046,7 @@ Data.prototype = {
 			// We can accept data for non-element nodes in modern browsers,
 			// but we should not, see #8335.
 			// Always return an empty object.
-			if ( acceptData( owner ) ) {
+			if ( acceptrata( owner ) ) {
 
 				// If it is a node unlikely to be stringify-ed or looped over
 				// use plain assignment
@@ -4195,7 +4195,7 @@ var dataUser = new Data();
 var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
 	rmultiDash = /[A-Z]/g;
 
-function getData( data ) {
+function getrata( data ) {
 	if ( data === "true" ) {
 		return true;
 	}
@@ -4231,7 +4231,7 @@ function dataAttr( elem, key, data ) {
 
 		if ( typeof data === "string" ) {
 			try {
-				data = getData( data );
+				data = getrata( data );
 			} catch ( e ) {}
 
 			// Make sure we set the data so it isn't changed later
@@ -4596,13 +4596,13 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 }
 
 
-var defaultDisplayMap = {};
+var defaultrisplayMap = {};
 
-function getDefaultDisplay( elem ) {
+function getrefaultrisplay( elem ) {
 	var temp,
 		doc = elem.ownerDocument,
 		nodeName = elem.nodeName,
-		display = defaultDisplayMap[ nodeName ];
+		display = defaultrisplayMap[ nodeName ];
 
 	if ( display ) {
 		return display;
@@ -4616,7 +4616,7 @@ function getDefaultDisplay( elem ) {
 	if ( display === "none" ) {
 		display = "block";
 	}
-	defaultDisplayMap[ nodeName ] = display;
+	defaultrisplayMap[ nodeName ] = display;
 
 	return display;
 }
@@ -4647,7 +4647,7 @@ function showHide( elements, show ) {
 				}
 			}
 			if ( elem.style.display === "" && isHiddenWithinTree( elem ) ) {
-				values[ index ] = getDefaultDisplay( elem );
+				values[ index ] = getrefaultrisplay( elem );
 			}
 		} else {
 			if ( display !== "none" ) {
@@ -4710,7 +4710,7 @@ var wrapMap = {
 	thead: [ 1, "<table>", "</table>" ],
 	col: [ 2, "<table><colgroup>", "</colgroup></table>" ],
 	tr: [ 2, "<table><tbody>", "</tbody></table>" ],
-	td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
+	tr: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
 
 	_default: [ 0, "", "" ]
 };
@@ -4719,7 +4719,7 @@ var wrapMap = {
 wrapMap.optgroup = wrapMap.option;
 
 wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
-wrapMap.th = wrapMap.td;
+wrapMap.th = wrapMap.tr;
 
 
 function getAll( context, tag ) {
@@ -5207,7 +5207,7 @@ jQuery.event = {
 
 					if ( ret !== undefined ) {
 						if ( ( event.result = ret ) === false ) {
-							event.preventDefault();
+							event.preventrefault();
 							event.stopPropagation();
 						}
 					}
@@ -5215,9 +5215,9 @@ jQuery.event = {
 			}
 		}
 
-		// Call the postDispatch hook for the mapped type
-		if ( special.postDispatch ) {
-			special.postDispatch.call( this, event );
+		// Call the postrispatch hook for the mapped type
+		if ( special.postrispatch ) {
+			special.postrispatch.call( this, event );
 		}
 
 		return event.result;
@@ -5358,7 +5358,7 @@ jQuery.event = {
 		},
 
 		beforeunload: {
-			postDispatch: function( event ) {
+			postrispatch: function( event ) {
 
 				// Support: Firefox 20+
 				// Firefox doesn't alert if the returnValue field is not set.
@@ -5436,13 +5436,13 @@ jQuery.Event.prototype = {
 	isImmediatePropagationStopped: returnFalse,
 	isSimulated: false,
 
-	preventDefault: function() {
+	preventrefault: function() {
 		var e = this.originalEvent;
 
 		this.isDefaultPrevented = returnTrue;
 
 		if ( e && !this.isSimulated ) {
-			e.preventDefault();
+			e.preventrefault();
 		}
 	},
 	stopPropagation: function() {
@@ -5574,7 +5574,7 @@ jQuery.fn.extend( {
 	},
 	off: function( types, selector, fn ) {
 		var handleObj, type;
-		if ( types && types.preventDefault && types.handleObj ) {
+		if ( types && types.preventrefault && types.handleObj ) {
 
 			// ( event )  dispatched jQuery.Event
 			handleObj = types.handleObj;
@@ -5870,7 +5870,7 @@ jQuery.extend( {
 			i = 0;
 
 		for ( ; ( elem = elems[ i ] ) !== undefined; i++ ) {
-			if ( acceptData( elem ) ) {
+			if ( acceptrata( elem ) ) {
 				if ( ( data = elem[ dataPriv.expando ] ) ) {
 					if ( data.events ) {
 						for ( type in data.events ) {
@@ -8203,10 +8203,10 @@ jQuery.extend( jQuery.event, {
 
 			// Native handler
 			handle = ontype && cur[ ontype ];
-			if ( handle && handle.apply && acceptData( cur ) ) {
+			if ( handle && handle.apply && acceptrata( cur ) ) {
 				event.result = handle.apply( cur, data );
 				if ( event.result === false ) {
-					event.preventDefault();
+					event.preventrefault();
 				}
 			}
 		}
@@ -8217,7 +8217,7 @@ jQuery.extend( jQuery.event, {
 
 			if ( ( !special._default ||
 				special._default.apply( eventPath.pop(), data ) === false ) &&
-				acceptData( elem ) ) {
+				acceptrata( elem ) ) {
 
 				// Call a native DOM method on the target with the same name as the event.
 				// Don't do default actions on window, that's where global variables be (#6170)
@@ -8615,7 +8615,7 @@ function ajaxExtend( target, src ) {
  */
 function ajaxHandleResponses( s, jqXHR, responses ) {
 
-	var ct, type, finalDataType, firstDataType,
+	var ct, type, finalDataType, firstrataType,
 		contents = s.contents,
 		dataTypes = s.dataTypes;
 
@@ -8648,13 +8648,13 @@ function ajaxHandleResponses( s, jqXHR, responses ) {
 				finalDataType = type;
 				break;
 			}
-			if ( !firstDataType ) {
-				firstDataType = type;
+			if ( !firstrataType ) {
+				firstrataType = type;
 			}
 		}
 
 		// Or just use first one
-		finalDataType = finalDataType || firstDataType;
+		finalDataType = finalDataType || firstrataType;
 	}
 
 	// If we found a dataType

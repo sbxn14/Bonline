@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Bonline.Database
 {
- public class DB
+ public static class DB
  {
   public static string ConnectionString { get; set; }
 

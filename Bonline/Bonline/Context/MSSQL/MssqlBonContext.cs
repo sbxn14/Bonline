@@ -8,19 +8,19 @@ using Bonline.Models;
 
 namespace Bonline.Context.MSSQL
 {
- public class MssqlBonContext : Database.DB, IBonContext
+ public class MssqlBonContext : IBonContext
  {
   public void Insert(Bon bon)
   {
-   using (SqlConnection conn = new SqlConnection(ConnectionString))
+   using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
    {
     conn.Open();
-    string query = "INSERT INTO bon (description, date, location) VALUES (@description, @date, @location)";
+    string query = "INSERT INTO bon (Boodschappen, Datum, LocatieID, ) VALUES (@Boodschappen, @Datum, @LocatieID)";
     SqlCommand cmd = new SqlCommand(query, conn);
 
-    cmd.Parameters.AddWithValue("@description", bon.Description);
-    cmd.Parameters.AddWithValue("@date", bon.Date);
-    cmd.Parameters.AddWithValue("@location", bon.Loc);
+    cmd.Parameters.AddWithValue("@Boodschappen", bon.Description);
+    cmd.Parameters.AddWithValue("@Datum", bon.Date);
+    cmd.Parameters.AddWithValue("@LocatieId", bon.Loc);
     cmd.ExecuteNonQuery();
     conn.Close();
    }

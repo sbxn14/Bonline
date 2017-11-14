@@ -70,7 +70,7 @@ $.extend($.fn, {
 			this.submit( function( event ) {
 				if ( validator.settings.debug ) {
 					// prevent form submit to be able to see console output
-					event.preventDefault();
+					event.preventrefault();
 				}
 				function handle() {
 					var hidden;
@@ -287,8 +287,8 @@ $.extend($.validator, {
 		}
 	},
 
-	// http://docs.jquery.com/Plugins/Validation/Validator/setDefaults
-	setDefaults: function( settings ) {
+	// http://docs.jquery.com/Plugins/Validation/Validator/setrefaults
+	setrefaults: function( settings ) {
 		$.extend( $.validator.defaults, settings );
 	},
 
