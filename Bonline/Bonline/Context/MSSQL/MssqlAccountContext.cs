@@ -17,12 +17,13 @@ namespace Bonline.Context.MSSQL
    using (SqlConnection conn = new SqlConnection(ConnectionString))
    {
     conn.Open();
-    string query = "INSERT INTO dbo.Account (Administrator, Inactief, Email, Password) VALUES (@Administrator, @Inactief, @Email, @Password)";
+                //changed query: waardes komen overeen met de db
+    string query = "INSERT INTO dbo.Account (Administrator, Inactief, Email, Wachtwoord) VALUES (@Administrator, @Inactief, @Email, @Wachtwoord)";
     SqlCommand cmd = new SqlCommand(query, conn);
     cmd.Parameters.AddWithValue("@Administrator", account.Admin);
     cmd.Parameters.AddWithValue("@Inactief", account.Inactief);
-    cmd.Parameters.AddWithValue("@email", account.Email);
-    cmd.Parameters.AddWithValue("@password", account.Password);
+    cmd.Parameters.AddWithValue("@Email", account.Email);
+    cmd.Parameters.AddWithValue("@Wachtwoord", account.Password);
     cmd.ExecuteNonQuery();
     conn.Close();
    }
