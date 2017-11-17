@@ -31,5 +31,5 @@ namespace Bonline.Models
    //account
   Date = reader.GetDateTime(reader.GetOrdinal("Datum"));
   }
- }
+ } 
 }

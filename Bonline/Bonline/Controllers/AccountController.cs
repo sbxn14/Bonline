@@ -21,7 +21,7 @@ namespace Bonline.Controllers
   {
 
    string mailregex = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-   string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$";
+   string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 
    bool isMailMatch = Regex.IsMatch(Request.Form["Email"], mailregex);
    bool isPassMatch = Regex.IsMatch(Request.Form["Password"], passregex);
@@ -34,7 +34,7 @@ namespace Bonline.Controllers
 
    if (!isPassMatch)
    {
-    ViewBag.Message2 = "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit";
+    ViewBag.Message2 = "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit and 8 characters";
     return View();
    }
    Account account = new Account
@@ -45,7 +45,7 @@ namespace Bonline.Controllers
    accountRepository.AddAccount(account);
    return View("Login");
   }
-  
+
   [HttpGet]
   public ActionResult Register()
   {
@@ -56,6 +56,7 @@ namespace Bonline.Controllers
   [HttpPost]
   public ActionResult Login(FormCollection form)
   {
+   TicketAuth ticket = new TicketAuth();
    if (form.Count > 0)
    {
     Account acc = new Account
@@ -64,17 +65,15 @@ namespace Bonline.Controllers
 	Password = PasswordManager.Hash(Request.Form["Password"])
     };
 
-    bool auth = accountRepository.LoginAccount(acc);
-    bool inactief = accountRepository.CheckInactiefAccount(acc);
     string id = accountRepository.LoginId(acc);
 
-    if (inactief)
+    if (!accountRepository.CheckInactiefAccount(acc))
     {
 	ViewBag.Message1 = "Uw account is inactief";
 	return View("Login");
     }
 
-    if (auth == false)
+    if (!accountRepository.LoginAccount(acc))
     {
 	ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
 	return View("Login");
@@ -82,13 +81,12 @@ namespace Bonline.Controllers
 
     if (id != null)
     {
-	FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, id, DateTime.Now, DateTime.Now.AddHours(3), false, "", FormsAuthentication.FormsCookiePath);
-	HttpCookie c = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+	HttpCookie c = ticket.Encrypt(id);
 	HttpContext.Response.Cookies.Add(c);
-	return RedirectToAction("Index", "Bon");
+	return RedirectToAction("Bon", "Bon");
     }
    }
-	  return RedirectToAction("Index", "Bon");
+   return RedirectToAction("Bon", "Bon");
   }
 
   [HttpGet]
