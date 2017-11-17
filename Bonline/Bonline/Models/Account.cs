@@ -23,11 +23,11 @@ namespace Bonline.Models
    Query = "SELECT * FROM dbo.Account";
   }
 
-  public void Parse(SqlDataReader reader)
+  public void Parse(SqlDataReader reader) 
   {
    Id = reader.GetInt32(reader.GetOrdinal("ID"));
    Email = reader.GetString(reader.GetOrdinal("Email"));
-   Password = reader.GetString(reader.GetOrdinal("Password"));
+   Password = reader.GetString(reader.GetOrdinal("Wachtwoord"));
    Inactief = reader.GetBoolean(reader.GetOrdinal("Inactief"));
    Admin = reader.GetBoolean(reader.GetOrdinal("Administrator"));
   }
