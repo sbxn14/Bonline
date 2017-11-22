@@ -17,14 +17,14 @@ namespace Bonline.Controllers
 
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public ActionResult Register(FormCollection form)
+  public ActionResult Register(Account acc)
   {
 
    string mailregex = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
    string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 
-   bool isMailMatch = Regex.IsMatch(Request.Form["Email"], mailregex);
-   bool isPassMatch = Regex.IsMatch(Request.Form["Password"], passregex);
+   bool isMailMatch = Regex.IsMatch(acc.Email, mailregex);
+   bool isPassMatch = Regex.IsMatch(acc.Password, passregex);
 
    if (!isMailMatch)
    {
@@ -39,8 +39,8 @@ namespace Bonline.Controllers
    }
    Account account = new Account
    {
-    Email = PasswordManager.Hash(Request.Form["email"]),
-    Password = PasswordManager.Hash(Request.Form["password"]),
+    Email = acc.Email,
+    Password = PasswordManager.Hash(acc.Password)
    };
    accountRepository.AddAccount(account);
    return View("Login");
@@ -54,37 +54,34 @@ namespace Bonline.Controllers
 
   [ValidateAntiForgeryToken]
   [HttpPost]
-  public ActionResult Login(FormCollection form)
+  public ActionResult Login(Account acc)
   {
    TicketAuth ticket = new TicketAuth();
-   if (form.Count > 0)
+   Account account = new Account
    {
-    Account acc = new Account
-    {
-	Email = PasswordManager.Hash(Request.Form["Email"]),
-	Password = PasswordManager.Hash(Request.Form["Password"])
-    };
+    Email = acc.Email,
+    Password = PasswordManager.Hash(acc.Password)
+   };
 
-    string id = accountRepository.LoginId(acc);
+   string id = accountRepository.LoginId(account);
 
-    if (!accountRepository.CheckInactiefAccount(acc))
-    {
-	ViewBag.Message1 = "Uw account is inactief";
-	return View("Login");
-    }
+   if (!accountRepository.CheckInactiefAccount(account))
+   {
+    ViewBag.Message1 = "Uw account is inactief";
+    return View("Login");
+   }
 
-    if (!accountRepository.LoginAccount(acc))
-    {
-	ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
-	return View("Login");
-    }
+   if (!accountRepository.LoginAccount(account))
+   {
+    ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
+    return View("Login");
+   }
 
-    if (id != null)
-    {
-	HttpCookie c = ticket.Encrypt(id);
-	HttpContext.Response.Cookies.Add(c);
-	return RedirectToAction("Bon", "Bon");
-    }
+   if (id != null)
+   {
+    HttpCookie c = ticket.Encrypt(id);
+    HttpContext.Response.Cookies.Add(c);
+    return RedirectToAction("Bon", "Bon");
    }
    return RedirectToAction("Bon", "Bon");
   }

@@ -10,39 +10,39 @@ namespace Bonline.Repositories
 {
  public class AccountRepository
  {
-  IAccountContext context;
+  readonly IAccountContext _context;
 
   public AccountRepository(IAccountContext context)
   {
-   this.context = context;
+   _context = context;
   }
 
 
   public List<Account> SelectAccounts()
   {
    List<Account> accounts = new List<Account>();
-   this.context.Select();
+   _context.Select();
    return accounts;
   }
 
   public void AddAccount(Account account)
   {
-   this.context.Insert(account);
+   this._context.Insert(account);
   }
 
   public void DeleteAccount(Account account)
   {
-   this.context.Delete(account);
+   _context.Delete(account);
   }
 
   public void UpdateAccount(Account account, string nieuwWachtwoord)
   {
-   this.context.Update(account, nieuwWachtwoord);
+   _context.Update(account, nieuwWachtwoord);
   }
 
   public bool LoginAccount(Account account)
   {
-   int accounts = (from acc in this.context.Select()
+   int accounts = (from acc in this._context.Select()
 			    where acc.Email.Equals(account.Email)
 					&& acc.Password.Equals(account.Password)
 			    select acc).Count();
@@ -50,15 +50,12 @@ namespace Bonline.Repositories
    {
     return true;
    }
-   else
-   {
-    return false;
-   }
+   return false;
   }
 
   public string LoginId(Account account)
   {
-   string accounts = (from acc in this.context.Select()
+   string accounts = (from acc in this._context.Select()
 				  where acc.Email.Equals(account.Email)
 				  && acc.Password.Equals(account.Password)
 				  select acc).ToString();
@@ -69,7 +66,7 @@ namespace Bonline.Repositories
   {
    try
    {
-    Account accounts = (from acc in this.context.Select()
+    Account accounts = (from acc in this._context.Select()
 				    where acc.Email.Equals(account.Email)
 						&& acc.Password.Equals(account.Password)
 				    select acc).Single();
