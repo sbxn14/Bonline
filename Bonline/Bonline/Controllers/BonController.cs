@@ -25,8 +25,8 @@ namespace Bonline.Controllers
    //Datamanager.Initialize();
 
    // List<Bon> BonnenList = Datamanager.BonList;
-   List<Bon> BonnenList = DB.RunQuery(new Bon());
-   var model = BonnenList;
+   List<Bon> bonnenList = DB.RunQuery(new Bon());
+   var model = bonnenList;
    return View(model);
   }
 

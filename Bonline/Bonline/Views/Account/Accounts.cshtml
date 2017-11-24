@@ -13,6 +13,7 @@
   <thead>
    <tr>
     <th>Id</th>
+    <th>Email</th>
     <th>Inactief</th>
    </tr>
   </thead>
@@ -24,15 +25,15 @@
      @Html.DisplayFor(modelItem => item.Id)
     </td>
     <td>
+     @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
      @Html.DisplayFor(modelItem => item.Inactief)
     </td>
     <td>
      @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
 	{
-     @Html.AntiForgeryToken()
-     <input type="hidden" value="@item.Id" name="AccountId" />
-      <input type="hidden" value="@item.Inactief" name="AccountInactief" />
-      <input type="submit" value="Toggle"/>
+     @Html.ActionLink("Toggle", "Accounts", "Account", new { id = item.Id },null)
 	}
     </td>
    </tr>
