@@ -14,18 +14,24 @@ namespace Bonline.Context.MSSQL
 
   public void Insert(Account account)
   {
-   using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
+   try
    {
-    conn.Open();
-                //changed query: waardes komen overeen met de db
-    string query = "INSERT INTO dbo.Account (Administrator, Inactief, Email, Wachtwoord) VALUES (@Administrator, @Inactief, @Email, @Wachtwoord)";
-    SqlCommand cmd = new SqlCommand(query, conn);
-    cmd.Parameters.AddWithValue("@Administrator", account.Admin);
-    cmd.Parameters.AddWithValue("@Inactief", account.Inactief);
-    cmd.Parameters.AddWithValue("@Email", account.Email);
-    cmd.Parameters.AddWithValue("@Wachtwoord", account.Password);
-    cmd.ExecuteNonQuery();
-    conn.Close();
+    using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
+    {
+	//changed query: waardes komen overeen met de db
+	string query = "INSERT INTO dbo.Account (Administrator, Inactief, Email, Wachtwoord) VALUES (@Administrator, @Inactief, @Email, @Wachtwoord)";
+	SqlCommand cmd = new SqlCommand(query);
+	cmd.Parameters.AddWithValue("@Administrator", account.Admin);
+	cmd.Parameters.AddWithValue("@Inactief", account.Inactief);
+	cmd.Parameters.AddWithValue("@Email", account.Email);
+	cmd.Parameters.AddWithValue("@Wachtwoord", account.Password);
+	Database.DB.RunNonQuery(cmd);
+    }
+   }
+   catch (Exception e)
+   {
+    Console.WriteLine(e);
+    throw;
    }
   }
 

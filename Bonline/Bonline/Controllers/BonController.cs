@@ -6,8 +6,11 @@ using System.Web.Mvc;
 using Bonline.Database;
 using Bonline.Models;
 using Bonline.Repositories;
+<<<<<<< refs/remotes/origin/Kassasysteem
 using Bonline.Context.MSSQL;
 
+=======
+>>>>>>> Accounts view
 
 namespace Bonline.Controllers
 {
@@ -27,13 +30,23 @@ namespace Bonline.Controllers
    return View(model);
   }
 
+<<<<<<< refs/remotes/origin/Kassasysteem
         [HttpPost]
         public ActionResult BonKassa(Bon b) => View("Kassa");
+=======
+  [HttpPost]
+  public ActionResult Bon(Bon bon)
+  {
+   return RedirectToAction("Details", "Bon", bon);
+  }
+
+>>>>>>> Accounts view
 
         [HttpPost]
         public ActionResult Bondirect(Bon b)
         {
 
+<<<<<<< refs/remotes/origin/Kassasysteem
             
 
             DateTime Date = DateTime.Now;
@@ -64,4 +77,18 @@ namespace Bonline.Controllers
 
 
  
+=======
+  [HttpGet]
+  public ActionResult Details()
+  {
+   return View("Details","Bon");
+  }
+
+  [HttpPost]
+  public ActionResult Details(Bon bon)
+  {
+   return View("Details", "Bon");
+  }
+ }
+>>>>>>> Accounts view
 }

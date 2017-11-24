@@ -214,8 +214,13 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Bon\Bon.cshtml" />
+<<<<<<< refs/remotes/origin/Kassasysteem
     <Content Include="Views\Bon\Kassa.cshtml" />
     <Content Include="Views\Bon\BonOverzicht.cshtml" />
+=======
+    <Content Include="Views\Bon\Details.cshtml" />
+    <Content Include="Views\Account\Accounts.cshtml" />
+>>>>>>> Accounts view
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,12 +11,19 @@ namespace Bonline.Database
 
   static DB()
   {
+<<<<<<< refs/remotes/origin/Kassasysteem
   // ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
    ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
-   //ConnectionString voor Azure database
-        }
+=======
+   //connectionstring localhost   
+   //ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
 
-        public static List<T> RunQuery<T>(T value) where T : IQuery, new()
+>>>>>>> Accounts view
+   //ConnectionString voor Azure database
+   ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
+  }
+
+  public static List<T> RunQuery<T>(T value) where T : IQuery, new()
   {
    SqlDataReader reader = null;
    List<T> result = new List<T>();

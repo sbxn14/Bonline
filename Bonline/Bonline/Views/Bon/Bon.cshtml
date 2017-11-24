@@ -1,12 +1,10 @@
 ﻿@model List<Bonline.Models.Bon>
 
-
-
-
 @{
  ViewBag.Title = "Bon";
 }
 <!DOCTYPE html>
+<<<<<<< refs/remotes/origin/Kassasysteem
 
 
 <h2>Bon</h2>
@@ -67,6 +65,51 @@
 </table>
 
 
+=======
+@using (Html.BeginForm())
+{
+ <h2>Bon</h2>
+ <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+ <br />
+ <table style="width: 100%">
+  <thead>
+   <tr>
+    <th>Id</th>
+    <th>Datum</th>
+    <th>Boodschappen</th>
+   </tr>
+  </thead>
+  <tbody>
+   @foreach (var item in Model)
+   {
+   <tr>
+    <td>
+     @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+     @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+     @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+     @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
+	{
+     @Html.AntiForgeryToken()
+     <input type="hidden" value="@item.Id" name="BonId" />
+     <input type="hidden" value="@item.Date" name="BonDate" />
+     <input type="hidden" value="@item.Description" name="BonDes" />
+     <input type="hidden" value="@item.AccId" name="BonAccId" />
+     <input type="hidden" value="@item.LocatieId" name="BonLocId" />
+     <input type="submit" value="Details" />
+	}
+    </td>
+   </tr>
+   }
+  </tbody>
+ </table>
+}
+>>>>>>> Accounts view
 @Scripts.Render("~/Scripts/Filter.js")
 
 
