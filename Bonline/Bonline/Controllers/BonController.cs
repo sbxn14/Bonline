@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Bonline.Database;
 using Bonline.Models;
+using Bonline.Repositories;
 
 namespace Bonline.Controllers
 {
@@ -22,11 +23,23 @@ namespace Bonline.Controllers
   }
 
   [HttpPost]
-  public ActionResult Bon(FormCollection form)
+  public ActionResult Bon(Bon bon)
   {
+   return RedirectToAction("Details", "Bon", bon);
+  }
 
 
-   return View();
+
+  [HttpGet]
+  public ActionResult Details()
+  {
+   return View("Details","Bon");
+  }
+
+  [HttpPost]
+  public ActionResult Details(Bon bon)
+  {
+   return View("Details", "Bon");
   }
  }
 }

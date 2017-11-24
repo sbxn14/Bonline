@@ -1,11 +1,13 @@
 ﻿using Bonline.Context.MSSQL;
 using Bonline.Models;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Bonline.Database;
 using Bonline.Repositories;
 using Account = Bonline.Models.Account;
 
@@ -52,20 +54,16 @@ namespace Bonline.Controllers
    return View();
   }
 
-  [ValidateAntiForgeryToken]
   [HttpPost]
-  public ActionResult Login(Account acc)
+  [ValidateAntiForgeryToken]
+  public ActionResult Login(Account account)
   {
    TicketAuth ticket = new TicketAuth();
-   Account account = new Account
-   {
-    Email = acc.Email,
-    Password = PasswordManager.Hash(acc.Password)
-   };
+   account.Password = PasswordManager.Hash(account.Password);
 
    string id = accountRepository.LoginId(account);
 
-   if (!accountRepository.CheckInactiefAccount(account))
+   if (accountRepository.CheckInactiefAccount(account))
    {
     ViewBag.Message1 = "Uw account is inactief";
     return View("Login");
@@ -91,5 +89,21 @@ namespace Bonline.Controllers
   {
    return View();
   }
+
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public ActionResult Accounts(Account account)
+  {
+   List<Account> AccountList = DB.RunQuery(new Account());
+   var model = AccountList;
+   return View(model);
+  }
+
+  [HttpGet]
+  public ActionResult Accounts()
+  {
+   return View();
+  }
+
  }
 }

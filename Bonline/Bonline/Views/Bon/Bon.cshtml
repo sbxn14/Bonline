@@ -1,72 +1,52 @@
 ﻿@model List<Bonline.Models.Bon>
 
-
-
-
 @{
  ViewBag.Title = "Bon";
 }
 <!DOCTYPE html>
-
-
-<h2>Bon</h2>
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-	<!-- Modal content -->
-	<div class="modal-content">
-		<span class="close">&times;</span>
-		<p>Some text in the Modal..</p>
-	</div>
-<<<<<<< HEAD
-=======
-
->>>>>>> master
-</div> 
-
-<input class="form-control" id="myInput" type="text" placeholder="KUT SIMON MET JE KUT KOP" />
-<br />
-<table style="width: 100%">
- <thead>
-  <tr>
-   <th>Id</th>
-   <th>Datum</th>
-   <th>Boodschappen</th>
-  </tr>
- </thead>
- <tbody id="myTable">
-
-  @foreach (var item in Model)
-  {
-  <tr>
-   <td>
-    @Html.DisplayFor(model => item.Id) &nbsp;
-   </td>
-
-
-   <td>
-    @Html.DisplayFor(model => item.Date)&nbsp;
-
-   </td>
-
-
-   <td>
-    @Html.DisplayFor(model => item.Description)&nbsp;
-
-   </td>
-
-
-
-  </tr>
-
-  }
- </tbody>
-</table>
-
-
+@using (Html.BeginForm())
+{
+ <h2>Bon</h2>
+ <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+ <br />
+ <table style="width: 100%">
+  <thead>
+   <tr>
+    <th>Id</th>
+    <th>Datum</th>
+    <th>Boodschappen</th>
+   </tr>
+  </thead>
+  <tbody>
+   @foreach (var item in Model)
+   {
+   <tr>
+    <td>
+     @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+     @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+     @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+     @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
+	{
+     @Html.AntiForgeryToken()
+     <input type="hidden" value="@item.Id" name="BonId" />
+     <input type="hidden" value="@item.Date" name="BonDate" />
+     <input type="hidden" value="@item.Description" name="BonDes" />
+     <input type="hidden" value="@item.AccId" name="BonAccId" />
+     <input type="hidden" value="@item.LocatieId" name="BonLocId" />
+     <input type="submit" value="Details" />
+	}
+    </td>
+   </tr>
+   }
+  </tbody>
+ </table>
+}
 @Scripts.Render("~/Scripts/Filter.js")
 
 
