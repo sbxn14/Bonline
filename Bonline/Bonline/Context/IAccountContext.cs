@@ -7,11 +7,11 @@ using Bonline.Models;
 
 namespace Bonline.Context
 {
-	public interface IAccountContext
+ public interface IAccountContext
  {
-	 void Insert(Account account);
-	 List<Account> Select();
-	 void Update(Account account, string nieuwWachtwoord);
-	 void Delete(Account account);
+  void Insert(Account account);
+  List<Account> Select();
+  void Update(Account account, string nieuwWachtwoord);
+  void UpdateInactief(Account account);
  }
 }

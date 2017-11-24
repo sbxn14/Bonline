@@ -30,11 +30,6 @@ namespace Bonline.Repositories
    this._context.Insert(account);
   }
 
-  public void DeleteAccount(Account account)
-  {
-   _context.Delete(account);
-  }
-
   public void UpdateAccount(Account account, string nieuwWachtwoord)
   {
    _context.Update(account, nieuwWachtwoord);
@@ -81,5 +76,20 @@ namespace Bonline.Repositories
    }
    return true;
   }
+
+  public void UpdateInactief(Account account)
+  {
+   _context.UpdateInactief(account);
+  }
+
+  public Account SelectAccount(int id)
+  {
+   Account account = (from acc in this._context.Select()
+				  where acc.Id.Equals(id)
+				  select acc).Single();
+   return account;
+  }
+
+
  }
 }

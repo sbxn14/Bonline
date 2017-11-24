@@ -3,6 +3,7 @@ using Bonline.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -54,6 +55,12 @@ namespace Bonline.Controllers
    return View();
   }
 
+  [HttpGet]
+  public ActionResult Login()
+  {
+   return View();
+  }
+
   [HttpPost]
   [ValidateAntiForgeryToken]
   public ActionResult Login(Account account)
@@ -84,25 +91,33 @@ namespace Bonline.Controllers
    return RedirectToAction("Bon", "Bon");
   }
 
-  [HttpGet]
-  public ActionResult Login()
-  {
-   return View();
-  }
+
 
   [HttpPost]
   [ValidateAntiForgeryToken]
-  public ActionResult Accounts(Account account)
+  public ActionResult Accounts()
   {
-   List<Account> AccountList = DB.RunQuery(new Account());
-   var model = AccountList;
+   List<Account> accountList = DB.RunQuery(new Account());
+   var model = accountList;
    return View(model);
   }
 
+//TODO verbeteren, zodat er geen exception nodig is.
   [HttpGet]
-  public ActionResult Accounts()
+  public ActionResult Accounts(int id = 0)
   {
-   return View();
+   try
+   {
+    Account account = accountRepository.SelectAccount(id);
+    account.Inactief = !account.Inactief;
+    accountRepository.UpdateInactief(account);
+   }
+   catch (Exception e)
+   {
+    Console.WriteLine(e);
+   }
+   List<Account> accountList = DB.RunQuery(new Account());
+   return View(accountList);
   }
 
  }

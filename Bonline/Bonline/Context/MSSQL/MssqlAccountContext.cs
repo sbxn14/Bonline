@@ -45,9 +45,25 @@ namespace Bonline.Context.MSSQL
 
   }
 
-  public void Delete(Account account)
+  public void UpdateInactief(Account account)
   {
-
+   try
+   {
+    using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
+    {
+	//changed query: waardes komen overeen met de db
+	string query = "UPDATE dbo.Account SET Inactief = @Inactief WHERE ID = @ID";
+	SqlCommand cmd = new SqlCommand(query);
+	cmd.Parameters.AddWithValue("@Inactief", account.Inactief);
+	cmd.Parameters.AddWithValue("@ID", account.Id);
+	Database.DB.RunNonQuery(cmd);
+    }
+   }
+   catch (Exception e)
+   {
+    Console.WriteLine(e);
+    throw;
+   }
   }
  }
 }
