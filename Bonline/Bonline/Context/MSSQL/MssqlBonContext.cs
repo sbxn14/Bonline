@@ -90,8 +90,9 @@ namespace Bonline.Context.MSSQL
 
   public void Insert(Bon bon)
   {
-   using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
+   try
    {
+<<<<<<< refs/remotes/origin/Kassasysteem
     conn.Open();
     string query = "INSERT INTO Bon (Boodschappen, Datum, LocatieID,) VALUES (@Boodschappen, @Datum, @LocatieID)";
     SqlCommand cmd = new SqlCommand(query, conn);
@@ -101,6 +102,22 @@ namespace Bonline.Context.MSSQL
     cmd.Parameters.AddWithValue("@LocatieId", bon.Loc);
     cmd.ExecuteNonQuery();
     conn.Close();
+=======
+    using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
+    {
+	string query = "INSERT INTO bon (Boodschappen, Datum, LocatieID, ) VALUES (@Boodschappen, @Datum, @LocatieID)";
+	SqlCommand cmd = new SqlCommand(query);
+	cmd.Parameters.AddWithValue("@Boodschappen", bon.Description);
+	cmd.Parameters.AddWithValue("@Datum", bon.Date);
+	cmd.Parameters.AddWithValue("@LocatieId", bon.Loc);
+	DB.RunNonQuery(cmd);
+    }
+   }
+   catch (Exception e)
+   {
+    Console.WriteLine(e);
+    throw;
+>>>>>>> Details bonnen werkt, Zoeken niet meer?
    }
   }
 

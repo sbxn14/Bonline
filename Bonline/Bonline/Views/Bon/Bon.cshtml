@@ -3,6 +3,7 @@
 @{
  ViewBag.Title = "Bon";
 }
+<<<<<<< refs/remotes/origin/Kassasysteem
 <!DOCTYPE html>
 <<<<<<< refs/remotes/origin/Kassasysteem
 
@@ -66,6 +67,8 @@
 
 
 =======
+=======
+>>>>>>> Details bonnen werkt, Zoeken niet meer?
 @using (Html.BeginForm())
 {
  <h2>Bon</h2>
@@ -96,12 +99,7 @@
      @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
 	{
      @Html.AntiForgeryToken()
-     <input type="hidden" value="@item.Id" name="BonId" />
-     <input type="hidden" value="@item.Date" name="BonDate" />
-     <input type="hidden" value="@item.Description" name="BonDes" />
-     <input type="hidden" value="@item.AccId" name="BonAccId" />
-     <input type="hidden" value="@item.LocatieId" name="BonLocId" />
-     <input type="submit" value="Details" />
+     @Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
 	}
     </td>
    </tr>

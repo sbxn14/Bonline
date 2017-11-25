@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bonline.Context.MSSQL;
 using Bonline.Database;
 using Bonline.Models;
 using Bonline.Repositories;
@@ -16,7 +17,11 @@ namespace Bonline.Controllers
 {
  public class BonController : Controller
  {
+<<<<<<< refs/remotes/origin/Kassasysteem
         BonRepository repo = new BonRepository(new MssqlBonContext());
+=======
+  private BonRepository bonRepository = new BonRepository(new MssqlBonContext());
+>>>>>>> Details bonnen werkt, Zoeken niet meer?
 
 
   [HttpGet]
@@ -76,18 +81,35 @@ namespace Bonline.Controllers
     }
 
 
+<<<<<<< refs/remotes/origin/Kassasysteem
  
 =======
   [HttpGet]
   public ActionResult Details()
+=======
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public ActionResult Details(Bon bon)
+>>>>>>> Details bonnen werkt, Zoeken niet meer?
   {
-   return View("Details","Bon");
+   return View("Details", bon);
   }
 
-  [HttpPost]
-  public ActionResult Details(Bon bon)
+  //TODO verbeteren, zodat er geen exception nodig is.
+  [HttpGet]
+  public ActionResult Details(int id = 0)
   {
-   return View("Details", "Bon");
+   try
+   {
+    Bon bon = bonRepository.SelectBon(id);
+    return Details(bon);
+   }
+   catch (Exception e)
+   {
+    Console.WriteLine(e);
+    throw;
+   }
+   return View();
   }
  }
 >>>>>>> Accounts view
