@@ -68,7 +68,17 @@ namespace Bonline.Repositories
    return bon;
   }
 
+<<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> filter met organisatie
 
+=======
+  public IEnumerable<Bon> SelectBonnenOrg(string org)
+  {
+   IEnumerable<Bon> bon = (from b in this._context.Select()
+					  where b.LocatieId.Equals()
+					  select b);
+   return bon;
+  }
+>>>>>>> filter werkt bijna
  }
 }

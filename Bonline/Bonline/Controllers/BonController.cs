@@ -29,11 +29,9 @@ namespace Bonline.Controllers
 >>>>>>> filter met organisatie
 
   [HttpGet]
-  public ActionResult Bon(string Naam = "")
+  public ActionResult Bon()
   {
    Datamanager.Initialize();
-
-
    return View(Datamanager.BonList);
   }
 
@@ -42,9 +40,18 @@ namespace Bonline.Controllers
         public ActionResult BonKassa(Bon b) => View("Kassa");
 =======
   [HttpPost]
-  public ActionResult Bon(Bon bon)
+  public ActionResult Bon(Bon bon, string orgnaam = "0")
   {
-   return RedirectToAction("Details", "Bon", bon);
+   if (orgnaam == "0")
+   {
+    return RedirectToAction("Details", "Bon", bon);
+   }
+   else
+   {
+    List<Bon> bonnen = Datamanager.BonList;
+
+    return View(bon);
+   }
   }
 
 <<<<<<< refs/remotes/origin/Kassasysteem
