@@ -11,8 +11,8 @@ namespace Bonline.Database
 
   static DB()
   {
-   ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
-   //ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
+  // ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
+   ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
    //ConnectionString voor Azure database
         }
 

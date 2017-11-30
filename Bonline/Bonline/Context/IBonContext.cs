@@ -11,5 +11,16 @@ namespace Bonline.Context
  {
 	 void Insert(Bon b);
 	 List<Bon> Select();
+
+     void InsertKassa(Bon b);
+
+        Bon GetOrgName(Bon b);
+
+        void GetLocName(Bon b);
+
+   
+
+    
+    
  }
 }
