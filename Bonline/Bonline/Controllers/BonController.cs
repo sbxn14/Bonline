@@ -15,18 +15,25 @@ namespace Bonline.Controllers
   private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
 
   [HttpGet]
-  public ActionResult Bon(string Naam = "")
+  public ActionResult Bon()
   {
    Datamanager.Initialize();
-
-
    return View(Datamanager.BonList);
   }
 
   [HttpPost]
-  public ActionResult Bon(Bon bon)
+  public ActionResult Bon(Bon bon, string orgnaam = "0")
   {
-   return RedirectToAction("Details", "Bon", bon);
+   if (orgnaam == "0")
+   {
+    return RedirectToAction("Details", "Bon", bon);
+   }
+   else
+   {
+    List<Bon> bonnen = Datamanager.BonList;
+
+    return View(bon);
+   }
   }
 
   [HttpPost]

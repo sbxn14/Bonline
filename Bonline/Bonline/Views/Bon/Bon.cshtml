@@ -20,7 +20,7 @@
  <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
  <br />
  <div class="form-group dropdown">
-  <select class="form-control">
+  <select id="SelectOrg" class="form-control" onchange="submit();" name="org">
    <option value="" disabled selected>Kies een winkel</option>
    @foreach (var item in organisatieList)
    {
