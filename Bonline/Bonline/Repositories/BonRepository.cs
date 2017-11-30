@@ -1,8 +1,13 @@
 <<<<<<< refs/remotes/origin/Kassasysteem
+<<<<<<< refs/remotes/origin/Kassasysteem
 ﻿using System;
 =======
 ﻿using System.Linq;
 >>>>>>> Details bonnen werkt, Zoeken niet meer?
+=======
+﻿using System.Collections.Generic;
+using System.Linq;
+>>>>>>> filter met organisatie
 using Bonline.Context;
 using Bonline.Models;
 
@@ -52,7 +57,18 @@ namespace Bonline.Repositories
    return bon;
   }
 
+<<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> Details bonnen werkt, Zoeken niet meer?
+=======
+  public IEnumerable<Bon> SelectBonnen(int userId)
+  {
+   IEnumerable<Bon> bon = (from b in this._context.Select()
+					  where b.AccId.Equals(userId)
+					  select b);
+   return bon;
+  }
+
+>>>>>>> filter met organisatie
 
  }
 }

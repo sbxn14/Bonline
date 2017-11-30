@@ -1,8 +1,19 @@
 ﻿@model List<Bonline.Models.Bon>
 
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/Filter.js")
+
 @{
- ViewBag.Title = "Bon";
+ List<SelectListItem> organisatieList = new List<SelectListItem>();
+ foreach (var item in Model)
+ {
+  organisatieList.Add(new SelectListItem
+  {
+   Text = item.Loc.Org.Name,
+  });
+ }
 }
+<<<<<<< refs/remotes/origin/Kassasysteem
 <<<<<<< refs/remotes/origin/Kassasysteem
 <!DOCTYPE html>
 <<<<<<< refs/remotes/origin/Kassasysteem
@@ -69,12 +80,24 @@
 =======
 =======
 >>>>>>> Details bonnen werkt, Zoeken niet meer?
+=======
+
+>>>>>>> filter met organisatie
 @using (Html.BeginForm())
 {
  <h2>Bon</h2>
  <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
  <br />
- <table style="width: 100%">
+ <div class="form-group dropdown">
+  <select class="form-control">
+   <option value="" disabled selected>Kies een winkel</option>
+   @foreach (var item in organisatieList)
+   {
+   <option value="@item.Text">@item.Text</option>
+   }
+  </select>
+ </div>
+ <table id="myTable" style="width: 100%">
   <thead>
    <tr>
     <th>Id</th>
@@ -107,8 +130,11 @@
   </tbody>
  </table>
 }
+<<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> Accounts view
 @Scripts.Render("~/Scripts/Filter.js")
+=======
+>>>>>>> filter met organisatie
 
 
 <<<<<<< refs/remotes/origin/Kassasysteem

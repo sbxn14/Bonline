@@ -15,13 +15,13 @@ namespace Bonline.Models
 
         public Organisatie()
         {
-            Query = "SELECT * FROM dbo.Organistaties";
+            Query = "SELECT * FROM dbo.Organisatie";
         }
 
         public void Parse(SqlDataReader reader)
         {
-            Id = reader.GetInt32(reader.GetOrdinal("Id"));
-            Name = reader.GetString(reader.GetOrdinal("Name"));
+            Id = reader.GetInt32(reader.GetOrdinal("ID"));
+            Name = reader.GetString(reader.GetOrdinal("Naam"));
         }
     }
 }

@@ -18,21 +18,23 @@ namespace Bonline.Controllers
  public class BonController : Controller
  {
 <<<<<<< refs/remotes/origin/Kassasysteem
+<<<<<<< refs/remotes/origin/Kassasysteem
         BonRepository repo = new BonRepository(new MssqlBonContext());
 =======
   private BonRepository bonRepository = new BonRepository(new MssqlBonContext());
 >>>>>>> Details bonnen werkt, Zoeken niet meer?
 
+=======
+  private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
+>>>>>>> filter met organisatie
 
   [HttpGet]
-  public ActionResult Bon()
+  public ActionResult Bon(string Naam = "")
   {
-   //Datamanager.Initialize();
+   Datamanager.Initialize();
 
-   // List<Bon> BonnenList = Datamanager.BonList;
-   List<Bon> bonnenList = DB.RunQuery(new Bon());
-   var model = bonnenList;
-   return View(model);
+
+   return View(Datamanager.BonList);
   }
 
 <<<<<<< refs/remotes/origin/Kassasysteem
@@ -45,6 +47,7 @@ namespace Bonline.Controllers
    return RedirectToAction("Details", "Bon", bon);
   }
 
+<<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> Accounts view
 
         [HttpPost]
@@ -87,6 +90,8 @@ namespace Bonline.Controllers
   [HttpGet]
   public ActionResult Details()
 =======
+=======
+>>>>>>> filter met organisatie
   [HttpPost]
   [ValidateAntiForgeryToken]
   public ActionResult Details(Bon bon)
@@ -101,7 +106,7 @@ namespace Bonline.Controllers
   {
    try
    {
-    Bon bon = bonRepository.SelectBon(id);
+    Bon bon = _bonRepository.SelectBon(id);
     return Details(bon);
    }
    catch (Exception e)
@@ -109,7 +114,6 @@ namespace Bonline.Controllers
     Console.WriteLine(e);
     throw;
    }
-   return View();
   }
  }
 >>>>>>> Accounts view

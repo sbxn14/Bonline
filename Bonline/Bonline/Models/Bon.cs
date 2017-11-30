@@ -1,6 +1,7 @@
 ﻿using Bonline.Database;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Bonline.Models
 {
@@ -63,10 +64,16 @@ namespace Bonline.Models
    Description = reader.GetString(reader.GetOrdinal("Boodschappen"));
    AccId = reader.GetInt32(reader.GetOrdinal("AccountID"));
    LocatieId = reader.GetInt32(reader.GetOrdinal("LocatieID"));
+   Date = reader.GetDateTime(reader.GetOrdinal("Datum"));
 
-   //locatie
-   //account
-  Date = reader.GetDateTime(reader.GetOrdinal("Datum"));
+   Loc = Datamanager.LocList.FirstOrDefault(x => x.Id == LocatieId);
+   Acc = Datamanager.AccList.FirstOrDefault(x => x.Id == AccId);
+
+
+
+
+
+
   }
- } 
+ }
 }
