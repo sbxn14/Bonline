@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Bonline.Context;
 using Bonline.Models;
 
@@ -18,6 +19,14 @@ namespace Bonline.Repositories
    Bon bon = (from b in this._context.Select()
 		    where b.Id.Equals(id)
 		    select b).Single();
+   return bon;
+  }
+
+  public IEnumerable<Bon> SelectBonnen(int userId)
+  {
+   IEnumerable<Bon> bon = (from b in this._context.Select()
+					  where b.AccId.Equals(userId)
+					  select b);
    return bon;
   }
 

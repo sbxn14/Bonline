@@ -1,4 +1,9 @@
 ﻿@model List<Bonline.Models.Account>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/Filter.js")
+
+
+
 
 @{
  ViewBag.Title = "Accounts";
@@ -9,7 +14,7 @@
  <h2>Accounts</h2>
  <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
  <br />
- <table style="width: 100%">
+ <table id="myTable" style="width: 100%">
   <thead>
    <tr>
     <th>Id</th>

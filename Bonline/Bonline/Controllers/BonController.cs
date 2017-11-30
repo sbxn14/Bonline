@@ -12,18 +12,15 @@ namespace Bonline.Controllers
 {
  public class BonController : Controller
  {
-  private BonRepository bonRepository = new BonRepository(new MssqlBonContext());
-
+  private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
 
   [HttpGet]
-  public ActionResult Bon()
+  public ActionResult Bon(string Naam = "")
   {
-   //Datamanager.Initialize();
+   Datamanager.Initialize();
 
-   // List<Bon> BonnenList = Datamanager.BonList;
-   List<Bon> bonnenList = DB.RunQuery(new Bon());
-   var model = bonnenList;
-   return View(model);
+
+   return View(Datamanager.BonList);
   }
 
   [HttpPost]
@@ -31,8 +28,6 @@ namespace Bonline.Controllers
   {
    return RedirectToAction("Details", "Bon", bon);
   }
-
-
 
   [HttpPost]
   [ValidateAntiForgeryToken]
@@ -47,7 +42,7 @@ namespace Bonline.Controllers
   {
    try
    {
-    Bon bon = bonRepository.SelectBon(id);
+    Bon bon = _bonRepository.SelectBon(id);
     return Details(bon);
    }
    catch (Exception e)
@@ -55,7 +50,6 @@ namespace Bonline.Controllers
     Console.WriteLine(e);
     throw;
    }
-   return View();
   }
  }
 }
