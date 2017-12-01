@@ -18,7 +18,7 @@ namespace Bonline.Context.MSSQL
    SqlCommand cmd = new SqlCommand(query);
 
    cmd.Parameters.AddWithValue("@name", name);
-   DB.RunNonQuery(cmd);
+   Db.RunNonQuery(cmd);
   }
 
   public List<Organisatie> Select()

@@ -158,7 +158,7 @@
     <Compile Include="Controllers\OrganisatieController.cs" />
     <Compile Include="Controllers\LocatieController.cs" />
     <Compile Include="Database\Datamanager.cs" />
-    <Compile Include="Database\DB.cs" />
+    <Compile Include="Database\Db.cs" />
     <Compile Include="Database\IQuery.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,7 +195,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -216,6 +215,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Bon\Bon.cshtml" />
+    <Content Include="Views\Bon\Kassa.cshtml" />
     <Content Include="Views\Bon\Details.cshtml" />
     <Content Include="Views\Account\Accounts.cshtml" />
   </ItemGroup>

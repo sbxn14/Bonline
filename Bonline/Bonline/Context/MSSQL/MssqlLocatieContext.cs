@@ -22,7 +22,7 @@ namespace Bonline.Context.MSSQL
    cmd.Parameters.AddWithValue("@name", name);
    cmd.Parameters.AddWithValue("@address", address);
    cmd.Parameters.AddWithValue("@organisatie", org);
-   DB.RunNonQuery(cmd);
+   Db.RunNonQuery(cmd);
   }
 
 	 public List<Locatie> Select()
