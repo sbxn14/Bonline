@@ -7,16 +7,20 @@ using Bonline.Context.MSSQL;
 using Bonline.Database;
 using Bonline.Models;
 using Bonline.Repositories;
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
 using Bonline.Context.MSSQL;
 
 =======
 >>>>>>> Accounts view
+=======
+>>>>>>> master
 
 namespace Bonline.Controllers
 {
  public class BonController : Controller
  {
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
 <<<<<<< refs/remotes/origin/Kassasysteem
         BonRepository repo = new BonRepository(new MssqlBonContext());
@@ -31,6 +35,9 @@ namespace Bonline.Controllers
 
 =======
 >>>>>>> filler stuff
+=======
+  private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
+>>>>>>> master
   [HttpGet]
   public ActionResult Bon(HttpCookie c)
   {
@@ -57,6 +64,7 @@ namespace Bonline.Controllers
     return View(bon);
    }
   }
+<<<<<<< HEAD
 
 <<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> Accounts view
@@ -83,8 +91,17 @@ namespace Bonline.Controllers
             
             return View("BonOverzicht", G);
         }
+=======
+>>>>>>> master
 
+  [HttpPost]
+  [ValidateAntiForgeryToken]
+  public ActionResult Details(Bon bon)
+  {
+   return View("Details", bon);
+  }
 
+<<<<<<< HEAD
         public ActionResult GoToKassa()
         {
             return View("Kassa");
@@ -111,6 +128,8 @@ namespace Bonline.Controllers
    return View("Details", bon);
   }
 
+=======
+>>>>>>> master
   //TODO verbeteren, zodat er geen exception nodig is.
   [HttpGet]
   public ActionResult Details(int id = 0)

@@ -13,6 +13,7 @@
   });
  }
 }
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
 <<<<<<< refs/remotes/origin/Kassasysteem
 <!DOCTYPE html>
@@ -144,6 +145,57 @@
 {
     <input type="submit" name="dang" value="go to kassa" />
 }
+=======
+
+@using (Html.BeginForm())
+{
+ <h2>Bon</h2>
+ <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+ <br />
+ <div class="form-group dropdown">
+  <select id="SelectOrg" class="form-control" onchange="submit();" name="org">
+   <option value="" disabled selected>Kies een winkel</option>
+   @foreach (var item in organisatieList)
+   {
+   <option value="@item.Text">@item.Text</option>
+   }
+  </select>
+ </div>
+ <table id="myTable" style="width: 100%">
+  <thead>
+   <tr>
+    <th>Id</th>
+    <th>Datum</th>
+    <th>Boodschappen</th>
+   </tr>
+  </thead>
+  <tbody>
+   @foreach (var item in Model)
+   {
+   <tr>
+    <td>
+     @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+     @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+     @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+     @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
+	{
+     @Html.AntiForgeryToken()
+     @Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
+	}
+    </td>
+   </tr>
+   }
+  </tbody>
+ </table>
+}
+
+>>>>>>> master
 
 =======
 >>>>>>> modal stuff

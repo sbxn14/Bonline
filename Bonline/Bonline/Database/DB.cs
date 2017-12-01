@@ -11,6 +11,7 @@ namespace Bonline.Database
 
   static DB()
   {
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
   // ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
    ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
@@ -19,6 +20,11 @@ namespace Bonline.Database
    ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
 
 >>>>>>> Accounts view
+=======
+   //connectionstring localhost   
+   ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
+
+>>>>>>> master
    //ConnectionString voor Azure database
    //ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
   }

@@ -92,6 +92,7 @@ namespace Bonline.Context.MSSQL
   {
    try
    {
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
     conn.Open();
     string query = "INSERT INTO Bon (Boodschappen, Datum, LocatieID,) VALUES (@Boodschappen, @Datum, @LocatieID)";
@@ -103,6 +104,8 @@ namespace Bonline.Context.MSSQL
     cmd.ExecuteNonQuery();
     conn.Close();
 =======
+=======
+>>>>>>> master
     using (SqlConnection conn = new SqlConnection(DB.ConnectionString))
     {
 	string query = "INSERT INTO bon (Boodschappen, Datum, LocatieID, ) VALUES (@Boodschappen, @Datum, @LocatieID)";
@@ -117,7 +120,10 @@ namespace Bonline.Context.MSSQL
    {
     Console.WriteLine(e);
     throw;
+<<<<<<< HEAD
 >>>>>>> Details bonnen werkt, Zoeken niet meer?
+=======
+>>>>>>> master
    }
   }
 

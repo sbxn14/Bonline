@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
 <<<<<<< refs/remotes/origin/Kassasysteem
 ﻿using System;
@@ -8,6 +9,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 >>>>>>> filter met organisatie
+=======
+﻿using System.Collections.Generic;
+using System.Linq;
+>>>>>>> master
 using Bonline.Context;
 using Bonline.Models;
 
@@ -15,6 +20,7 @@ namespace Bonline.Repositories
 {
  public class BonRepository
  {
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
         IBonContext context;
 
@@ -42,6 +48,8 @@ namespace Bonline.Repositories
 
     
 =======
+=======
+>>>>>>> master
   readonly IBonContext _context;
 
   public BonRepository(IBonContext context)
@@ -57,9 +65,12 @@ namespace Bonline.Repositories
    return bon;
   }
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> Details bonnen werkt, Zoeken niet meer?
 =======
+=======
+>>>>>>> master
   public IEnumerable<Bon> SelectBonnen(int userId)
   {
    IEnumerable<Bon> bon = (from b in this._context.Select()
@@ -67,6 +78,7 @@ namespace Bonline.Repositories
 					  select b);
    return bon;
   }
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/Kassasysteem
 
 <<<<<<< refs/remotes/origin/Kassasysteem
@@ -83,5 +95,7 @@ namespace Bonline.Repositories
 >>>>>>> filter werkt bijna
 =======
 >>>>>>> filler stuff
+=======
+>>>>>>> master
  }
 }
