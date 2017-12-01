@@ -9,7 +9,7 @@ namespace Bonline.Database
   public static string ConnectionString { get; set; }
 
   static Db()
-  { 
+  {
 
    //connectionstring localhost   
    //ConnectionString = "Data Source=LAPT OP-GICS0PBT;Initial Catalog=BonlineDatabase.dbo;Integrated Security=True";

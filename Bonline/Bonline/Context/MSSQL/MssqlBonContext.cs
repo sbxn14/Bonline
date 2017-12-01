@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using Bonline.Context;
 using Bonline.Database;
 using Bonline.Models;
 
 namespace Bonline.Context.MSSQL
 {
+
  public class MssqlBonContext : IBonContext
  {
   public void InsertKassa(Bon b)
@@ -84,4 +86,4 @@ namespace Bonline.Context.MSSQL
    return Db.RunQuery(new Bon());
   }
  }
-}
+    }
