@@ -26,13 +26,17 @@ namespace Bonline.Controllers
 
 =======
   private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
+<<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> filter met organisatie
 
+=======
+>>>>>>> filler stuff
   [HttpGet]
-  public ActionResult Bon()
+  public ActionResult Bon(HttpCookie c)
   {
+   TicketAuth auth = new TicketAuth();
    Datamanager.Initialize();
-   return View(Datamanager.BonList);
+   return View((List<Bon>)_bonRepository.SelectBonnen(auth.Decrypt()));
   }
 
 <<<<<<< refs/remotes/origin/Kassasysteem

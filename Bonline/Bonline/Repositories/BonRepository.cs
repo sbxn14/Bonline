@@ -67,6 +67,7 @@ namespace Bonline.Repositories
 					  select b);
    return bon;
   }
+<<<<<<< refs/remotes/origin/Kassasysteem
 
 <<<<<<< refs/remotes/origin/Kassasysteem
 >>>>>>> filter met organisatie
@@ -80,5 +81,7 @@ namespace Bonline.Repositories
    return bon;
   }
 >>>>>>> filter werkt bijna
+=======
+>>>>>>> filler stuff
  }
 }
