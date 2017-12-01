@@ -19,8 +19,8 @@ namespace Bonline.Controllers
   [ValidateAntiForgeryToken]
   public ActionResult Register(Account acc)
   {
-   string mailregex = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-   string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+   string mailregex =@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+   string passregex =@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
    bool isMailMatch = Regex.IsMatch(acc.Email, mailregex);
    bool isPassMatch = Regex.IsMatch(acc.Password, passregex);
    if (!isMailMatch)
@@ -30,7 +30,8 @@ namespace Bonline.Controllers
    }
    if (!isPassMatch)
    {
-    ViewBag.Message2 = "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit and 8 characters";
+    ViewBag.Message2 =
+	    "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit and 8 characters";
     return View();
    }
    acc.Password = PasswordManager.Hash(acc.Password);
@@ -69,49 +70,9 @@ namespace Bonline.Controllers
     ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
     return View("Login");
    }
-<<<<<<< HEAD
    HttpCookie c = ticket.Encrypt(accId.ToString());
    HttpContext.Response.Cookies.Add(c);
    return RedirectToAction("Bon", "Bon", c);
-=======
-
-   if (id != null)
-   {
-    HttpCookie c = ticket.Encrypt(id);
-    HttpContext.Response.Cookies.Add(c);
-    return RedirectToAction("Bon", "Bon", c);
-   }
-   return RedirectToAction("Bon", "Bon");
->>>>>>> AnoukUpToDate
   }
-
-
-  [HttpPost]
-  [ValidateAntiForgeryToken]
-  public ActionResult Accounts()
-  {
-   List<Account> accountList = Db.RunQuery(new Account());
-   var model = accountList;
-   return View(model);
-  }
-
-  //TODO verbeteren, zodat er geen exception nodig is.
-  [HttpGet]
-  public ActionResult Accounts(int id = 0)
-  {
-   try
-   {
-    Account account = _accountRepository.SelectAccount(id);
-    account.Inactief = !account.Inactief;
-    _accountRepository.UpdateInactief(account);
-   }
-   catch (Exception e)
-   {
-    Console.WriteLine(e);
-   }
-   List<Account> accountList = Db.RunQuery(new Account());
-   return View(accountList);
-  }
-
  }
 }
