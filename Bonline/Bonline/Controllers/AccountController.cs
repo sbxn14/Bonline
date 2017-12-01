@@ -74,6 +74,7 @@ namespace Bonline.Controllers
    return RedirectToAction("Bon", "Bon", c);
   }
 
+
   [HttpPost]
   [ValidateAntiForgeryToken]
   public ActionResult Accounts()

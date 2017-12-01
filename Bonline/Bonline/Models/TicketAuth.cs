@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Security;
 
@@ -17,7 +15,7 @@ namespace Bonline.Models
 
   public int Decrypt()
   {
-   FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+   FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value);
    int key = Convert.ToInt32(ticket.Name);
    return key;
   }
