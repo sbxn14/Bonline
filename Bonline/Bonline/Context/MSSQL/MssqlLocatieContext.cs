@@ -16,6 +16,7 @@ namespace Bonline.Context.MSSQL
    string address = loc.Address;
    Organisatie org = loc.Org;
 
+
    string query = "INSERT INTO locatie (name, address, organisatie) VALUES (@name, @address, @organisatie)";
    SqlCommand cmd = new SqlCommand(query);
 

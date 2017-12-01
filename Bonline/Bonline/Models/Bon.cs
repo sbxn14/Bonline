@@ -10,15 +10,44 @@ namespace Bonline.Models
   public int Id { get; set; }
   public string Description { get; set; }
   public Locatie Loc { get; set; }
+  public string Locatie { get; set; }
   public int LocatieId { get; set; }
   public DateTime Date { get; set; }
   public Account Acc { get; set; }
+  public string Org { get; set; }
+  public string Orgid { get; set; }
+  public string Account { get; set; }
   public int AccId { get; set; }
   public string Query { get; set; }
 
   public Bon()
   {
    Query = "SELECT * FROM dbo.Bon";
+  }
+
+  public Bon(int accId, DateTime date, string description, int locatieid)
+  {
+   AccId = accId;
+   Date = date;
+   Description = description;
+   LocatieId = locatieid;
+
+  }
+
+  public Bon(int accid, DateTime date, string description, string locatie, string organisatie)
+  {
+   AccId = accid;
+   Date = date;
+   Description = description;
+   Org = organisatie;
+   Locatie = locatie;
+
+  }
+
+  public Bon(string org, string loc)
+  {
+   Org = org;
+   Locatie = loc;
   }
 
   public void Parse(SqlDataReader reader)
@@ -32,11 +61,7 @@ namespace Bonline.Models
    Loc = Datamanager.LocList.FirstOrDefault(x => x.Id == LocatieId);
    Acc = Datamanager.AccList.FirstOrDefault(x => x.Id == AccId);
 
-
-
-
-
-
   }
+
  }
 }

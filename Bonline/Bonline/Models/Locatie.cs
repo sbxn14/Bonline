@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Linq;
-using System.Net.Sockets;
-using System.Web;
 using Bonline.Database;
 
 namespace Bonline.Models
@@ -27,7 +23,8 @@ namespace Bonline.Models
    Id = reader.GetInt32(reader.GetOrdinal("Id"));
    OrgId = reader.GetInt32(reader.GetOrdinal("OrgID"));
    Name = reader.GetString(reader.GetOrdinal("Naam"));
-   Address = reader.GetString(reader.GetOrdinal("Adress"));
+   Address = reader.GetString(reader.GetOrdinal("Address"));
+
 
    Org = Datamanager.OrgList.FirstOrDefault(x => x.Id == OrgId);
   }

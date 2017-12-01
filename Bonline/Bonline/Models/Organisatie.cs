@@ -13,6 +13,7 @@ namespace Bonline.Models
         public string Name { get; set; }
         public string Query { get; set; }
 
+
         public Organisatie()
         {
             Query = "SELECT * FROM dbo.Organisatie";

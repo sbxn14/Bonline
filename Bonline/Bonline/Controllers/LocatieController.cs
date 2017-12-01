@@ -8,10 +8,6 @@ namespace Bonline.Controllers
 {
     public class LocatieController : Controller
     {
-        // GET: Plaats
-        public ActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

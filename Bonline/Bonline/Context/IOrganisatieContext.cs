@@ -13,5 +13,6 @@ namespace Bonline.Context
   List<Organisatie> Select();
   void Update(int id, string NieuwNaam);
   void Delete(int id);
+
  }
 }

@@ -9,7 +9,10 @@ namespace Bonline.Context
 {
  public interface IBonContext
  {
-	 void Insert(Bon b);
-	 List<Bon> Select();
+  void Insert(Bon b);
+  List<Bon> Select();
+  void InsertKassa(Bon b);
+  Bon GetOrgName(Bon b);
+
  }
 }

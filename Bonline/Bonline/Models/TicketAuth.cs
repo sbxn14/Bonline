@@ -13,6 +13,7 @@ namespace Bonline.Models
    return c;
   }
 
+
   public int Decrypt()
   {
    FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName].Value);

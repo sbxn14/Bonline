@@ -15,10 +15,11 @@ namespace Bonline.Database
 
   public static void Initialize()
   {
-   AccList = DB.RunQuery(new Account());
-   OrgList = DB.RunQuery(new Organisatie());
-   LocList = DB.RunQuery(new Locatie());
-   BonList = DB.RunQuery(new Bon());
+   AccList = Db.RunQuery(new Account());
+   OrgList = Db.RunQuery(new Organisatie());
+   LocList = Db.RunQuery(new Locatie());
+   BonList = Db.RunQuery(new Bon());
   }
+
  }
 }

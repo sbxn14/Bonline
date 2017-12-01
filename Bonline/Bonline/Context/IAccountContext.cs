@@ -13,5 +13,6 @@ namespace Bonline.Context
   List<Account> Select();
   void Update(Account account, string nieuwWachtwoord);
   void UpdateInactief(Account account);
+
  }
 }

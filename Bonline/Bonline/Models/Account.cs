@@ -23,7 +23,7 @@ namespace Bonline.Models
    Query = "SELECT * FROM dbo.Account";
   }
 
-  public void Parse(SqlDataReader reader) 
+  public void Parse(SqlDataReader reader)
   {
    Id = reader.GetInt32(reader.GetOrdinal("ID"));
    Email = reader.GetString(reader.GetOrdinal("Email"));

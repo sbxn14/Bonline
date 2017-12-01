@@ -8,10 +8,6 @@ namespace Bonline.Controllers
 {
     public class OrganisatieController : Controller
     {
-        // GET: Organisatie
-        public ActionResult Index()
-        {
-            return View();
-        }
+
     }
 }

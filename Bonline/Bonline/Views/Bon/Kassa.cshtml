@@ -1,0 +1,18 @@
+﻿@model Bonline.Models.Bon
+@{
+    ViewBag.Title = "Kassa";
+}
+
+<h2>Kassa</h2>
+
+
+@using (Html.BeginForm("BonDirect", "Bon"))
+{
+    <label> Fill in the UserID here: </label>
+    @Html.TextBoxFor(model => model.AccId)
+
+  
+	<input type="submit" name="yis" value="Submit" />
+
+
+}

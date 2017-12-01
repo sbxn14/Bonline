@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Bonline.Context.MSSQL;
@@ -17,9 +16,15 @@ namespace Bonline.Controllers
   [HttpGet]
   public ActionResult Bon()
   {
+   HttpCookie c = Request.Cookies[".ASPXAUTH"];
+   TicketAuth auth = new TicketAuth();
    Datamanager.Initialize();
-   return View(Datamanager.BonList);
+   return View((List<Bon>)_bonRepository.SelectBonnen(auth.Decrypt()));
   }
+
+
+  [HttpPost]
+  public ActionResult BonKassa(Bon b) => View("Kassa");
 
   [HttpPost]
   public ActionResult Bon(Bon bon, string orgnaam = "0")
@@ -28,19 +33,37 @@ namespace Bonline.Controllers
    {
     return RedirectToAction("Details", "Bon", bon);
    }
-   else
-   {
-    List<Bon> bonnen = Datamanager.BonList;
-
-    return View(bon);
-   }
+   List<Bon> bonnen = Datamanager.BonList;
+   return View(bonnen);
   }
+
+  //[HttpPost]
+  //public ActionResult Bondirect(Bon b)
+  //{
+  // DateTime date = DateTime.Now;
+  // string description = "lijst hier, " + date;
+  // int locatieId = 5;
+  // Bon f = new Bon(b.AccId, date, description, locatieId);
+  // _bonRepository.InsertKassa(f);
+
+  // //repo.GetOrgName(f).Locatie, repo.GetOrgName(f).Org
+  // string locatie = _bonRepository.GetOrgName(f).Locatie;
+  // string organisatie = _bonRepository.GetOrgName(f).Org;
+
+  // Bon g = new Bon(b.AccId, date, description, locatie, organisatie);
+  // return View("BonOverzicht", g);
+  //}
 
   [HttpPost]
   [ValidateAntiForgeryToken]
   public ActionResult Details(Bon bon)
   {
    return View("Details", bon);
+  }
+
+  public ActionResult GoToKassa()
+  {
+   return View("Kassa");
   }
 
   //TODO verbeteren, zodat er geen exception nodig is.

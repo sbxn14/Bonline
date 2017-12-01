@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 
 namespace Bonline.Database
 {
- public static class DB
+ public static class Db
  {
   public static string ConnectionString { get; set; }
 
-  static DB()
-  {
+  static Db()
+  { 
+
    //connectionstring localhost   
-   ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
+   //ConnectionString = "Data Source=LAPT OP-GICS0PBT;Initial Catalog=BonlineDatabase.dbo;Integrated Security=True";
 
    //ConnectionString voor Azure database
-   //ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
+   ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
   }
 
   public static List<T> RunQuery<T>(T value) where T : IQuery, new()

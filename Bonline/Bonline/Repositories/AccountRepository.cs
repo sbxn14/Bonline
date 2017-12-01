@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using Bonline.Context;
-using Bonline.Context.MSSQL;
 using Bonline.Models;
 
 namespace Bonline.Repositories
@@ -27,7 +25,7 @@ namespace Bonline.Repositories
 
   public void AddAccount(Account account)
   {
-   this._context.Insert(account);
+   _context.Insert(account);
   }
 
   public void UpdateAccount(Account account, string nieuwWachtwoord)
@@ -37,7 +35,7 @@ namespace Bonline.Repositories
 
   public bool LoginAccount(Account account)
   {
-   int accounts = (from acc in this._context.Select()
+   int accounts = (from acc in _context.Select()
 			    where acc.Email.Equals(account.Email)
 					&& acc.Password.Equals(account.Password)
 			    select acc).Count();
@@ -48,22 +46,29 @@ namespace Bonline.Repositories
    return false;
   }
 
-  public string LoginId(Account account)
+  public int LoginId(Account account)
   {
-   string accounts = (from acc in this._context.Select()
-				  where acc.Email.Equals(account.Email)
-				  && acc.Password.Equals(account.Password)
-				  select acc).ToString();
-   return accounts;
+   try
+   {
+    Account accountId = (from acc in _context.Select()
+					where acc.Email.Equals(account.Email)
+						 && acc.Password.Equals(account.Password)
+					select acc).Single();
+    return accountId.Id;
+   }
+   catch (Exception e)
+   {
+    Console.WriteLine(e);
+    throw;
+   }
   }
 
   public bool CheckInactiefAccount(Account account)
   {
    try
    {
-    Account accounts = (from acc in this._context.Select()
-				    where acc.Email.Equals(account.Email)
-						&& acc.Password.Equals(account.Password)
+    Account accounts = (from acc in _context.Select()
+				    where acc.Id.Equals(account.Id)
 				    select acc).Single();
     return accounts.Inactief;
    }
@@ -75,6 +80,7 @@ namespace Bonline.Repositories
     }
    }
    return true;
+
   }
 
   public void UpdateInactief(Account account)
@@ -84,7 +90,7 @@ namespace Bonline.Repositories
 
   public Account SelectAccount(int id)
   {
-   Account account = (from acc in this._context.Select()
+   Account account = (from acc in _context.Select()
 				  where acc.Id.Equals(id)
 				  select acc).Single();
    return account;
