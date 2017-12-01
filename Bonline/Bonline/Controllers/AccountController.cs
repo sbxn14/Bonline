@@ -69,9 +69,20 @@ namespace Bonline.Controllers
     ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
     return View("Login");
    }
+<<<<<<< HEAD
    HttpCookie c = ticket.Encrypt(accId.ToString());
    HttpContext.Response.Cookies.Add(c);
    return RedirectToAction("Bon", "Bon", c);
+=======
+
+   if (id != null)
+   {
+    HttpCookie c = ticket.Encrypt(id);
+    HttpContext.Response.Cookies.Add(c);
+    return RedirectToAction("Bon", "Bon", c);
+   }
+   return RedirectToAction("Bon", "Bon");
+>>>>>>> AnoukUpToDate
   }
 
 
