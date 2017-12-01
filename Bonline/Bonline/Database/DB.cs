@@ -17,7 +17,7 @@ namespace Bonline.Database
    ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
 =======
    //connectionstring localhost   
-   ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
+   //ConnectionString = "Data Source=LAPTOP-GICS0PBT;Initial Catalog=BonlineDatabase;Integrated Security=True";
 
 >>>>>>> Accounts view
 =======
@@ -26,7 +26,7 @@ namespace Bonline.Database
 
 >>>>>>> master
    //ConnectionString voor Azure database
-   //ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
+   ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
   }
 
   public static List<T> RunQuery<T>(T value) where T : IQuery, new()
