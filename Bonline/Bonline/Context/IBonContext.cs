@@ -16,8 +16,8 @@ namespace Bonline.Context
 
         Bon GetOrgName(Bon b);
 
-        void GetLocName(Bon b);
 
+     
    
 
     

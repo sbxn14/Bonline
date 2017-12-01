@@ -360,3 +360,7 @@ C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.cs
 C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.dll
 C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.pdb
 >>>>>>> Stashed changes
+C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.csprojResolveAssemblyReference.cache
+C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.csproj.CoreCompileInputs.cache
+C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.dll
+C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.pdb
