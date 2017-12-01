@@ -13,12 +13,12 @@ namespace Bonline.Controllers
  public class BonController : Controller
  {
   private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
-
   [HttpGet]
-  public ActionResult Bon()
+  public ActionResult Bon(HttpCookie c)
   {
+   TicketAuth auth = new TicketAuth();
    Datamanager.Initialize();
-   return View(Datamanager.BonList);
+   return View((List<Bon>)_bonRepository.SelectBonnen(auth.Decrypt()));
   }
 
   [HttpPost]

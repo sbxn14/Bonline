@@ -86,7 +86,7 @@ namespace Bonline.Controllers
    {
     HttpCookie c = ticket.Encrypt(id);
     HttpContext.Response.Cookies.Add(c);
-    return RedirectToAction("Bon", "Bon");
+    return RedirectToAction("Bon", "Bon", c);
    }
    return RedirectToAction("Bon", "Bon");
   }
