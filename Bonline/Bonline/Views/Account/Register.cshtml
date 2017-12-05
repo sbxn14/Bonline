@@ -1,39 +1,41 @@
 ﻿@model Bonline.Models.Account
 
 @{
-    ViewBag.Title = "Register";
+	ViewBag.Title = "Register";
 }
+
 <!DOCTYPE html>
-<h2>Register</h2>
-@Styles.Render("~/Content/Site.css")
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Account</h4>
-        <hr />
-	    <div class="form-group">
-		    @Html.LabelFor(model => model.Email, htmlAttributes: new {@class = "control-label col-md-2"})
-		    <div class="col-md-10">
-			    <p>@ViewBag.Message1</p> 
-			    @Html.TextBoxFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
-		    </div>
-	    </div>
-	
 
-	    <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-	        <div class="col-md-10">
-		        <p>@ViewBag.Message2</p> 
-		        @Html.TextBoxFor(model => model.Password , new {@class = "boo" , Type = "password"  })
-	        </div>
-        </div>
+<head>
+	@Styles.Render("~/Content/Site.css")
+	@Scripts.Render("~/Scripts/Letters.js")
+</head>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+<body>
+	<div>
+		<h1 class='logo'>REGISTRATIE</h1>
+		<div class='group'>
+			@using (Html.BeginForm())
+			{
+				@Html.AntiForgeryToken()
+				<h3>@ViewBag.Message1</h3>
+				<h3>@ViewBag.Message2</h3>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "labell" })
+					@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "labell" })
+					@Html.TextBoxFor(model => model.Password, new { @class = "form-control", Type = "password" })
+				</div>
+
+				<div class="form-group">
+					<div class="">
+						<input type="submit" value="Registreer" class="buttone" />
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</body>

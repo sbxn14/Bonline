@@ -5,19 +5,18 @@
 <Html>
 
 <head>
-	@Scripts.Render("~/content/Site.css")
+	@Styles.Render("~/content/Site.css")
+	@Scripts.Render("~/Scripts/Letters.js")
 </head>
 <body>
-	<div class="jumbotron">
-		<h1 class="display-3">BONLINE</h1>
-		<p class="lead">Life made easier.</p>
-		<hr class="my-4">
-		<p>Life made easier but in paragraph form</p>
-		<p class="lead">
-			<a class="btn btn-primary btn-lg" href="#" role="button">FUCK THE POLICE COMING STRAIGHT FROM THE UNDERGROUND!
-			</a>
-		</p>
+	<div>
+		<h1 class='logo'>BONLINE</h1>
+		<div class='search'>
+			<button class="buttone" onclick="location.href='/Account/Login';">Login</button>
+			<button class="buttone" onclick="location.href='/Account/Register';">Registreer</button>
+		</div>
 	</div>
 </body>
+
 </Html>
 

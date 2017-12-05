@@ -21,8 +21,28 @@ namespace Bonline.Controllers
 		{
 			string mailregex = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
 			string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
-			bool isMailMatch = Regex.IsMatch(acc.Email, mailregex);
-			bool isPassMatch = Regex.IsMatch(acc.Password, passregex);
+			bool isMailMatch = false;
+			bool isPassMatch = false;
+
+			if(acc.Email == null)
+			{
+				isMailMatch = false;
+			}
+			else if (acc.Password == null)
+			{
+				isPassMatch = false;
+			}
+			else
+			{
+				isMailMatch = Regex.IsMatch(acc.Email, mailregex);
+				isPassMatch = Regex.IsMatch(acc.Password, passregex);
+			}
+
+			if (!isMailMatch && !isPassMatch) {
+				ViewBag.Message1 = "Please enter a valid Email and Password.";
+				return View();
+			}
+
 			if (!isMailMatch)
 			{
 				ViewBag.Message1 = "Please enter a valid Emailaddress";

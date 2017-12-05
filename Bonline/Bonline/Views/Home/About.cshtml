@@ -1,8 +1,44 @@
 ﻿@{
-    ViewBag.Title = "About";
+	ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<!DOCTYPE HTML>
 
+<Html>
+
+<head>
+	@Styles.Render("~/content/Site.css")
+	@Scripts.Render("~/Scripts/Letters.js")
+</head>
+<body>
+	<div>
+		<h1 class='logo'>Over Ons</h1>
+		<div class="textbox">
+			<p>
+				Bonline is een online opslagplek voor uw kassabonnen.
+				Door een account aan te maken en in te loggen kunt u een overzicht van uw kassabonnen bekijken.
+				Download ook de app om makkelijk kassabonnen te koppelen aan uw account.
+			</p>
+			<br />
+			<p>
+				Wij zijn een groep softwarestudenten van Fontys.
+				We zitten in het eerste jaar en maken voor onze proftaak 'Bonline' voor AXI.
+				<br />
+				<br />
+			</p>
+		</div>
+		<p style="text-align: center;">
+			<b>Onze Groep:</b>
+			<br />
+			Sander Berntsen
+			<br />
+			Anouk Brondijk
+			<br />
+			Simon Westerburger
+			<br />
+			Jonathan Ramackers
+		</p>
+	</div>
+</body>
+
+</Html>
