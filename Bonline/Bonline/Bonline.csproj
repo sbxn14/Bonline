@@ -219,6 +219,7 @@
     <Content Include="Views\Bon\Kassa.cshtml" />
     <Content Include="Views\Bon\Details.cshtml" />
     <Content Include="Views\Account\Accounts.cshtml" />
+    <Content Include="Views\Bon\Toevoegen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

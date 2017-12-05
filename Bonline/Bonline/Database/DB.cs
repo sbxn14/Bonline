@@ -7,7 +7,7 @@ namespace Bonline.Database
 	public static class Db
 	{
 		public static string ConnectionString { get; set; }
-
+ 
 		static Db()
 		{
 

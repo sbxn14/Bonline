@@ -14,7 +14,7 @@
 	<div>
 		<h1 class='logo'>LOGIN</h1>
 		<div class='group'>
-			@using (Html.BeginForm())
+			@using (Html.BeginForm("Login","Account"))
 			{
 				@Html.AntiForgeryToken()
 				<div class="form-group">

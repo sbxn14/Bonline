@@ -15,7 +15,7 @@
 	<div>
 		<h1 class='logo'>REGISTRATIE</h1>
 		<div class='group'>
-			@using (Html.BeginForm())
+			@using (Html.BeginForm("Register","Account"))
 			{
 				@Html.AntiForgeryToken()
 				<h3>@ViewBag.Message1</h3>

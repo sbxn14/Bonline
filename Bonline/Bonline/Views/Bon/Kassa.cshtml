@@ -5,10 +5,10 @@
 
 <h2>Kassa</h2>
 
-
-@using (Html.BeginForm("BonDirect", "Bon"))
+@using (Html.BeginForm("Details", "Bon"))
 {
+ @Html.AntiForgeryToken()
  <label> Fill in the UserID here: </label>
-    @Html.TextBoxFor(model => model.AccId)
-    <input type="submit" name="yis" value="Submit" />
+ @Html.TextBoxFor(model => model.AccId)
+ <input type="submit" name="yis" value="Submit" />
 }

@@ -10,6 +10,7 @@
 
 @using (Html.BeginForm("Details", "Bon", FormMethod.Post))
 {
+ @Html.AntiForgeryToken()
  <h4>Boodschappen: @Html.DisplayFor(mode => Model.Description)</h4>
  <h4>Datum: @Html.DisplayFor(model => Model.Date)</h4>
  <h4>Account: @Html.DisplayFor(model => Model.Acc)</h4>
