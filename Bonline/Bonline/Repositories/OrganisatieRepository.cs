@@ -1,7 +1,7 @@
 ﻿namespace Bonline.Repositories
 {
- public class OrganisatieRepository
- {
+	public class OrganisatieRepository
+	{
 
- }
+	}
 }

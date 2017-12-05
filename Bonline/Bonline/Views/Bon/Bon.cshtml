@@ -4,204 +4,69 @@
 @Scripts.Render("~/Scripts/Filter.js")
 
 @{
- List<SelectListItem> organisatieList = new List<SelectListItem>();
- foreach (var item in Model)
- {
-  organisatieList.Add(new SelectListItem
-  {
-   Text = item.Loc.Org.Name,
-  });
- }
+	List<SelectListItem> organisatieList = new List<SelectListItem>();
+	foreach (var item in Model)
+	{
+		organisatieList.Add(new SelectListItem
+		{
+			Text = item.Loc.Org.Name,
+		});
+	}
 }
-<<<<<<< HEAD
-<<<<<<< refs/remotes/origin/Kassasysteem
-<<<<<<< refs/remotes/origin/Kassasysteem
 <!DOCTYPE html>
-<<<<<<< refs/remotes/origin/Kassasysteem
 
-
-<h2>Bon</h2>
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-	<!-- Modal content -->
-	<div class="modal-content">
-		<span class="close">&times;</span>
-		<p>Some text in the Modal..</p>
-	</div>
-<<<<<<< refs/remotes/origin/Kassasysteem
-
-=======
->>>>>>> modal stuff
-</div> 
-
-<input class="form-control" id="myInput" type="text" placeholder="KUT SIMON MET JE KUT KOP" />
-<br />
-<table style="width: 100%">
- <thead>
-  <tr>
-   <th>Id</th>
-   <th>Datum</th>
-   <th>Boodschappen</th>
-  </tr>
- </thead>
- <tbody id="myTable">
-
-  @foreach (var item in Model)
-  {
-  <tr>
-   <td>
-    @Html.DisplayFor(model => item.Id) &nbsp;
-   </td>
-
-
-   <td>
-    @Html.DisplayFor(model => item.Date)&nbsp;
-
-   </td>
-
-
-   <td>
-    @Html.DisplayFor(model => item.Description)&nbsp;
-
-   </td>
-
-
-
-  </tr>
-
-  }
- </tbody>
-</table>
-
-
-=======
-=======
->>>>>>> Details bonnen werkt, Zoeken niet meer?
-=======
-
->>>>>>> filter met organisatie
 @using (Html.BeginForm())
 {
- <h2>Bon</h2>
- <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
- <br />
- <div class="form-group dropdown">
-  <select id="SelectOrg" class="form-control" onchange="submit();" name="org">
-   <option value="" disabled selected>Kies een winkel</option>
-   @foreach (var item in organisatieList)
-   {
-   <option value="@item.Text">@item.Text</option>
-   }
-  </select>
- </div>
- <table id="myTable" style="width: 100%">
-  <thead>
-   <tr>
-    <th>Id</th>
-    <th>Datum</th>
-    <th>Boodschappen</th>
-   </tr>
-  </thead>
-  <tbody>
-   @foreach (var item in Model)
-   {
-   <tr>
-    <td>
-     @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-     @Html.DisplayFor(modelItem => item.Date)
-    </td>
-    <td>
-     @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-     @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
-	{
-     @Html.AntiForgeryToken()
-     @Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
-	}
-    </td>
-   </tr>
-   }
-  </tbody>
- </table>
+	<h2>Bon</h2>
+	<input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+	<br />
+	<div class="form-group dropdown">
+		<select id="SelectOrg" class="form-control" onchange="submit();" name="org">
+			<option value="" disabled selected>Kies een winkel</option>
+			@foreach (var item in organisatieList)
+			{
+				<option value="@item.Text">@item.Text</option>
+			}
+		</select>
+	</div>
+	<table id="myTable" style="width: 100%">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Datum</th>
+				<th>Boodschappen</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.Id)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Date)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Description)
+					</td>
+					<td>
+						@using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
+						{
+							@Html.AntiForgeryToken()
+							@Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 }
-<<<<<<< refs/remotes/origin/Kassasysteem
->>>>>>> Accounts view
+
 @Scripts.Render("~/Scripts/Filter.js")
-=======
->>>>>>> filter met organisatie
 
-
-<<<<<<< refs/remotes/origin/Kassasysteem
-<<<<<<< refs/remotes/origin/Kassasysteem
 <!-- im so sorry if this messes anything up you can remove it whenever-->
 @using (Html.BeginForm("BonKassa", "Bon"))
 {
-    <input type="submit" name="dang" value="go to kassa" />
+	<input type="submit" name="dang" value="go to kassa" />
 }
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> AnoukUpToDate
-
-@using (Html.BeginForm())
-{
- <h2>Bon</h2>
- <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
- <br />
- <div class="form-group dropdown">
-  <select id="SelectOrg" class="form-control" onchange="submit();" name="org">
-   <option value="" disabled selected>Kies een winkel</option>
-   @foreach (var item in organisatieList)
-   {
-   <option value="@item.Text">@item.Text</option>
-   }
-  </select>
- </div>
- <table id="myTable" style="width: 100%">
-  <thead>
-   <tr>
-    <th>Id</th>
-    <th>Datum</th>
-    <th>Boodschappen</th>
-   </tr>
-  </thead>
-  <tbody>
-   @foreach (var item in Model)
-   {
-   <tr>
-    <td>
-     @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-     @Html.DisplayFor(modelItem => item.Date)
-    </td>
-    <td>
-     @Html.DisplayFor(modelItem => item.Description)
-    </td>
-    <td>
-     @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
-	{
-     @Html.AntiForgeryToken()
-     @Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
-	}
-    </td>
-   </tr>
-   }
-  </tbody>
- </table>
-}
-
->>>>>>> master
-
-=======
->>>>>>> modal stuff
-=======
->>>>>>> modal stuff
