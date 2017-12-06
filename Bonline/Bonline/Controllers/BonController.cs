@@ -39,23 +39,6 @@ namespace Bonline.Controllers
    return View(bonnen);
   }
 
-  //[HttpPost]
-  //public ActionResult Bondirect(Bon b)
-  //{
-  // DateTime date = DateTime.Now;
-  // string description = "lijst hier, " + date;
-  // int locatieId = 5;
-  // Bon f = new Bon(b.AccId, date, description, locatieId);
-  // _bonRepository.InsertKassa(f);
-
-  // //repo.GetOrgName(f).Locatie, repo.GetOrgName(f).Org
-  // string locatie = _bonRepository.GetOrgName(f).Locatie;
-  // string organisatie = _bonRepository.GetOrgName(f).Org;
-
-  // Bon g = new Bon(b.AccId, date, description, locatie, organisatie);
-  // return View("BonOverzicht", g);
-  //}
-
   [HttpPost]
   [ValidateAntiForgeryToken]
   public ActionResult Details(Bon bon)
@@ -89,6 +72,7 @@ namespace Bonline.Controllers
   {
    return View();
   }
+
   [HttpPost]
   [ValidateAntiForgeryToken]
   public ActionResult Toevoegen(Bon bon)

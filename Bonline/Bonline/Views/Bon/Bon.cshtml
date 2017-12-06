@@ -2,65 +2,67 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/Filter.js")
+@Styles.Render("~/content/site.css")
+@Scripts.Render("~/scripts/letters.js")
 
 @{
-	List<SelectListItem> organisatieList = new List<SelectListItem>();
-	foreach (var item in Model)
-	{
-		organisatieList.Add(new SelectListItem
-		{
-			Text = item.Loc.Org.Name,
-		});
-	}
+    List<SelectListItem> organisatieList = new List<SelectListItem>();
+    foreach (var item in Model)
+    {
+        organisatieList.Add(new SelectListItem
+        {
+            Text = item.Loc.Org.Name,
+        });
+    }
 }
 <!DOCTYPE html>
 
 @using (Html.BeginForm())
 {
-	<h2>Bon</h2>
-	<input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
-	<br />
-	<div class="form-group dropdown">
-		<select id="SelectOrg" class="form-control" onchange="submit();" name="org">
-			<option value="" disabled selected>Kies een winkel</option>
-			@foreach (var item in organisatieList)
-			{
-				<option value="@item.Text">@item.Text</option>
-			}
-		</select>
-	</div>
-	<table id="myTable" style="width: 100%">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Datum</th>
-				<th>Boodschappen</th>
-			</tr>
-		</thead>
-		<tbody>
-			@foreach (var item in Model)
-			{
-				<tr>
-					<td>
-						@Html.DisplayFor(modelItem => item.Id)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Date)
-					</td>
-					<td>
-						@Html.DisplayFor(modelItem => item.Description)
-					</td>
-					<td>
-						@using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
-						{
-							@Html.AntiForgeryToken()
-							@Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
-						}
-					</td>
-				</tr>
-			}
-		</tbody>
-	</table>
+    <h2>Bon</h2>
+    <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+    <br />      
+    <div class="form-group dropdown">
+        <select id="SelectOrg" class="form-control" onchange="submit();" name="org">
+            <option value="" disabled selected>Kies een winkel</option>
+            @foreach (var item in organisatieList)
+            {
+                <option value="@item.Text">@item.Text</option>
+            }
+        </select>
+    </div>
+    <table id="myTable" style="width: 100%">
+        <thead>
+            <tr>
+                <th style="width: 25%">Id</th>
+                <th style="width: 25%">Datum</th>
+                <th style="width: 25%">Organisatie</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width: 25%">
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td style="width: 25%">
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td style="width: 25%">
+                        @Html.DisplayFor(modelItem => item.Loc.Org.Name)
+                    </td>
+                    <td style="width: 25%">
+                        @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
 
 @Scripts.Render("~/Scripts/Filter.js")
@@ -68,9 +70,9 @@
 <!-- im so sorry if this messes anything up you can remove it whenever-->
 @using (Html.BeginForm("BonKassa", "Bon"))
 {
-	<input type="submit" name="dang" value="go to kassa" />
+    <input type="submit" name="dang" value="go to kassa" />
 }
 @using (Html.BeginForm("Toevoegen", "Bon"))
 {
- <input type="submit" name="dang" value="Voeg handmatig toe" />
+    <input type="submit" name="dang" value="Voeg handmatig toe" />
 }
