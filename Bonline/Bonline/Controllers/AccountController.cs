@@ -11,6 +11,7 @@ using Account = Bonline.Models.Account;
 
 namespace Bonline.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly AccountRepository _accountRepository = new AccountRepository(new MssqlAccountContext());
@@ -93,7 +94,7 @@ namespace Bonline.Controllers
             }
             HttpCookie c = ticket.Encrypt(accId.ToString());
             HttpContext.Response.Cookies.Add(c);
-            return RedirectToAction("Bon", "Bon", c);
+            return RedirectToAction("Bon", "Bon");
         }
 
         [HttpGet]

@@ -10,6 +10,7 @@ using Bonline.Repositories;
 
 namespace Bonline.Controllers
 {
+    [Authorize]
  public class BonController : Controller
  {
   private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
