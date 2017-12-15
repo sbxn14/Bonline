@@ -13,8 +13,9 @@
 </head>
 
 <body>
-    @if (HttpContext.Current.Response.Cookies["__RequestVerificationToken"].Value != null)
+    @if (HttpContext.Current.Response.Cookies[FormsAuthentication.FormsCookieName].Value != null)
     {
+        
         <div id="wrapper">
             <div class="overlay"></div>
             <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">

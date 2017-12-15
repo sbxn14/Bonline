@@ -3,45 +3,41 @@
 @Scripts.Render("~/Scripts/Filter.js")
 
 @{
- ViewBag.Title = "Accounts";
+    ViewBag.Title = "Accounts";
 }
 <!DOCTYPE html>
-@using (Html.BeginForm())
-{
-
- <h2>Accounts</h2>
- <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
- <br />
- <table id="myTable" style="width: 100%">
-  <thead>
-   <tr>
-    <th>Id</th>
-    <th>Email</th>
-    <th>Inactief</th>
-   </tr>
-  </thead>
-  <tbody>
-   @foreach (var item in Model)
-   {
-   <tr>
-    <td>
-     @Html.DisplayFor(modelItem => item.Id)
-    </td>
-    <td>
-     @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-     @Html.DisplayFor(modelItem => item.Inactief)
-    </td>
-    <td>
-     @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
-	{
-     @Html.ActionLink("Toggle", "Accounts", "Account", new { id = item.Id },null)
-	}
-    </td>
-   </tr>
-   }
-  </tbody>
- </table>
-}
+    <h2>Accounts</h2>
+    <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+    <br />
+    <table id="myTable" style="width: 100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Inactief</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Inactief)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
+                        {
+                            @Html.ActionLink("Toggle", "Accounts", "Account", new { id = item.Id }, null)
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 @Scripts.Render("~/Scripts/Filter.js")

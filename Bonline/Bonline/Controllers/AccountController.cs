@@ -80,7 +80,8 @@ namespace Bonline.Controllers
             TicketAuth ticket = new TicketAuth();
             account.Password = PasswordManager.Hash(account.Password);
             int accId = _accountRepository.LoginId(account);
-            account.Id = accId;
+            account = _accountRepository.SelectAccount(accId);
+
             if (_accountRepository.CheckInactiefAccount(account))
             {
                 ViewBag.Message1 = "Uw account is inactief";
@@ -94,17 +95,37 @@ namespace Bonline.Controllers
             }
             HttpCookie c = ticket.Encrypt(accId.ToString());
             HttpContext.Response.Cookies.Add(c);
+            if (account.Admin)
+            {
+                return RedirectToAction("Accounts");
+            }
             return RedirectToAction("Bon", "Bon");
         }
 
         [HttpGet]
         public ActionResult Accounts()
         {
-            return View();
+
+            try
+            {
+                TicketAuth auth = new TicketAuth();
+                HttpCookie c = System.Web.HttpContext.Current.Request.Cookies["__RequestVerificationToken"];
+                int accId = auth.Decrypt();
+                Account acc = _accountRepository.SelectAccount(accId);
+                if (acc.Admin)
+                {
+                    List<Account> accounts = _accountRepository.SelectAccounts();
+                    return View(accounts);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+            catch (ArgumentException)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Accounts(Account acc)
         {
             _accountRepository.UpdateInactief(acc);
