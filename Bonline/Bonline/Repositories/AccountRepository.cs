@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using Bonline.Context;
 using Bonline.Models;
 
@@ -18,7 +19,7 @@ namespace Bonline.Repositories
 
         public List<Account> SelectAccounts()
         {
-            List<Account> accounts =_context.Select();
+            List<Account> accounts = _context.Select();
             return accounts;
         }
 
@@ -60,6 +61,29 @@ namespace Bonline.Repositories
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        public bool CheckBestaatAccount(Account account)
+        {
+            try
+            {
+                List<Account> accounts = (from acc in _context.Select()
+                                          where acc.Email.Equals(account.Email)
+                                          select acc).ToList();
+                if (accounts.Count != 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                if (ex is ArgumentNullException || ex is NullReferenceException)
+                {
+                    return false;
+                }
+            }
+            return false;
         }
 
         public bool CheckInactiefAccount(Account account)

@@ -41,22 +41,26 @@ namespace Bonline.Controllers
 
             if (!isMailMatch && !isPassMatch)
             {
-                ViewBag.Message1 = "Please enter a valid Email and Password.";
+                ViewBag.Message1 = "Vul een email en wachtwoord in.";
                 return View();
             }
 
             if (!isMailMatch)
             {
-                ViewBag.Message1 = "Please enter a valid Emailaddress";
+                ViewBag.Message1 = "Gebruik een valide email adres.";
                 return View();
             }
             if (!isPassMatch)
             {
-                ViewBag.Message2 =
-                      "Please enter a password with atleast 1 uppercase letter, 1 lowercase letter and 1 digit and 8 characters";
+                ViewBag.Message2 = "Een wachtwoord moet ten minste 1 hoofdletter, 1 kleine letter, 1 cijfer hebben.";
                 return View();
             }
             acc.Password = PasswordManager.Hash(acc.Password);
+            if (_accountRepository.CheckBestaatAccount(acc))
+            {
+                ViewBag.Message1 = "Account met deze email bestaat al.";
+                return View();
+            }
             _accountRepository.AddAccount(acc);
             return View("Login");
         }
@@ -94,7 +98,7 @@ namespace Bonline.Controllers
                 return View("Login");
             }
             HttpCookie c = ticket.Encrypt(accId.ToString());
-            HttpContext.Response.Cookies.Add(c);
+            HttpContext.Response.SetCookie(c);
             if (account.Admin)
             {
                 return RedirectToAction("Accounts");
@@ -102,6 +106,7 @@ namespace Bonline.Controllers
             return RedirectToAction("Bon", "Bon");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Accounts()
         {
