@@ -56,10 +56,9 @@ namespace Bonline.Repositories
                                      select acc).Single();
                 return accountId.Id;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
-                throw;
+                return 0;
             }
         }
 

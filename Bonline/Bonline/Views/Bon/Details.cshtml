@@ -2,7 +2,7 @@
 
 
 @{
- ViewBag.Title = "Details";
+    ViewBag.Title = "Details";
 }
 <!DOCTYPE html>
 
@@ -10,10 +10,12 @@
 
 @using (Html.BeginForm("Details", "Bon", FormMethod.Post))
 {
- @Html.AntiForgeryToken()
- <h4>Boodschappen: @Html.DisplayFor(mode => Model.Description)</h4>
- <h4>Datum: @Html.DisplayFor(model => Model.Date)</h4>
- <h4>Account: @Html.DisplayFor(model => Model.Acc)</h4>
+    @Html.AntiForgeryToken()
+    <h4>Boodschappen: @Html.DisplayFor(mode => Model.Description)</h4>
+    <h4>Datum: @Html.DisplayFor(model => Model.Date)</h4>
+    <h4>Account-ID: @Html.DisplayFor(model => Model.Acc.Id)</h4>
+    <h4>Account-Email: @Html.DisplayFor(model => Model.Acc.Email)</h4>
+
 
 
 }

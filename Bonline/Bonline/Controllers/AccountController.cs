@@ -11,7 +11,6 @@ using Account = Bonline.Models.Account;
 
 namespace Bonline.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly AccountRepository _accountRepository = new AccountRepository(new MssqlAccountContext());
@@ -106,11 +105,9 @@ namespace Bonline.Controllers
             return RedirectToAction("Bon", "Bon");
         }
 
-        [Authorize]
         [HttpGet]
         public ActionResult Accounts()
         {
-
             try
             {
                 TicketAuth auth = new TicketAuth();

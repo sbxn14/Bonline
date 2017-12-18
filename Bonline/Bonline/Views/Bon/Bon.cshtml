@@ -1,4 +1,4 @@
-﻿@model List<Bonline.Models.Bon>
+﻿@model Bonline.ViewModels.ListBonEnBon
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/Filter.js")
@@ -7,11 +7,12 @@
 
 @{
     List<SelectListItem> organisatieList = new List<SelectListItem>();
-    foreach (var item in Model)
+    foreach (var item in Model.Organisaties)
     {
         organisatieList.Add(new SelectListItem
-        {
-            Text = item.Loc.Org.Name,
+        {   
+            Text = item,
+            Value = item
         });
     }
 }
@@ -19,17 +20,13 @@
 
 @using (Html.BeginForm())
 {
+   @Html.AntiForgeryToken()
     <h2>Bon</h2>
     <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
-    <br />      
+    <br />
     <div class="form-group dropdown">
-        <select id="SelectOrg" class="form-control" onchange="submit();" name="org">
-            <option value="" disabled selected>Kies een winkel</option>
-            @foreach (var item in organisatieList)
-            {
-                <option value="@item.Text">@item.Text</option>
-            }
-        </select>
+        @Html.DropDownListFor(m => m.GekozenOrg, organisatieList)
+        <input type="submit" value="Filter" />
     </div>
     <table id="myTable" style="width: 100%">
         <thead>
@@ -40,7 +37,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in Model.Bonnen)
             {
                 <tr>
                     <td style="width: 25%">
