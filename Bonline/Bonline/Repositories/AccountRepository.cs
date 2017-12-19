@@ -28,11 +28,6 @@ namespace Bonline.Repositories
             _context.Insert(account);
         }
 
-        public void UpdateAccount(Account account, string nieuwWachtwoord)
-        {
-            _context.Update(account, nieuwWachtwoord);
-        }
-
         public bool LoginAccount(Account account)
         {
             int accounts = (from acc in _context.Select()

@@ -11,8 +11,6 @@ namespace Bonline.Context
  {
   void Insert(Account account);
   List<Account> Select();
-  void Update(Account account, string nieuwWachtwoord);
   void UpdateInactief(Account account);
-
  }
 }

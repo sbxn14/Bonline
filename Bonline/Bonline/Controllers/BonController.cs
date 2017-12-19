@@ -11,17 +11,19 @@ using Bonline.ViewModels;
 
 namespace Bonline.Controllers
 {
+    [Authorize]
     public class BonController : Controller
     {
         private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
         private readonly ListBonEnBon _viewModel = new ListBonEnBon();
+        private readonly TicketAuth _auth = new TicketAuth();
 
+        
         [HttpGet]
         public ActionResult Bon()
         {
             Datamanager.Initialize();
-            TicketAuth auth = new TicketAuth();
-            _viewModel.Bonnen = _bonRepository.SelectBonnen(auth.Decrypt()).ToList();
+            _viewModel.Bonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
             _viewModel.Organisaties = _bonRepository.GetAllOrgs();
             return View(_viewModel);
         }
@@ -33,9 +35,8 @@ namespace Bonline.Controllers
         [HttpPost]
         public ActionResult Bon(string GekozenOrg)
         {
-            TicketAuth auth = new TicketAuth();
-            List<Bon> GebruikerBonnen = _bonRepository.SelectBonnen(auth.Decrypt()).ToList();
-            _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, GebruikerBonnen );
+            List<Bon> gebruikerBonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
+            _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, gebruikerBonnen );
             _viewModel.Organisaties = _bonRepository.GetAllOrgs();
                 return View(_viewModel);
         }
@@ -44,6 +45,12 @@ namespace Bonline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Details(Bon bon)
         {
+            int id = (int)Session["AccountId"];
+            if (id <= 0)
+            {
+                RedirectToAction("Login", "Account");
+            }
+
             return View("Details", bon);
         }
 
