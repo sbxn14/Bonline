@@ -17,33 +17,33 @@ namespace Bonline.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Account acc)
+        public ActionResult Register(Account acc, string wachtwoord)
         {
             string mailregex = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
             string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
             bool isMailMatch = false;
             bool isPassMatch = false;
 
-            if (acc.Email == null)
+            if (acc.Email == null || acc.Password == null)
             {
-                isMailMatch = false;
+                ViewBag.Message1 = "Vul een email en wachtwoord in.";
+                return View();
             }
-            else if (acc.Password == null)
+
+            if (acc.Password != wachtwoord)
             {
-                isPassMatch = false;
+                ViewBag.Message1 = "Herhaling wachtwoord niet gelijk. Let op spelfouten.";
+                return View();
             }
-            else
-            {
-                isMailMatch = Regex.IsMatch(acc.Email, mailregex);
-                isPassMatch = Regex.IsMatch(acc.Password, passregex);
-            }
+
+            isMailMatch = Regex.IsMatch(acc.Email, mailregex);
+            isPassMatch = Regex.IsMatch(acc.Password, passregex);
 
             if (!isMailMatch && !isPassMatch)
             {
                 ViewBag.Message1 = "Vul een email en wachtwoord in.";
                 return View();
             }
-
             if (!isMailMatch)
             {
                 ViewBag.Message1 = "Gebruik een valide email adres.";

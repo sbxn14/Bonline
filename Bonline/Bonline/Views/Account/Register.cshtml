@@ -21,14 +21,18 @@
 				<h3>@ViewBag.Message1</h3>
 				<h3>@ViewBag.Message2</h3>
 				<div class="form-group">
-					@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "labell" })
+					@Html.Label("Email", htmlAttributes: new { @class = "labell" })
 					@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
 				</div>
 
-				<div class="form-group">
-					@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "labell" })
-					@Html.TextBoxFor(model => model.Password, new { @class = "form-control", Type = "password" })
-				</div>
+			    <div class="form-group">
+			        @Html.Label("Wachtwoord", htmlAttributes: new { @class = "labell" })
+			        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", Type = "password" })
+			    </div>
+			    <div class="form-group">
+			        @Html.Label("Herhaling wachtwoord", htmlAttributes: new { @class = "labell" })
+			        @Html.TextBox("wachtwoord",null, new { @class = "form-control", Type = "password" })
+			    </div>
 
 				<div class="form-group">
 					<div class="">
