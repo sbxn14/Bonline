@@ -1,4 +1,5 @@
-﻿@model List<Bonline.Models.Account>
+﻿@using Bonline.Models
+@model Bonline.ViewModels.ListAcc_en_Acc
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/Filter.js")
 
@@ -6,38 +7,39 @@
     ViewBag.Title = "Accounts";
 }
 <!DOCTYPE html>
-    <h2>Accounts</h2>
-    <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
-    <br />
-    <table id="myTable" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Inactief</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+<h2>Accounts</h2>
+<input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+<br />
+<table id="myTable" style="width: 100%">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>Inactief</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Account acc in Model.Accs)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Inactief)
-                    </td>
-                    <td>
-                        @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
-                        {
-                            @Html.ActionLink("Toggle", "Accounts", "Account", new { id = item.Id }, null)
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => acc.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => acc.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => acc.Inactief)
+                </td>
+                <td>
+                    @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ActionLink("Toggle", "Accounts", "Account", new { id = acc.Id }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 @Scripts.Render("~/Scripts/Filter.js")
