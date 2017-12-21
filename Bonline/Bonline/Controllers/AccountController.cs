@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Bonline.Database;
 using Bonline.Repositories;
 using Account = Bonline.Models.Account;
@@ -85,7 +86,7 @@ namespace Bonline.Controllers
             account.Password = PasswordManager.Hash(account.Password);
             int accId = _accountRepository.LoginId(account);
             account = _accountRepository.SelectAccount(accId);
-            Session["AccountId"] = accId;
+           // Session["AccountId"] = accId;
 
             if (_accountRepository.CheckInactiefAccount(account))
             {
@@ -100,6 +101,7 @@ namespace Bonline.Controllers
             }
             HttpCookie c = ticket.Encrypt(accId.ToString());
             HttpContext.Response.Cookies.Add(c);
+            //return View();
             if (account.Admin)
             {
                 return RedirectToAction("Accounts");
@@ -113,7 +115,7 @@ namespace Bonline.Controllers
             try
             {
                 TicketAuth auth = new TicketAuth();
-                HttpCookie c = System.Web.HttpContext.Current.Request.Cookies["__RequestVerificationToken"];
+              //  HttpCookie c = System.Web.HttpContext.Current.Request.Cookies["__RequestVerificationToken"];
                 int accId = auth.Decrypt();
                 Account acc = _accountRepository.SelectAccount(accId);
                 if (acc.Admin)

@@ -16,13 +16,14 @@ namespace Bonline.Controllers
     {
         private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
         private readonly ListBonEnBon _viewModel = new ListBonEnBon();
-        private readonly TicketAuth _auth = new TicketAuth();
+       // private 
 
         
         [HttpGet]
         public ActionResult Bon()
         {
             Datamanager.Initialize();
+            TicketAuth _auth = new TicketAuth();
             _viewModel.Bonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
             _viewModel.Organisaties = _bonRepository.GetAllOrgs();
             return View(_viewModel);
@@ -35,6 +36,7 @@ namespace Bonline.Controllers
         [HttpPost]
         public ActionResult Bon(string GekozenOrg)
         {
+            TicketAuth _auth = new TicketAuth();
             List<Bon> gebruikerBonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
             _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, gebruikerBonnen );
             _viewModel.Organisaties = _bonRepository.GetAllOrgs();
