@@ -35,7 +35,7 @@
                     @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.ActionLink("Toggle", "Accounts", "Account", new { id = acc.Id }, null)
+                        @Html.ActionLink("Toggle", "Accounts", "Account", new {id = acc.Id}, null)
                     }
                 </td>
             </tr>

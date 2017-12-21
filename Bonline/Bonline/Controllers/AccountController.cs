@@ -112,33 +112,33 @@ namespace Bonline.Controllers
         }
 
         [HttpGet]
-        public ActionResult Accounts()
-        {
-            try
-            {
-                TicketAuth auth = new TicketAuth();
-                int accId = auth.Decrypt();
-                Account acc = _accountRepository.SelectAccount(accId);
-                if (acc.Admin)
-                {
-                    ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
-                    viewModel.Accs = _accountRepository.SelectAccounts(); ;
-                    return View(viewModel);
-                }
-                return RedirectToAction("Index", "Home");
-            }
-            catch (ArgumentException)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
-        [HttpPost]
         public ActionResult Accounts(int id = 0)
         {
-            Account acc = _accountRepository.SelectAccount(id);
-            _accountRepository.UpdateInactief(acc);
-            return View();
+            ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
+            if (id == 0)
+            {
+                try
+                {
+                    TicketAuth auth = new TicketAuth();
+                    int accId = auth.Decrypt();
+                    Account acc = _accountRepository.SelectAccount(accId);
+                    if (acc.Admin)
+                    {
+                        viewModel.Accs = _accountRepository.SelectAccounts();
+                        return View(viewModel);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (ArgumentException)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            Account a = _accountRepository.SelectAccount(id);
+            a.Inactief = !a.Inactief;
+            _accountRepository.UpdateInactief(a);
+            viewModel.Accs = _accountRepository.SelectAccounts();
+            return View(viewModel);
         }
     }
 }
