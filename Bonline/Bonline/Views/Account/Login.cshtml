@@ -6,33 +6,33 @@
 <!DOCTYPE html>
 
 <head>
-	@Styles.Render("~/Content/Site.css")
-	@Scripts.Render("~/Scripts/Letters.js")
+    @Styles.Render("~/Content/Site.css")
+    @Scripts.Render("~/Scripts/Letters.js")
 </head>
 
 <body>
-	<div>
-		<h1 class='logo'>LOGIN</h1>
-		<div class='group'>
-			@using (Html.BeginForm("Login","Account"))
-			{
-				@Html.AntiForgeryToken()
-				<div class="form-group">
-					@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "labell" })
-					@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-				</div>
+    <div>
+        <h1 class='logo'>LOGIN</h1>
+        <div class='group'>
+            @using (Html.BeginForm("Login", "Account"))
+            {
+                @Html.AntiForgeryToken()
+                <h3>@ViewBag.Message</h3>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "labell" })
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                </div>
 
-				<div class="form-group">
-					@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "labell" })
-					@Html.TextBoxFor(model => model.Password, new { @class = "form-control", Type = "password" })
-				</div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "labell" })
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", Type = "password" })
+                </div>
 
-				<div class="form-group">
-					<div class="">
-						<input type="submit" value="Login" class="buttone" />
-					</div>
-				</div>
-			}
-		</div>
-	</div>
+                <div class="form-group">
+                    <div class="">
+                        <input type="submit" value="Login" class="buttone" />
+                    </div>
+                </div>}
+        </div>
+    </div>
 </body>

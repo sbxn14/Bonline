@@ -88,19 +88,19 @@ namespace Bonline.Controllers
             account.Password = PasswordManager.Hash(account.Password);
             int accId = _accountRepository.LoginId(account);
             account = _accountRepository.SelectAccount(accId);
-            // Session["AccountId"] = accId;
-
-            if (_accountRepository.CheckInactiefAccount(account))
-            {
-                ViewBag.Message1 = "Uw account is inactief";
-                return View("Login");
-            }
 
             if (!_accountRepository.LoginAccount(account))
             {
-                ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
-                return View("Login");
+                ViewBag.Message = "Dit is geen geregistreerd account. Check of de ingevulde gegevens kloppen.";
+                return View();
             }
+
+            if (_accountRepository.CheckInactiefAccount(account))
+            {
+                ViewBag.Message = "Uw account is inactief.";
+                return View();
+            }
+
             HttpCookie c = ticket.Encrypt(accId.ToString());
             HttpContext.Response.Cookies.Add(c);
             //return View();
@@ -111,6 +111,7 @@ namespace Bonline.Controllers
             return RedirectToAction("Bon", "Bon");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Accounts(int id = 0)
         {
