@@ -1,7 +1,6 @@
-﻿@model Bonline.Models.Bon
- @{
-  ViewBag.Title = "Toevoegen";
- }
+﻿@model Bonline.ViewModels.Acc_en_Bon
+
+
 @Styles.Render("~/Content/Site.css")
 @Scripts.Render("~/Scripts/Letters.js")
 
@@ -15,15 +14,21 @@
     {
   @Html.AntiForgeryToken()
   <div class="form-group">
-   @Html.LabelFor(model => model.Locatie, htmlAttributes: new { @class = "labell" })
-   @Html.TextBoxFor(model => model.Locatie, new { @class = "form-control" })
+   @Html.LabelFor(model => model.B.Locatie, htmlAttributes: new { @class = "labell" })
+   @Html.TextBoxFor(model => model.B.Locatie, new { @class = "form-control" })
   </div>
-
-   <div class="form-group">
-    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "labell" })
-    @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
-   </div>
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.B.Description, htmlAttributes: new { @class = "labell" })
+            @Html.TextBoxFor(model => model.B.Description, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.B.Org, htmlAttributes: new { @class = "labell" })
+            @Html.TextBoxFor(model => model.B.Org, new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.B.Date, htmlAttributes: new { @class = "labell" })
+            @Html.EditorFor(model => model.B.Date, new { @class = "form-control"})
+        </div>
    <div class="form-group">
     <div class="">
      <input type="submit" value="Voeg toe" class="buttone" />

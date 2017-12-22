@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    @if (HttpContext.Current.Request.Cookies[".ASPXAUTH"]?.Value != null)
+    @if (HttpContext.Current.Request.Cookies[".ASPXAUTH"]?.Value != null && HttpContext.Current.Request.Cookies[".ASPXAUTH"]?.Value != "0")
     {
         <div id="wrapper">
             <div class="overlay"></div>

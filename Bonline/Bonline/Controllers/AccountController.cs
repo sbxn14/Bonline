@@ -130,9 +130,17 @@ namespace Bonline.Controllers
                     }
                     return RedirectToAction("Index", "Home");
                 }
-                catch (ArgumentException)
+                catch (Exception ex)
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (ex is ArgumentException || ex is NullReferenceException)
+                    {
+                        return RedirectToAction("Index", "Home");
+
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
             }
             Account a = _accountRepository.SelectAccount(id);
