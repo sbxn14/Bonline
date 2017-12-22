@@ -69,7 +69,6 @@
 {
     <input type="submit" name="dang" value="go to kassa" />
 }
-@using (Html.BeginForm("Toevoegen", "Bon"))
+@using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Get))
 {
-    <input type="submit" name="dang" value="Voeg handmatig toe" />
-}
+<button type="submit">Handmatig toevoegen</button>}

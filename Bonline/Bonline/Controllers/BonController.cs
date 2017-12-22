@@ -16,7 +16,6 @@ namespace Bonline.Controllers
     {
         private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
         private readonly ListBonEnBon _viewModel = new ListBonEnBon();
-       // private 
 
         
         [HttpGet]
@@ -73,11 +72,14 @@ namespace Bonline.Controllers
         [HttpGet]
         public ActionResult Toevoegen()
         {
-            return View();
+            Acc_en_Bon viewmodel = new Acc_en_Bon();
+            TicketAuth auth = new TicketAuth();
+            viewmodel.Acc.Id = auth.Decrypt();
+            viewmodel.B.Date = DateTime.Now;
+            return View(viewmodel);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Toevoegen(Bon bon)
         {
             TicketAuth auth = new TicketAuth();
