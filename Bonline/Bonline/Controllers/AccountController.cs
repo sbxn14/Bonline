@@ -87,8 +87,10 @@ namespace Bonline.Controllers
             TicketAuth ticket = new TicketAuth();
             account.Password = PasswordManager.Hash(account.Password);
             int accId = _accountRepository.LoginId(account);
-            account = _accountRepository.SelectAccount(accId);
-
+            if (accId != 0)
+            {
+                account = _accountRepository.SelectAccount(accId);
+            }
             if (!_accountRepository.LoginAccount(account))
             {
                 ViewBag.Message = "Dit is geen geregistreerd account. Check of de ingevulde gegevens kloppen.";
@@ -103,7 +105,6 @@ namespace Bonline.Controllers
 
             HttpCookie c = ticket.Encrypt(accId.ToString());
             HttpContext.Response.Cookies.Add(c);
-            //return View();
             if (account.Admin)
             {
                 return RedirectToAction("Accounts");
