@@ -30,7 +30,12 @@ namespace Bonline.Controllers
 
 
         [HttpPost]
-        public ActionResult BonKassa(Bon b) => View("Kassa");
+        public ActionResult BonKassa(Bon b)
+        {
+            
+
+            return View("Kassa", b);
+        }
 
         [HttpPost]
         public ActionResult Bon(string GekozenOrg)
@@ -44,15 +49,24 @@ namespace Bonline.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details(Bon bon)
+        //changed name from Details to BonDetais to avoid confusion with Details, lower
+        public ActionResult BonDetails(Bon bon)
         {
+            bon.Date = DateTime.Now;
+            bon.Description = "Boodschappen hier, " + DateTime.Now.ToString();
+            bon.LocatieId = 5;
+
+
+            //added the reference to the context
+            _bonRepository.InsertKassa(bon);
             return View("Details", bon);
         }
 
-        public ActionResult GoToKassa()
-        {
-            return View("Kassa");
-        }
+        //this has no value, can be deleted
+        //public ActionResult GoToKassa()
+        //{
+        //    return View("Kassa");
+        //}
 
         [HttpGet]
         public ActionResult Details(int id = 0)
