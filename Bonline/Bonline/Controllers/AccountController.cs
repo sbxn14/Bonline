@@ -127,9 +127,8 @@ namespace Bonline.Controllers
                     return View(viewModel);
                 }
                 return RedirectToAction("Index", "Home");
-
             }
-            Account a = _accountRepository.SelectAccount(id);
+            Account a = _accountRepository.GetAccount(id);
             a.Inactief = !a.Inactief;
             _accountRepository.UpdateInactief(a);
             viewModel.Accs = _accountRepository.SelectAccounts();
