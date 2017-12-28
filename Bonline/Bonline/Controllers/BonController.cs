@@ -72,20 +72,19 @@ namespace Bonline.Controllers
         [HttpGet]
         public ActionResult Toevoegen()
         {
-            Acc_en_Bon viewmodel = new Acc_en_Bon();
-            TicketAuth auth = new TicketAuth();
-            viewmodel.Acc.Id = auth.Decrypt();
-            viewmodel.B.Date = DateTime.Now;
-            return View(viewmodel);
+            Bon b = new Bon();
+            b.Date = DateTime.MinValue;
+            return View(b);
         }
 
         [HttpPost]
-        public ActionResult Toevoegen(Bon bon)
+        public ActionResult Toevoegen(Bon b)
         {
             TicketAuth auth = new TicketAuth();
-            bon.AccId = auth.Decrypt();
-            _bonRepository.AddBon(bon);
-            return View("Bon", "Bon");
+            b.AccId = auth.Decrypt();
+            b.Date = DateTime.Today;
+            _bonRepository.AddBon(b);
+            return RedirectToAction("Bon", "Bon");
         }
     }
 }

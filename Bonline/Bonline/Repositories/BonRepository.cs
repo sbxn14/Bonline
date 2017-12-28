@@ -19,13 +19,6 @@ namespace Bonline.Repositories
             _context.InsertKassa(b);
         }
 
-
-        public Bon GetOrgName(Bon b)
-        {
-            return _context.GetOrgName(b);
-        }
-
-
         public Bon SelectBon(int id)
         {
             Bon bon = (from b in _context.Select()
@@ -57,7 +50,6 @@ namespace Bonline.Repositories
             orgs = orgs.Distinct().ToList();
             return orgs;
         }
-
 
         public void AddBon(Bon bon)
         {
