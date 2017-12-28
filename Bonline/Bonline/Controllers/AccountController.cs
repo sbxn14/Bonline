@@ -86,24 +86,19 @@ namespace Bonline.Controllers
         {
             TicketAuth ticket = new TicketAuth();
             account.Password = PasswordManager.Hash(account.Password);
-            int accId = _accountRepository.LoginId(account);
-            if (accId != 0)
-            {
-                account = _accountRepository.SelectAccount(accId);
-            }
-            if (!_accountRepository.LoginAccount(account))
+            account = _accountRepository.SelectAccount(account);
+            if (account.Id == 0)
             {
                 ViewBag.Message = "Dit is geen geregistreerd account. Check of de ingevulde gegevens kloppen.";
                 return View();
             }
-
-            if (_accountRepository.CheckInactiefAccount(account))
+            if (account.Inactief)
             {
                 ViewBag.Message = "Uw account is inactief.";
                 return View();
             }
 
-            HttpCookie c = ticket.Encrypt(accId.ToString());
+            HttpCookie c = ticket.Encrypt(account.Id.ToString());
             HttpContext.Response.Cookies.Add(c);
             if (account.Admin)
             {
@@ -119,30 +114,20 @@ namespace Bonline.Controllers
             ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
             if (id == 0)
             {
-                try
+                TicketAuth auth = new TicketAuth();
+                int accId = auth.Decrypt();
+                Account acc = _accountRepository.GetAccount(accId);
+                if (acc.Id == 0)
                 {
-                    TicketAuth auth = new TicketAuth();
-                    int accId = auth.Decrypt();
-                    Account acc = _accountRepository.SelectAccount(accId);
-                    if (acc.Admin)
-                    {
-                        viewModel.Accs = _accountRepository.SelectAccounts();
-                        return View(viewModel);
-                    }
-                    return RedirectToAction("Index", "Home");
+                    RedirectToAction("Index", "Home");
                 }
-                catch (Exception ex)
+                if (acc.Admin)
                 {
-                    if (ex is ArgumentException || ex is NullReferenceException)
-                    {
-                        return RedirectToAction("Index", "Home");
+                    viewModel.Accs = _accountRepository.SelectAccounts();
+                    return View(viewModel);
+                }
+                return RedirectToAction("Index", "Home");
 
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
             }
             Account a = _accountRepository.SelectAccount(id);
             a.Inactief = !a.Inactief;
