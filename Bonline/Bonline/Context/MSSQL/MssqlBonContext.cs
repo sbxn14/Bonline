@@ -19,6 +19,7 @@ namespace Bonline.Context.MSSQL
 				cmd.Parameters.AddWithValue("@Boodschappen", b.Description);
 				cmd.Parameters.AddWithValue("@AccountID", b.AccId);
 				cmd.Parameters.AddWithValue("@LocatieId", b.LocatieId);
+                
 				Db.RunNonQuery(cmd);
 			}
 		}
