@@ -9,8 +9,11 @@
     @Html.AntiForgeryToken()
     <h4>Boodschappen: @Html.DisplayFor(mode => Model.Description)</h4>
     <h4>Datum: @Html.DisplayFor(model => Model.Date)</h4>
-    <h4>Account-ID: @Html.DisplayFor(model => Model.Acc.Id)</h4>
-    <h4>Account-Email: @Html.DisplayFor(model => Model.Acc.Email)</h4>
+    @*<h4>Account-ID: @Html.DisplayFor(model => Model.Acc.Id)</h4>  <-- this one references the wrong id*@
+    <h4>Account-ID: @Html.DisplayFor(model=>Model.AccId)</h4>
+    <h4>Account-Email: @Html.DisplayFor(model => Model.Acc.Email)</h4> 
+    @* When I get here from the AddKassa view, account email doesn't work, but if I get here from the bon view it is full*@
+
 
 
 
