@@ -35,14 +35,6 @@ namespace Bonline.Repositories
             return bon;
         }
 
-        //public IEnumerable<Bon> SelectBonnenOrg(string org)
-        //{
-        // IEnumerable<Bon> bon = (from b in this._context.Select()
-        //			  where b.LocatieId.Equals()
-        //			  select b);
-        // return bon;
-        //}
-
         public List<string> GetAllOrgs()
         {
             List<string> orgs = (from b in _context.Select()
@@ -62,5 +54,14 @@ namespace Bonline.Repositories
             return bonnen;
         }
 
+        public int GetLocId(Bon bon)
+        {
+            return _context.GetLocId(bon);
+        }
+
+        public void AddLocId(Bon bon)
+        {
+            _context.AddLocId(bon);
+        }
     }
 }

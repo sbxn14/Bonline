@@ -56,17 +56,10 @@ namespace Bonline.Controllers
             bon.Description = "Boodschappen hier, " + DateTime.Now.ToString();
             bon.LocatieId = 5;
 
-
             //added the reference to the context
             _bonRepository.InsertKassa(bon);
-            return View("Details", bon);
+            return RedirectToAction("Bon");
         }
-
-        //this has no value, can be deleted
-        //public ActionResult GoToKassa()
-        //{
-        //    return View("Kassa");
-        //}
 
         [HttpGet]
         public ActionResult Details(int id = 0)
@@ -87,18 +80,23 @@ namespace Bonline.Controllers
         public ActionResult Toevoegen()
         {
             Bon b = new Bon();
-            b.Date = DateTime.MinValue;
+            b.Date = DateTime.Now;
             return View(b);
         }
 
         [HttpPost]
         public ActionResult Toevoegen(Bon b)
         {
+            b.LocatieId = _bonRepository.GetLocId(b);
+            if (b.LocatieId == 0)
+            {
+                _bonRepository.AddLocId(b);
+            }
             TicketAuth auth = new TicketAuth();
             b.AccId = auth.Decrypt();
-            b.Date = DateTime.Today;
+            
             _bonRepository.AddBon(b);
-            return RedirectToAction("Bon", "Bon");
+            return RedirectToAction("Bon");
         }
     }
 }
