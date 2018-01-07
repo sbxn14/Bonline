@@ -87,6 +87,7 @@ C:\Users\SWest\OneDrive\Documents\Visual Studio 2015\Projects\BonlineLocal\Bonli
 C:\Users\SWest\OneDrive\Documents\Visual Studio 2015\Projects\BonlineLocal\Bonline\Bonline\Bonline\obj\Debug\Bonline.csprojResolveAssemblyReference.cache
 C:\Users\SWest\OneDrive\Documents\Visual Studio 2015\Projects\BonlineLocal\Bonline\Bonline\Bonline\obj\Debug\Bonline.dll
 C:\Users\SWest\OneDrive\Documents\Visual Studio 2015\Projects\BonlineLocal\Bonline\Bonline\Bonline\obj\Debug\Bonline.pdb
+<<<<<<< Updated upstream
 C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\bin\ApplicationInsights.config
 C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\bin\roslyn\csc.exe
 C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\bin\roslyn\csc.exe.config
@@ -177,3 +178,95 @@ C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\De
 C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.csproj.CoreCompileInputs.cache
 C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.dll
 C:\AAALL stuffs\AAAFontys\32\proftaak\BonClonedec\Bonline\Bonline\Bonline\obj\Debug\Bonline.pdb
+=======
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\ApplicationInsights.config
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\csc.exe
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\csc.exe.config
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\csc.rsp
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\csi.exe
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\csi.exe.config
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\csi.rsp
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.AppContext.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Console.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.IO.Compression.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.IO.Pipes.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.Claims.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Threading.Thread.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.ValueTuple.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Xml.XPath.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\vbc.exe
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\vbc.exe.config
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\vbc.rsp
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\VBCSCompiler.exe
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Bonline.dll.config
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Bonline.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Bonline.pdb
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Antlr3.Runtime.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.Web.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.ApplicationInsights.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Newtonsoft.Json.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Helpers.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Mvc.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Optimization.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Razor.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.WebPages.Deployment.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.WebPages.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.WebPages.Razor.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\WebGrease.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Helpers.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Mvc.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Optimization.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.Razor.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.WebPages.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.WebPages.Deployment.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\System.Web.WebPages.Razor.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Antlr3.Runtime.pdb
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Newtonsoft.Json.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.ApplicationInsights.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\bin\Microsoft.AI.Web.xml
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.csprojResolveAssemblyReference.cache
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.csproj.CoreCompileInputs.cache
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.dll
+C:\Users\JRama\Desktop\Bonline-Repo\Bonline\Bonline\Bonline\obj\Debug\Bonline.pdb
+>>>>>>> Stashed changes
