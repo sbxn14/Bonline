@@ -15,7 +15,7 @@
 @using (Html.BeginForm())
 {
 	@Html.AntiForgeryToken()
-	<h2>Bon</h2>
+	<h1 class='logo'>Uw Bonnenlijst</h1>
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/Scripts/Filter.js")
 
@@ -30,7 +30,7 @@
 			text-align: center;
 		}
 	</style>
-	<input style="width: 90%; margin: auto;" class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+	<input style="width: 95%; margin: auto;" class="form-control" id="myInput" type="text" placeholder="Zoek..." />
 	<br />
 	<!-- im so sorry if this messes anything up you can remove it whenever-->
 	@using (Html.BeginForm("BonKassa", "Bon"))
