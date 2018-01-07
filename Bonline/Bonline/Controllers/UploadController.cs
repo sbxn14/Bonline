@@ -9,96 +9,96 @@ using System.Data.SqlClient;
 using Bonline.Models;
 
 namespace Bonline.Controllers
-{ 
-    public class UploadController : Controller
-
 {
-    // GET: Home
-    public ActionResult Index()
+    [Authorize]
+    public class UploadController : Controller
     {
-        return View(GetFiles());
-    }
-
-    [HttpPost]
-    public ActionResult Index(HttpPostedFileBase postedFile)
-    {
-        byte[] bytes;
-        using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+        // GET: Home
+        public ActionResult Index()
         {
-            bytes = br.ReadBytes(postedFile.ContentLength);
+            return View(GetFiles());
         }
-        string constr = Database.Db.ConnectionString;
-        using (SqlConnection con = new SqlConnection(constr))
+
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase postedFile)
         {
-            string query = "INSERT INTO tblFiles (Name, ContentType, Data) VALUES (@Name, @ContentType, @Data)";
-            using (SqlCommand cmd = new SqlCommand(query))
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
             {
-                cmd.Connection = con;
-                cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
-                cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
-                cmd.Parameters.AddWithValue("@Data", bytes);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                bytes = br.ReadBytes(postedFile.ContentLength);
             }
-        }
-
-        return View(GetFiles());
-    }
-
-    [HttpPost]
-    public FileResult DownloadFile(int? fileId)
-    {
-        byte[] bytes;
-        string fileName, contentType;
-        string constr = Database.Db.ConnectionString;
-        using (SqlConnection con = new SqlConnection(constr))
-        {
-            using (SqlCommand cmd = new SqlCommand())
+            string constr = Database.Db.ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
             {
-                cmd.CommandText = "SELECT Name, Data, ContentType FROM tblFiles WHERE Id=@Id";
-                cmd.Parameters.AddWithValue("@Id", fileId);
-                cmd.Connection = con;
-                con.Open();
-                using (SqlDataReader sdr = cmd.ExecuteReader())
+                string query = "INSERT INTO tblFiles (Name, ContentType, Data) VALUES (@Name, @ContentType, @Data)";
+                using (SqlCommand cmd = new SqlCommand(query))
                 {
-                    sdr.Read();
-                    bytes = (byte[])sdr["Data"];
-                    contentType = sdr["ContentType"].ToString();
-                    fileName = sdr["Name"].ToString();
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                    cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                    cmd.Parameters.AddWithValue("@Data", bytes);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
                 }
-                con.Close();
             }
+
+            return View(GetFiles());
         }
 
-        return File(bytes, contentType, fileName);
-    }
-
-    private static List<FileModel> GetFiles()
-    {
-        List<FileModel> files = new List<FileModel>();
-        string constr = Database.Db.ConnectionString;
-        using (SqlConnection con = new SqlConnection(constr))
+        [HttpPost]
+        public FileResult DownloadFile(int? fileId)
         {
-            using (SqlCommand cmd = new SqlCommand("SELECT Id, Name FROM tblFiles"))
+            byte[] bytes;
+            string fileName, contentType;
+            string constr = Database.Db.ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
             {
-                cmd.Connection = con;
-                con.Open();
-                using (SqlDataReader sdr = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand())
                 {
-                    while (sdr.Read())
+                    cmd.CommandText = "SELECT Name, Data, ContentType FROM tblFiles WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("@Id", fileId);
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
                     {
-                        files.Add(new FileModel
-                        {
-                            Id = Convert.ToInt32(sdr["Id"]),
-                            Name = sdr["Name"].ToString()
-                        });
+                        sdr.Read();
+                        bytes = (byte[])sdr["Data"];
+                        contentType = sdr["ContentType"].ToString();
+                        fileName = sdr["Name"].ToString();
                     }
+                    con.Close();
                 }
-                con.Close();
             }
+
+            return File(bytes, contentType, fileName);
         }
-        return files;
+
+        private static List<FileModel> GetFiles()
+        {
+            List<FileModel> files = new List<FileModel>();
+            string constr = Database.Db.ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT Id, Name FROM tblFiles"))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new FileModel
+                            {
+                                Id = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString()
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return files;
+        }
     }
-}
 }

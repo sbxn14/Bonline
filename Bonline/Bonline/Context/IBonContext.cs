@@ -15,5 +15,6 @@ namespace Bonline.Context
         Bon GetOrgName(Bon b);
         int GetLocId(Bon b);
         void AddLocId(Bon b);
+        ImageModel GetImage(int imageId);
     }
 }

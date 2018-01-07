@@ -178,6 +178,7 @@
     <Compile Include="Models\PasswordManager.cs" />
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Bon en Pic.cs" />
     <Compile Include="ViewModels\ListAcc en Acc.cs" />
     <Compile Include="ViewModels\ListBon en Bon.cs" />
   </ItemGroup>

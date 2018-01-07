@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using Bonline.Database;
 using Bonline.Models;
@@ -22,6 +23,7 @@ namespace Bonline.Context.MSSQL
                 Db.RunNonQuery(cmd);
             }
         }
+
         public int GetLocId(Bon b)
         {
             try
@@ -35,15 +37,15 @@ namespace Bonline.Context.MSSQL
                     cmd.ExecuteNonQuery();
                     int locId = 0;
 
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            while (reader.Read())
-                            {
-                                locId = reader.GetInt32(reader.GetOrdinal("ID"));
-                            }
+                            locId = reader.GetInt32(reader.GetOrdinal("ID"));
                         }
-                        conn.Close();
-                    
+                    }
+                    conn.Close();
+
                     return locId;
                 }
             }
@@ -58,7 +60,8 @@ namespace Bonline.Context.MSSQL
         {
             using (new SqlConnection(Db.ConnectionString))
             {
-                string query = "INSERT INTO Bon(Datum, Boodschappen, AccountID, LocatieID) VALUES(@Datum, @Boodschappen, @AccountID, @LocatieID)";
+                string query =
+                    "INSERT INTO Bon(Datum, Boodschappen, AccountID, LocatieID) VALUES(@Datum, @Boodschappen, @AccountID, @LocatieID)";
                 SqlCommand cmd = new SqlCommand(query);
 
                 cmd.Parameters.AddWithValue("@Datum", b.Date);
@@ -78,7 +81,8 @@ namespace Bonline.Context.MSSQL
                 {
 
                     conn.Open();
-                    string query = "select organisatie.naam as organisatienaam, locatie.naam as locatienaam from locatie inner join organisatie on locatie.orgid = organisatie.id where locatie.id = @locid";
+                    string query =
+                        "select organisatie.naam as organisatienaam, locatie.naam as locatienaam from locatie inner join organisatie on locatie.orgid = organisatie.id where locatie.id = @locid";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@locid", b.LocatieId);
                     cmd.ExecuteNonQuery();
@@ -112,7 +116,8 @@ namespace Bonline.Context.MSSQL
             {
                 using (new SqlConnection(Db.ConnectionString))
                 {
-                    string query = "INSERT INTO bon (Boodschappen, Datum, LocatieID, ) VALUES (@Boodschappen, @Datum, @LocatieID)";
+                    string query =
+                        "INSERT INTO bon (Boodschappen, Datum, LocatieID, ) VALUES (@Boodschappen, @Datum, @LocatieID)";
                     SqlCommand cmd = new SqlCommand(query);
                     cmd.Parameters.AddWithValue("@Boodschappen", bon.Description);
                     cmd.Parameters.AddWithValue("@Datum", bon.Date);
@@ -130,6 +135,37 @@ namespace Bonline.Context.MSSQL
         public List<Bon> Select()
         {
             return Db.RunQuery(new Bon());
+        }
+
+        public ImageModel GetImage(int ImageId)
+        {
+            ImageModel image = new ImageModel();
+            string constr = Database.Db.ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "SELECT * FROM tblFiles WHERE ID = @ImageId";
+                SqlCommand cmd = new SqlCommand(query);
+                cmd.Parameters.AddWithValue("@ImageId", ImageId);
+                using (cmd)
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            image.Id = Convert.ToInt32(sdr["Id"]);
+                            image.Name = sdr["Name"].ToString();
+                            image.Info = sdr["Info"].ToString();
+                            image.ContentType = sdr["ContentType"].ToString();
+                            image.Data = (byte[])sdr["Data"];
+                        }
+                    }
+                }
+                con.Close();
+            }
+            return image;
         }
     }
 }

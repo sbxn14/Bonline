@@ -63,5 +63,10 @@ namespace Bonline.Repositories
         {
             _context.AddLocId(bon);
         }
+
+        public ImageModel GetImage(int id)
+        {
+            return _context.GetImage(id);
+        }
     }
 }

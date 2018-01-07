@@ -1,9 +1,10 @@
 ﻿@using Bonline.Models
 @model IEnumerable<Bonline.Models.ImageModel>
 
-@{
-    Layout = null;
-}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/Filter.js")
+@Styles.Render("~/content/site.css")
+@Scripts.Render("~/scripts/letters.js")
 
 <!DOCTYPE html>
 

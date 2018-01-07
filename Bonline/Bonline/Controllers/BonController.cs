@@ -66,8 +66,11 @@ namespace Bonline.Controllers
         {
             try
             {
-                Bon bon = _bonRepository.SelectBon(id);
-                return View(bon);
+                Bon_en_Pic vm = new Bon_en_Pic();
+                vm.b = _bonRepository.SelectBon(id);
+                vm.image = _bonRepository.GetImage(vm.b.imageId);
+                ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(vm.image.Data, 0, vm.image.Data.Length);
+                return View(vm);
             }
             catch (Exception e)
             {

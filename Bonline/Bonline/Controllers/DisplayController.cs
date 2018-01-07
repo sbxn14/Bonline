@@ -12,6 +12,7 @@ using Bonline.Models;
 
 namespace Bonline.Controllers
 {
+    [Authorize]
     public class DisplayController : Controller
     {
         // GET: Home
@@ -57,13 +58,11 @@ namespace Bonline.Controllers
                                 Info = sdr["Info"].ToString(),
                                 ContentType = sdr["ContentType"].ToString(),
                                 Data = (byte[])sdr["Data"]
-
                             });
                         }
                     }
                     con.Close();
                 }
-
                 return images;
             }
         }
