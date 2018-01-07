@@ -86,24 +86,20 @@ namespace Bonline.Controllers
         {
             TicketAuth ticket = new TicketAuth();
             account.Password = PasswordManager.Hash(account.Password);
-            int accId = _accountRepository.LoginId(account);
-            account = _accountRepository.SelectAccount(accId);
-            // Session["AccountId"] = accId;
-
-            if (_accountRepository.CheckInactiefAccount(account))
+            account = _accountRepository.SelectAccount(account);
+            if (account.Id == 0)
             {
-                ViewBag.Message1 = "Uw account is inactief";
-                return View("Login");
+                ViewBag.Message = "Dit is geen geregistreerd account. Check of de ingevulde gegevens kloppen.";
+                return View();
+            }
+            if (account.Inactief)
+            {
+                ViewBag.Message = "Uw account is inactief.";
+                return View();
             }
 
-            if (!_accountRepository.LoginAccount(account))
-            {
-                ViewBag.Message2 = "This is not a registered Account. Check your Email or Password.";
-                return View("Login");
-            }
-            HttpCookie c = ticket.Encrypt(accId.ToString());
+            HttpCookie c = ticket.Encrypt(account.Id.ToString());
             HttpContext.Response.Cookies.Add(c);
-            //return View();
             if (account.Admin)
             {
                 return RedirectToAction("Accounts");
@@ -111,34 +107,32 @@ namespace Bonline.Controllers
             return RedirectToAction("Bon", "Bon");
         }
 
+        [Authorize]
         [HttpGet]
-        public ActionResult Accounts()
+        public ActionResult Accounts(int id = 0)
         {
-            try
+            ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
+            if (id == 0)
             {
                 TicketAuth auth = new TicketAuth();
                 int accId = auth.Decrypt();
-                Account acc = _accountRepository.SelectAccount(accId);
+                Account acc = _accountRepository.GetAccount(accId);
+                if (acc.Id == 0)
+                {
+                    RedirectToAction("Index", "Home");
+                }
                 if (acc.Admin)
                 {
-                    ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
-                    viewModel.Accs = _accountRepository.SelectAccounts(); ;
+                    viewModel.Accs = _accountRepository.SelectAccounts();
                     return View(viewModel);
                 }
                 return RedirectToAction("Index", "Home");
             }
-            catch (ArgumentException)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-        }
-
-        [HttpPost]
-        public ActionResult Accounts(int id = 0)
-        {
-            Account acc = _accountRepository.SelectAccount(id);
-            _accountRepository.UpdateInactief(acc);
-            return View();
+            Account a = _accountRepository.GetAccount(id);
+            a.Inactief = !a.Inactief;
+            _accountRepository.UpdateInactief(a);
+            viewModel.Accs = _accountRepository.SelectAccounts();
+            return View(viewModel);
         }
     }
 }

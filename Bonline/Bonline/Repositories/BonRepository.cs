@@ -19,13 +19,6 @@ namespace Bonline.Repositories
             _context.InsertKassa(b);
         }
 
-
-        public Bon GetOrgName(Bon b)
-        {
-            return _context.GetOrgName(b);
-        }
-
-
         public Bon SelectBon(int id)
         {
             Bon bon = (from b in _context.Select()
@@ -42,14 +35,6 @@ namespace Bonline.Repositories
             return bon;
         }
 
-        //public IEnumerable<Bon> SelectBonnenOrg(string org)
-        //{
-        // IEnumerable<Bon> bon = (from b in this._context.Select()
-        //			  where b.LocatieId.Equals()
-        //			  select b);
-        // return bon;
-        //}
-
         public List<string> GetAllOrgs()
         {
             List<string> orgs = (from b in _context.Select()
@@ -57,7 +42,6 @@ namespace Bonline.Repositories
             orgs = orgs.Distinct().ToList();
             return orgs;
         }
-
 
         public void AddBon(Bon bon)
         {
@@ -70,5 +54,19 @@ namespace Bonline.Repositories
             return bonnen;
         }
 
+        public int GetLocId(Bon bon)
+        {
+            return _context.GetLocId(bon);
+        }
+
+        public void AddLocId(Bon bon)
+        {
+            _context.AddLocId(bon);
+        }
+
+        public ImageModel GetImage(int id)
+        {
+            return _context.GetImage(id);
+        }
     }
 }

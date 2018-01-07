@@ -1,35 +1,46 @@
 ﻿@model Bonline.Models.Bon
- @{
-  ViewBag.Title = "Toevoegen";
- }
+
 @Styles.Render("~/Content/Site.css")
 @Scripts.Render("~/Scripts/Letters.js")
 
 
 @*TODO Handmatig toevoegen bon, doorgeven welk account, dus niet handmatig invullen. *@
- <!DOCTYPE html>
- <body>
-  <div>
-   <div class='group'>
-    @using (Html.BeginForm("Toevoegen", "Bon",FormMethod.Post))
-    {
-  @Html.AntiForgeryToken()
-  <div class="form-group">
-   @Html.LabelFor(model => model.Locatie, htmlAttributes: new { @class = "labell" })
-   @Html.TextBoxFor(model => model.Locatie, new { @class = "form-control" })
-  </div>
-
-   <div class="form-group">
-    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "labell" })
-    @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
-   </div>
-
-   <div class="form-group">
-    <div class="">
-     <input type="submit" value="Voeg toe" class="buttone" />
+<!DOCTYPE html>
+<body>
+    <div>
+        <div class='group'>
+            @using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelForModel("Locatie", htmlAttributes: new { @class = "labell" })
+                    @Html.TextBoxFor(model => model.Locatie, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelForModel("Beschrijving", htmlAttributes: new { @class = "labell" })
+                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelForModel("Organisatie", htmlAttributes: new { @class = "labell" })
+                    @Html.TextBoxFor(model => model.Org, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelForModel("Datum", htmlAttributes: new { @class = "labell" })
+                    @if (Model.Date != DateTime.MinValue)
+                    {
+                        @Html.Editor("Date", String.Format("{0:yyyy-MM-dd HH:mm}", Model.Date), new { @class = "textbox", @style = "width:400px;" })
+                    }
+                    else
+                    {
+                        @Html.Editor("Date", String.Format("{0:yyyy-MM-dd HH:mm}", DateTime.Now), new { @class = "textbox", @style = "width:400px;" })
+                    }
+                </div>
+                    <div class="form-group">
+                        <div class="">
+                            <input type="submit" value="Voeg toe" class="buttone" />
+                        </div>
+                    </div>
+            }
+        </div>
     </div>
-   </div>
-    }
-   </div>
-  </div>
- </body>
+</body>

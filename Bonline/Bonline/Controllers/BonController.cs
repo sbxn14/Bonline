@@ -16,7 +16,6 @@ namespace Bonline.Controllers
     {
         private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
         private readonly ListBonEnBon _viewModel = new ListBonEnBon();
-       // private 
 
         
         [HttpGet]
@@ -31,7 +30,12 @@ namespace Bonline.Controllers
 
 
         [HttpPost]
-        public ActionResult BonKassa(Bon b) => View("Kassa");
+        public ActionResult BonKassa(Bon b)
+        {
+            
+
+            return View("Kassa", b);
+        }
 
         [HttpPost]
         public ActionResult Bon(string GekozenOrg)
@@ -45,14 +49,16 @@ namespace Bonline.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Details(Bon bon)
+        //changed name from Details to BonDetais to avoid confusion with Details, lower
+        public ActionResult BonDetails(Bon bon)
         {
-            return View("Details", bon);
-        }
+            bon.Date = DateTime.Now;
+            bon.Description = "Boodschappen hier, " + DateTime.Now.ToString();
+            bon.LocatieId = 5;
 
-        public ActionResult GoToKassa()
-        {
-            return View("Kassa");
+            //added the reference to the context
+            _bonRepository.InsertKassa(bon);
+            return RedirectToAction("Bon");
         }
 
         [HttpGet]
@@ -60,8 +66,11 @@ namespace Bonline.Controllers
         {
             try
             {
-                Bon bon = _bonRepository.SelectBon(id);
-                return View(bon);
+                Bon_en_Pic vm = new Bon_en_Pic();
+                vm.b = _bonRepository.SelectBon(id);
+                vm.image = _bonRepository.GetImage(vm.b.imageId);
+                ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(vm.image.Data, 0, vm.image.Data.Length);
+                return View(vm);
             }
             catch (Exception e)
             {
@@ -73,17 +82,24 @@ namespace Bonline.Controllers
         [HttpGet]
         public ActionResult Toevoegen()
         {
-            return View();
+            Bon b = new Bon();
+            b.Date = DateTime.Now;
+            return View(b);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Toevoegen(Bon bon)
+        public ActionResult Toevoegen(Bon b)
         {
+            b.LocatieId = _bonRepository.GetLocId(b);
+            if (b.LocatieId == 0)
+            {
+                _bonRepository.AddLocId(b);
+            }
             TicketAuth auth = new TicketAuth();
-            bon.AccId = auth.Decrypt();
-            _bonRepository.AddBon(bon);
-            return View("Bon", "Bon");
+            b.AccId = auth.Decrypt();
+            
+            _bonRepository.AddBon(b);
+            return RedirectToAction("Bon");
         }
     }
 }

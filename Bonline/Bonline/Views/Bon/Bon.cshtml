@@ -2,7 +2,8 @@
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/Filter.js")
-@Styles.Render("~/content/site.css")
+
+@Styles.Render("~/content/Site.css")
 @Scripts.Render("~/scripts/letters.js")
 
 @{
@@ -69,7 +70,7 @@
 {
     <input type="submit" name="dang" value="go to kassa" />
 }
-@using (Html.BeginForm("Toevoegen", "Bon"))
+@using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Get))
 {
-    <input type="submit" name="dang" value="Voeg handmatig toe" />
+<button type="submit">Handmatig toevoegen</button>
 }

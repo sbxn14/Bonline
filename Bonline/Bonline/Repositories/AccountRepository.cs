@@ -28,33 +28,23 @@ namespace Bonline.Repositories
             _context.Insert(account);
         }
 
-        public bool LoginAccount(Account account)
-        {
-            int accounts = (from acc in _context.Select()
-                            where acc.Email.Equals(account.Email)
-                                  && acc.Password.Equals(account.Password)
-                            select acc).Count();
-            if (accounts >= 1)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public int LoginId(Account account)
+        public Account GetAccount(int accId)
         {
             try
             {
-                Account accountId = (from acc in _context.Select()
-                                     where acc.Email.Equals(account.Email)
-                                            && acc.Password.Equals(account.Password)
-                                     select acc).Single();
-                return accountId.Id;
+                Account accounts = (from acc in _context.Select()
+                                    where acc.Id.Equals(accId)
+                                    select acc).Single();
+                return accounts;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return 0;
+                if (ex is ArgumentNullException || ex is NullReferenceException)
+                {
+                    return new Account();
+                }
             }
+            return new Account();
         }
 
         public bool CheckBestaatAccount(Account account)
@@ -80,37 +70,29 @@ namespace Bonline.Repositories
             return false;
         }
 
-        public bool CheckInactiefAccount(Account account)
-        {
-            try
-            {
-                Account accounts = (from acc in _context.Select()
-                                    where acc.Id.Equals(account.Id)
-                                    select acc).Single();
-                return accounts.Inactief;
-            }
-            catch (Exception ex)
-            {
-                if (ex is ArgumentNullException || ex is NullReferenceException)
-                {
-                    return true;
-                }
-            }
-            return true;
-
-        }
-
         public void UpdateInactief(Account account)
         {
             _context.UpdateInactief(account);
         }
 
-        public Account SelectAccount(int id)
+        public Account SelectAccount(Account acc)
         {
-            Account account = (from acc in _context.Select()
-                               where acc.Id.Equals(id)
-                               select acc).Single();
-            return account;
+            try
+            {
+                Account account = (from a in _context.Select()
+                                   where a.Email.Equals(acc.Email)
+                                         && a.Password.Equals(acc.Password)
+                                   select a).Single();
+                return account;
+            }
+            catch (Exception ex)
+            {
+                if (ex is ArgumentNullException || ex is NullReferenceException)
+                {
+                    return new Account();
+                }
+            }
+            return new Account();
         }
     }
 }
