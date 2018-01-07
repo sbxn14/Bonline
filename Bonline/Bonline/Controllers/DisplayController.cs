@@ -38,7 +38,7 @@ namespace Bonline.Controllers
         {
             string query = "SELECT * FROM tblFiles";
             List<ImageModel> images = new List<ImageModel>();
-            string constr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+            string constr = Database.Db.ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
                 using (SqlCommand cmd = new SqlCommand(query))

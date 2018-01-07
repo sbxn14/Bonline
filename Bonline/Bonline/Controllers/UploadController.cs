@@ -27,7 +27,7 @@ namespace Bonline.Controllers
         {
             bytes = br.ReadBytes(postedFile.ContentLength);
         }
-        string constr = ConfigurationManager.ConnectionStrings["ConString"].ConnectionString;
+        string constr = Database.Db.ConnectionString;
         using (SqlConnection con = new SqlConnection(constr))
         {
             string query = "INSERT INTO tblFiles (Name, ContentType, Data) VALUES (@Name, @ContentType, @Data)";
@@ -51,7 +51,7 @@ namespace Bonline.Controllers
     {
         byte[] bytes;
         string fileName, contentType;
-        string constr = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+        string constr = Database.Db.ConnectionString;
         using (SqlConnection con = new SqlConnection(constr))
         {
             using (SqlCommand cmd = new SqlCommand())
@@ -77,7 +77,7 @@ namespace Bonline.Controllers
     private static List<FileModel> GetFiles()
     {
         List<FileModel> files = new List<FileModel>();
-        string constr = ConfigurationManager.ConnectionStrings["Constring"].ConnectionString;
+        string constr = Database.Db.ConnectionString;
         using (SqlConnection con = new SqlConnection(constr))
         {
             using (SqlCommand cmd = new SqlCommand("SELECT Id, Name FROM tblFiles"))
