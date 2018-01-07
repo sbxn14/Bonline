@@ -5,9 +5,11 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 using Bonline.Database;
 using Bonline.Repositories;
+using Bonline.ViewModels;
 using Account = Bonline.Models.Account;
 
 namespace Bonline.Controllers
@@ -86,7 +88,7 @@ namespace Bonline.Controllers
             account.Password = PasswordManager.Hash(account.Password);
             int accId = _accountRepository.LoginId(account);
             account = _accountRepository.SelectAccount(accId);
-           // Session["AccountId"] = accId;
+            // Session["AccountId"] = accId;
 
             if (_accountRepository.CheckInactiefAccount(account))
             {
@@ -115,13 +117,13 @@ namespace Bonline.Controllers
             try
             {
                 TicketAuth auth = new TicketAuth();
-              //  HttpCookie c = System.Web.HttpContext.Current.Request.Cookies["__RequestVerificationToken"];
                 int accId = auth.Decrypt();
                 Account acc = _accountRepository.SelectAccount(accId);
                 if (acc.Admin)
                 {
-                    List<Account> accounts = _accountRepository.SelectAccounts();
-                    return View(accounts);
+                    ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
+                    viewModel.Accs = _accountRepository.SelectAccounts(); ;
+                    return View(viewModel);
                 }
                 return RedirectToAction("Index", "Home");
             }
@@ -132,8 +134,9 @@ namespace Bonline.Controllers
         }
 
         [HttpPost]
-        public ActionResult Accounts(Account acc)
+        public ActionResult Accounts(int id = 0)
         {
+            Account acc = _accountRepository.SelectAccount(id);
             _accountRepository.UpdateInactief(acc);
             return View();
         }

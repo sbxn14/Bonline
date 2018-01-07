@@ -47,12 +47,6 @@ namespace Bonline.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Details(Bon bon)
         {
-            int id = (int)Session["AccountId"];
-            if (id <= 0)
-            {
-                RedirectToAction("Login", "Account");
-            }
-
             return View("Details", bon);
         }
 
@@ -67,7 +61,7 @@ namespace Bonline.Controllers
             try
             {
                 Bon bon = _bonRepository.SelectBon(id);
-                return Details(bon);
+                return View(bon);
             }
             catch (Exception e)
             {
