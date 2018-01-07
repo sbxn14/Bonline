@@ -1,20 +1,20 @@
 ﻿@model Bonline.ViewModels.ListBonEnBon
 @{
-    List<SelectListItem> organisatieList = new List<SelectListItem>();
-    foreach (var item in Model.Organisaties)
-    {
-        organisatieList.Add(new SelectListItem
-        {   
-            Text = item,
-            Value = item
-        });
-    }
+	List<SelectListItem> organisatieList = new List<SelectListItem>();
+	foreach (var item in Model.Organisaties)
+	{
+		organisatieList.Add(new SelectListItem
+		{
+			Text = item,
+			Value = item
+		});
+	}
 }
 <!DOCTYPE html>
 
 @using (Html.BeginForm())
 {
-   @Html.AntiForgeryToken()
+	@Html.AntiForgeryToken()
 	<h2>Bon</h2>
 	@Scripts.Render("~/bundles/jquery")
 	@Scripts.Render("~/Scripts/Filter.js")
@@ -30,54 +30,55 @@
 			text-align: center;
 		}
 	</style>
-    <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
-    <br />
-    <div class="form-group dropdown">
-        @Html.DropDownListFor(m => m.GekozenOrg, organisatieList)
-        <input type="submit" value="Filter" />
-    </div>
-    <table id="myTable" style="width: 100%">
-        <thead>
-            <tr>
-                <th style="width: 25%">Id</th>
-                <th style="width: 25%">Datum</th>
-                <th style="width: 25%">Organisatie</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Bonnen)
-            {
-                <tr>
-                    <td style="width: 25%">
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td style="width: 25%">
-                        @Html.DisplayFor(modelItem => item.Date)
-                    </td>
-                    <td style="width: 25%">
-                        @Html.DisplayFor(modelItem => item.Loc.Org.Name)
-                    </td>
-                    <td style="width: 25%">
-                        @using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
-                        }
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+	<input style="width: 90%; margin: auto;" class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+	<br />
+	<!-- im so sorry if this messes anything up you can remove it whenever-->
+	@using (Html.BeginForm("BonKassa", "Bon"))
+	{
+		<input type="submit" name="dang" value="go to kassa" />
+	}
+	@using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Get))
+	{
+		<button type="submit">Handmatig toevoegen</button>
+	}
+	<br />
+	<div class="form-group dropdown">
+		@Html.DropDownListFor(m => m.GekozenOrg, organisatieList)
+		<input type="submit" value="Filter" />
+	</div>
+	<table id="myTable" style="width: 100%">
+		<thead>
+			<tr>
+				<th style="width: 25%">Id</th>
+				<th style="width: 25%">Datum</th>
+				<th style="width: 25%">Organisatie</th>
+				<th style="width: 25%"> </th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model.Bonnen)
+			{
+				<tr>
+					<td style="width: 25%">
+						@Html.DisplayFor(modelItem => item.Id)
+					</td>
+					<td style="width: 25%">
+						@Html.DisplayFor(modelItem => item.Date)
+					</td>
+					<td style="width: 25%">
+						@Html.DisplayFor(modelItem => item.Loc.Org.Name)
+					</td>
+					<td style="width: 25%">
+						@using (Html.BeginForm("Bon", "Bon", FormMethod.Post))
+						{
+							@Html.AntiForgeryToken()
+							@Html.ActionLink("Details", "Details", "Bon", new { id = item.Id }, null)
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 }
 
 @Scripts.Render("~/Scripts/Filter.js")
-
-<!-- im so sorry if this messes anything up you can remove it whenever-->
-@using (Html.BeginForm("BonKassa", "Bon"))
-{
-    <input type="submit" name="dang" value="go to kassa" />
-}
-@using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Get))
-{
-<button type="submit">Handmatig toevoegen</button>
-}
