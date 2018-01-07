@@ -1,11 +1,9 @@
 ﻿@model Bonline.Models.Bon
-@{
- ViewBag.Title = "Kassa";
-}
 
+@Styles.Render("~/content/Site.css")
 <h2>Kassa</h2>
 
-@using (Html.BeginForm("Details", "Bon"))
+@using (Html.BeginForm("BonDetails", "Bon"))
 {
  @Html.AntiForgeryToken()
  <label> Fill in the UserID here: </label>

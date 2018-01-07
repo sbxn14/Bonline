@@ -3,9 +3,6 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/Filter.js")
 
-@{
-    ViewBag.Title = "Accounts";
-}
 <!DOCTYPE html>
 <h2>Accounts</h2>
 <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
@@ -35,7 +32,7 @@
                     @using (Html.BeginForm("Accounts", "Account", FormMethod.Post))
                     {
                         @Html.AntiForgeryToken()
-                        @Html.ActionLink("Toggle", "Accounts", "Account", new { id = acc.Id }, null)
+                        @Html.ActionLink("Toggle", "Accounts", "Account", new {id = acc.Id}, null)
                     }
                 </td>
             </tr>
