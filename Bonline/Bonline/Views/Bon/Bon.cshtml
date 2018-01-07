@@ -1,11 +1,4 @@
 ﻿@model Bonline.ViewModels.ListBonEnBon
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/Scripts/Filter.js")
-
-@Styles.Render("~/content/Site.css")
-@Scripts.Render("~/scripts/letters.js")
-
 @{
     List<SelectListItem> organisatieList = new List<SelectListItem>();
     foreach (var item in Model.Organisaties)
@@ -22,7 +15,12 @@
 @using (Html.BeginForm())
 {
    @Html.AntiForgeryToken()
-    <h2>Bon</h2>
+	<h2>Bon</h2>
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/Scripts/Filter.js")
+
+	@Styles.Render("~/content/Site.css")
+	@Scripts.Render("~/scripts/letters.js")
     <input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
     <br />
     <div class="form-group dropdown">

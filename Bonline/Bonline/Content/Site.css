@@ -160,9 +160,13 @@ input.buttone:hover {
 	font-family: 'Open Sans', sans-serif;
 }
 
+label {
+	font-family: 'Open Sans', sans-serif;
+}
+
 table, td, th {
 	border-collapse: collapse;
-	border: 1px solid yellow;
+	border: 1px solid darkslategray;
 	line-height: 50px;
 	text-align: center;
 }
