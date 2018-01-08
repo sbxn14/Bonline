@@ -2,19 +2,32 @@
 @model Bonline.ViewModels.ListAcc_en_Acc
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/Filter.js")
-
+@Styles.Render("~/Content/Site.css")
+@Scripts.Render("~/Scripts/Letters.js")
 <!DOCTYPE html>
-<h2>Accounts</h2>
-<input class="form-control" id="myInput" type="text" placeholder="Zoek..." />
+<h1 class='logo'>ACCOUNTS</h1>
+
+<style>
+    table, td, th {
+        border-collapse: collapse;
+        border: 1px solid darkslategray;
+        line-height: 50px;
+        text-align: center;
+    }
+</style>
+<input style="width: 95%; margin: auto;" class="form-control" id="myInput" type="text" placeholder="Zoek..." />
 <br />
-<table id="myTable" style="width: 100%">
+<table id="tabletitles" style="width: 95%; margin: auto">
     <thead>
-        <tr>
-            <th>Id</th>
-            <th>Email</th>
-            <th>Geblokkeerd</th>
-        </tr>
+    <tr>
+        <th style="width: 7.18%">ID</th>
+        <th style="width: 62.84%">Emailadres</th>
+        <th style="width: 6.08%">Geblokkeerd</th>
+        <th style="width: 23.9%"></th>
+    </tr>
     </thead>
+</table>
+<table style="width: 95%; margin: auto; margin-bottom: 10px;" id="myTable" style="width: 100%">
     <tbody>
         @foreach (Account acc in Model.Accs)
             {

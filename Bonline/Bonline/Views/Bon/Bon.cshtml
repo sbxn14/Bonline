@@ -43,14 +43,16 @@
             <input class="btn btn-default btnn" style="color: #23527c" type="submit" value="Filter" />
         </div>
     </div>
-    <table id="myTable" style="width: 95%; margin: auto">
+    <table id="tabletitles" style="width: 95%; margin: auto">
         <thead>
-            <tr>
-                <th style="width: 33%">Datum</th>
-                <th style="width: 33%">Organisatie</th>
-                <th style="width: 33%"></th>
-            </tr>
+        <tr>
+            <th style="width: 33%">Datum</th>
+            <th style="width: 33%">Info</th>
+            <th style="width: 33%">Organisatie</th>
+        </tr>
         </thead>
+    </table>
+    <table id="myTable" style="width: 95%; margin: auto">
         <tbody>
             @foreach (var item in Model.Bonnen)
             {

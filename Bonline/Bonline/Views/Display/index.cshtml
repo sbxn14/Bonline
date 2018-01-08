@@ -11,15 +11,15 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <h1 class='logo'>DISPLAY</h1>
     <style type="text/css">
-        body {
-            font-family: Arial;
-            font-size: 10pt;
-        }
+          body {
+              font-family: Arial;
+              font-size: 10pt;
+          }
     </style>
 </head>
-<body>
+<body style="text-align: center; margin: auto">
     @using (Html.BeginForm("Index", "Display", FormMethod.Post))
     {
         <span>Select Image:</span>
@@ -43,7 +43,7 @@
     }
     @if (ViewBag.Base64String != null)
     {
-        <hr />
+        <br />
         <img alt="" src="@ViewBag.Base64String" style="grid-auto-rows;" />
 
     }

@@ -1,8 +1,7 @@
 ﻿@model Bonline.Models.Bon
-
+@Scripts.Render("~/Scripts/Letters.js")
 @Styles.Render("~/content/Site.css")
-<h2>Kassa</h2>
-
+<h1 class='logo'>KASSA</h1>
 @using (Html.BeginForm("BonDetails", "Bon"))
 {
  @Html.AntiForgeryToken()
