@@ -22,29 +22,35 @@ namespace Bonline.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase postedFile)
         {
-            byte[] bytes;
-            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            try
             {
-                bytes = br.ReadBytes(postedFile.ContentLength);
-            }
-            string constr = Database.Db.ConnectionString;
-            using (SqlConnection con = new SqlConnection(constr))
-            {
-                string query = "INSERT INTO tblFiles (Name, ContentType, Data) VALUES (@Name, @ContentType, @Data)";
-                using (SqlCommand cmd = new SqlCommand(query))
+                byte[] bytes;
+                using (BinaryReader br = new BinaryReader(postedFile.InputStream))
                 {
-                    cmd.Connection = con;
-                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
-                    cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
-                    cmd.Parameters.AddWithValue("@Data", bytes);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    bytes = br.ReadBytes(postedFile.ContentLength);
+                }
+                string constr = Database.Db.ConnectionString;
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    string query = "INSERT INTO tblFiles (Name, ContentType, Data) VALUES (@Name, @ContentType, @Data)";
+                    using (SqlCommand cmd = new SqlCommand(query))
+                    {
+                        cmd.Connection = con;
+                        cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                        cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                        cmd.Parameters.AddWithValue("@Data", bytes);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
                 }
             }
+            catch (Exception e)
+            { return View(e); }
 
             return View(GetFiles());
         }
+    
 
         [HttpPost]
         public FileResult DownloadFile(int? fileId)

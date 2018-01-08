@@ -37,7 +37,7 @@ namespace Bonline.Controllers
 
         private List<ImageModel> GetImages()
         {
-            string query = "SELECT * FROM tblFiles";
+            string query = "SELECT *,CURRENT_USER AS USERNAME FROM tblFiles ";
             List<ImageModel> images = new List<ImageModel>();
             string constr = Database.Db.ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
