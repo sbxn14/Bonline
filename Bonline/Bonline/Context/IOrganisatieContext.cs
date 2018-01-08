@@ -10,9 +10,5 @@ namespace Bonline.Context
  public interface IOrganisatieContext
  {
   void Insert(Organisatie org);
-  List<Organisatie> Select();
-  void Update(int id, string NieuwNaam);
-  void Delete(int id);
-
  }
 }

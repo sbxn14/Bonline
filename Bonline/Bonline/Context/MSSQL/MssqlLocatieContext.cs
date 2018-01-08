@@ -25,15 +25,5 @@ namespace Bonline.Context.MSSQL
 			cmd.Parameters.AddWithValue("@organisatie", org);
 			Db.RunNonQuery(cmd);
 		}
-
-		public List<Locatie> Select()
-		{
-			throw new NotImplementedException();
-		}
-
-		public void Delete(int id)
-		{
-			throw new NotImplementedException();
-		}
 	}
 }
