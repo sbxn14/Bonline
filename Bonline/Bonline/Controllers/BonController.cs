@@ -28,12 +28,15 @@ namespace Bonline.Controllers
             return View(_viewModel);
         }
 
+        [HttpGet]
+        public ActionResult Kassa()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public ActionResult BonKassa(Bon b)
+        public ActionResult Kassa(Bon b)
         {
-            
-
             return View("Kassa", b);
         }
 
@@ -55,6 +58,7 @@ namespace Bonline.Controllers
             bon.Date = DateTime.Now;
             bon.Description = "Boodschappen hier, " + DateTime.Now.ToString();
             bon.LocatieId = 5;
+            bon.imageId = 1;
 
             //added the reference to the context
             _bonRepository.InsertKassa(bon);

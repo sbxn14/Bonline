@@ -61,14 +61,14 @@ namespace Bonline.Context.MSSQL
             using (new SqlConnection(Db.ConnectionString))
             {
                 string query =
-                    "INSERT INTO Bon(Datum, Boodschappen, AccountID, LocatieID) VALUES(@Datum, @Boodschappen, @AccountID, @LocatieID)";
+                    "INSERT INTO Bon(Datum, Boodschappen, AccountID, LocatieID , Pic_ID) VALUES(@Datum, @Boodschappen, @AccountID, @LocatieID, @PicId)";
                 SqlCommand cmd = new SqlCommand(query);
 
                 cmd.Parameters.AddWithValue("@Datum", b.Date);
                 cmd.Parameters.AddWithValue("@Boodschappen", b.Description);
                 cmd.Parameters.AddWithValue("@AccountID", b.AccId);
                 cmd.Parameters.AddWithValue("@LocatieId", b.LocatieId);
-
+                cmd.Parameters.AddWithValue("@PicId", b.imageId);
                 Db.RunNonQuery(cmd);
             }
         }
@@ -117,11 +117,12 @@ namespace Bonline.Context.MSSQL
                 using (new SqlConnection(Db.ConnectionString))
                 {
                     string query =
-                        "INSERT INTO bon (Boodschappen, Datum, LocatieID, ) VALUES (@Boodschappen, @Datum, @LocatieID)";
+                        "INSERT INTO bon (Boodschappen, Datum, LocatieID, Pic_ID ) VALUES (@Boodschappen, @Datum, @LocatieID, @PicId)";
                     SqlCommand cmd = new SqlCommand(query);
                     cmd.Parameters.AddWithValue("@Boodschappen", bon.Description);
                     cmd.Parameters.AddWithValue("@Datum", bon.Date);
                     cmd.Parameters.AddWithValue("@LocatieId", bon.Loc);
+                    cmd.Parameters.AddWithValue("@PicId", bon.imageId);
                     Db.RunNonQuery(cmd);
                 }
             }
