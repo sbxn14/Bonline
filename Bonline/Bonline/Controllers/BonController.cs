@@ -41,16 +41,6 @@ namespace Bonline.Controllers
         }
 
         [HttpPost]
-        public ActionResult Bon(string GekozenOrg)
-        {
-            TicketAuth _auth = new TicketAuth();
-            List<Bon> gebruikerBonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
-            _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, gebruikerBonnen );
-            _viewModel.Organisaties = _bonRepository.GetAllOrgs();
-                return View(_viewModel);
-        }
-
-        [HttpPost]
         [ValidateAntiForgeryToken]
         //changed name from Details to BonDetais to avoid confusion with Details, lower
         public ActionResult BonDetails(Bon bon)
@@ -64,6 +54,18 @@ namespace Bonline.Controllers
             _bonRepository.InsertKassa(bon);
             return RedirectToAction("Bon");
         }
+
+        [HttpPost]
+        public ActionResult Bon(string GekozenOrg)
+        {
+            TicketAuth _auth = new TicketAuth();
+            List<Bon> gebruikerBonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
+            _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, gebruikerBonnen );
+            _viewModel.Organisaties = _bonRepository.GetAllOrgs();
+                return View(_viewModel);
+        }
+
+
 
         [HttpGet]
         public ActionResult Details(int id = 0)
@@ -101,7 +103,7 @@ namespace Bonline.Controllers
             }
             TicketAuth auth = new TicketAuth();
             b.AccId = auth.Decrypt();
-            
+            b.LocatieId = _bonRepository.GetLocId(b);
             _bonRepository.AddBon(b);
             return RedirectToAction("Bon");
         }

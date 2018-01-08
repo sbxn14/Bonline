@@ -18,7 +18,6 @@
     <h1 class='logo'>Uw Bonnenlijst</h1>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/Filter.js")
-
     @Styles.Render("~/content/Site.css")
     @Scripts.Render("~/scripts/letters.js")
 
@@ -32,24 +31,24 @@
     </style>
     <input style="width: 95%; margin: auto;" class="form-control" id="myInput" type="text" placeholder="Zoek..." />
     <br />
-	<!-- im so sorry if this messes anything up you can remove it whenever-->
-    <div class="btn btn-default">
-        @Html.ActionLink("Kassa", "Kassa")
+    <div class="container">
+        <div class="btn btn-default btnn" style="width: 6%;float: left">
+            @Html.ActionLink("Kassa", "Kassa")
+        </div>
+        <div class="btn btn-default btnn" style="width: 6%;float: left">
+            @Html.ActionLink("Toevoegen", "Toevoegen")
+        </div>
+        <div class="form-group" style="width: 10%; float: right">
+            @Html.DropDownListFor(m => m.GekozenOrg, organisatieList, new { @style="height:31px" })
+            <input class="btn btn-default btnn" style="color: #23527c" type="submit" value="Filter" />
+        </div>
     </div>
-    <div class="btn btn-default">
-        @Html.ActionLink("Toevoegen", "Toevoegen")
-    </div>
-    <br />
-    <div class="form-group dropdown">
-            @Html.DropDownListFor(m => m.GekozenOrg, organisatieList)
-        <input type="submit" value="Filter"/>
-    </div>
-    <table id="myTable" style="width: 100%">
+    <table id="myTable" style="width: 95%; margin: auto">
         <thead>
             <tr>
                 <th style="width: 33%">Datum</th>
                 <th style="width: 33%">Organisatie</th>
-                <th style="width: 33%"> </th>
+                <th style="width: 33%"></th>
             </tr>
         </thead>
         <tbody>
@@ -73,15 +72,4 @@
         </tbody>
     </table>
 }
-
 @Scripts.Render("~/Scripts/Filter.js")
-
-<!-- im so sorry if this messes anything up you can remove it whenever-->
-@using (Html.BeginForm("BonKassa", "Bon"))
-{
-    <input type="submit" name="dang" value="go to kassa" />
-}
-@using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Get))
-{
-    <button type="submit">Handmatig toevoegen</button>
-}

@@ -163,3 +163,13 @@ input.buttone:hover {
 label {
 	font-family: 'Open Sans', sans-serif;
 }
+
+.btnn {
+    display: inline-block;
+}
+
+.container{
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
