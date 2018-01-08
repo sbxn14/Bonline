@@ -156,8 +156,6 @@
     <Compile Include="Controllers\BonController.cs" />
     <Compile Include="Controllers\DisplayController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrganisatieController.cs" />
-    <Compile Include="Controllers\LocatieController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Database\Datamanager.cs" />
     <Compile Include="Database\Db.cs" />
@@ -170,8 +168,6 @@
     <Compile Include="Models\TicketAuth.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\BonRepository.cs" />
-    <Compile Include="Repositories\OrganisatieRepository.cs" />
-    <Compile Include="Repositories\LocatieRepository.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Bon.cs" />
     <Compile Include="Models\Organisatie.cs" />

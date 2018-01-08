@@ -47,6 +47,7 @@ namespace Bonline.Controllers
         {
             bon.Date = DateTime.Now;
             bon.Description = "Boodschappen hier, " + DateTime.Now.ToString();
+            bon.Loc = new Locatie();
             bon.Loc.Id = 5;
             bon.imageId = 1;
 

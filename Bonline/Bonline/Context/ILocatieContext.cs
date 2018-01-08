@@ -10,8 +10,5 @@ namespace Bonline.Context
 public interface ILocatieContext
  {
 	 void Insert(Locatie account);
-	 List<Locatie> Select();
-	 void Delete(int id);
-
  }
 }
