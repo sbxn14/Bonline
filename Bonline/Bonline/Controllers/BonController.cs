@@ -47,7 +47,7 @@ namespace Bonline.Controllers
         {
             bon.Date = DateTime.Now;
             bon.Description = "Boodschappen hier, " + DateTime.Now.ToString();
-            bon.LocatieId = 5;
+            bon.Loc.Id = 5;
             bon.imageId = 1;
 
             //added the reference to the context
@@ -96,14 +96,18 @@ namespace Bonline.Controllers
         [HttpPost]
         public ActionResult Toevoegen(Bon b)
         {
-            b.LocatieId = _bonRepository.GetLocId(b);
-            if (b.LocatieId == 0)
+            AccountRepository acccon = new AccountRepository(new MssqlAccountContext());
+            b.Loc.Id = _bonRepository.GetLocId(b);
+            if (b.Loc.Id == 0)
             {
                 _bonRepository.AddLocId(b);
             }
             TicketAuth auth = new TicketAuth();
-            b.AccId = auth.Decrypt();
-            b.LocatieId = _bonRepository.GetLocId(b);
+            b.Acc = new Account();
+            b.Acc.Id = auth.Decrypt();
+            b.Acc = acccon.GetAccount(b.Acc.Id);
+            b.Loc.Id = _bonRepository.GetLocId(b);
+            b.imageId = 1;
             _bonRepository.AddBon(b);
             return RedirectToAction("Bon");
         }

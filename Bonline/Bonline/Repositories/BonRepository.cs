@@ -30,7 +30,7 @@ namespace Bonline.Repositories
         public IEnumerable<Bon> SelectBonnen(int userId)
         {
             IEnumerable<Bon> bon = (from b in _context.Select()
-                                    where b.AccId.Equals(userId)
+                                    where b.Acc.Id.Equals(userId)
                                     select b);
             return bon;
         }

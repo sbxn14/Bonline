@@ -4,19 +4,19 @@
 
 @Styles.Render("~/content/Site.css")
 <h1 class='logo'>Details</h1>
-@using (Html.BeginForm("Details", "Bon", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    <h4>Boodschappen: @Html.DisplayFor(mode => Model.b.Description)</h4>
-    <h4>Datum: @Html.DisplayFor(model => Model.b.Date)</h4>
-    @*<h4>Account-ID: @Html.DisplayFor(model => Model.Acc.Id)</h4>  <-- this one references the wrong id*@
-    <h4>Account-ID: @Html.DisplayFor(model => Model.b.AccId)</h4>
-    <h4>Account-Email: @Html.DisplayFor(model => Model.b.Acc.Email)</h4>
-    @* When I get here from the AddKassa view, account email doesn't work, but if I get here from the bon view it is full*@
+<body style="text-align: center; margin: auto">
 
-if (ViewBag.Base64String != null)
-{
-    <h4>Afbeelding:</h4>
-    <img alt="" src="@ViewBag.Base64String" style="grid-auto-rows;" />
+    @using (Html.BeginForm("Details", "Bon", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <h4><b>Boodschappen:</b> @Html.DisplayFor(mode => Model.b.Description)</h4>
+        <h4><b>Datum:</b> @Html.DisplayFor(model => Model.b.Date)</h4>
+        <h4><b>Email:</b> @Html.DisplayFor(model => Model.b.Acc.Email)</h4>
+ 
+    if (ViewBag.Base64String != null)
+    {
+        <h4><b>Afbeelding:</b></h4>
+        <img alt="" src="@ViewBag.Base64String" style="grid-auto-rows;" />
+        }
     }
-}
+</body>

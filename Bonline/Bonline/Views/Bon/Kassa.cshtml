@@ -2,10 +2,12 @@
 @Scripts.Render("~/Scripts/Letters.js")
 @Styles.Render("~/content/Site.css")
 <h1 class='logo'>KASSA</h1>
+<body style="text-align: center; margin: auto">
 @using (Html.BeginForm("BonDetails", "Bon"))
 {
  @Html.AntiForgeryToken()
  <label> Fill in the UserID here: </label>
- @Html.TextBoxFor(model => model.AccId)
+ @Html.TextBoxFor(model => model.Acc.Id)
  <input type="submit" name="yis" value="Submit" />
 }
+</body>

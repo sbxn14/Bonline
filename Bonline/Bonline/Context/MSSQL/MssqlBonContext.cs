@@ -13,12 +13,12 @@ namespace Bonline.Context.MSSQL
         {
             using (new SqlConnection(Db.ConnectionString))
             {
-                string query = "INSERT INTO Locatie(Naam, OrgID, Address) VALUES(@naam, @orgid, @address)";
+                string query = "INSERT INTO dbo.Locatie (Naam, OrgID, Address) VALUES (@naam, @orgid, @address)";
                 SqlCommand cmd = new SqlCommand(query);
 
                 cmd.Parameters.AddWithValue("@naam", "Tilburg");
                 cmd.Parameters.AddWithValue("@orgid", 1);
-                cmd.Parameters.AddWithValue("@address", b.Locatie);
+                cmd.Parameters.AddWithValue("@address", b.Loc.Address);
 
                 Db.RunNonQuery(cmd);
             }
@@ -33,7 +33,7 @@ namespace Bonline.Context.MSSQL
                     conn.Open();
                     string query = "SELECT * FROM dbo.Locatie WHERE Address = @address";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@address", b.Locatie);
+                    cmd.Parameters.AddWithValue("@address", b.Loc.Address);
                     cmd.ExecuteNonQuery();
                     int locId = 0;
 
@@ -66,8 +66,8 @@ namespace Bonline.Context.MSSQL
 
                 cmd.Parameters.AddWithValue("@Datum", b.Date);
                 cmd.Parameters.AddWithValue("@Boodschappen", b.Description);
-                cmd.Parameters.AddWithValue("@AccountID", b.AccId);
-                cmd.Parameters.AddWithValue("@LocatieId", b.LocatieId);
+                cmd.Parameters.AddWithValue("@AccountID", b.Acc.Id);
+                cmd.Parameters.AddWithValue("@LocatieId", b.Loc.Id);
                 cmd.Parameters.AddWithValue("@PicId", b.imageId);
                 Db.RunNonQuery(cmd);
             }
@@ -84,7 +84,7 @@ namespace Bonline.Context.MSSQL
                     string query =
                         "select organisatie.naam as organisatienaam, locatie.naam as locatienaam from locatie inner join organisatie on locatie.orgid = organisatie.id where locatie.id = @locid";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@locid", b.LocatieId);
+                    cmd.Parameters.AddWithValue("@locid", b.Loc.Id);
                     cmd.ExecuteNonQuery();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -117,11 +117,12 @@ namespace Bonline.Context.MSSQL
                 using (new SqlConnection(Db.ConnectionString))
                 {
                     string query =
-                        "INSERT INTO bon (Boodschappen, Datum, LocatieID, Pic_ID ) VALUES (@Boodschappen, @Datum, @LocatieID, @PicId)";
+                        "INSERT INTO bon (Boodschappen, Datum, AccountID, LocatieID, Pic_ID ) VALUES (@Boodschappen, @Datum, @AccountID, @LocatieID, @PicId)";
                     SqlCommand cmd = new SqlCommand(query);
                     cmd.Parameters.AddWithValue("@Boodschappen", bon.Description);
                     cmd.Parameters.AddWithValue("@Datum", bon.Date);
-                    cmd.Parameters.AddWithValue("@LocatieId", bon.Loc);
+                    cmd.Parameters.AddWithValue("@AccountID", bon.Acc.Id);
+                    cmd.Parameters.AddWithValue("@LocatieId", bon.Loc.Id);
                     cmd.Parameters.AddWithValue("@PicId", bon.imageId);
                     Db.RunNonQuery(cmd);
                 }
