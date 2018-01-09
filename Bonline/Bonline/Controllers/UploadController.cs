@@ -47,9 +47,9 @@ namespace Bonline.Controllers
             }
             catch (Exception e)
             {
-                throw e;
-            }
+                return View(GetFiles());
 
+            }
             return View(GetFiles());
         }
 
