@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using Bonline.Models;
 
 namespace Bonline.Database
@@ -20,6 +17,5 @@ namespace Bonline.Database
             LocList = Db.RunQuery(new Locatie());
             BonList = Db.RunQuery(new Bon());
         }
-
     }
 }

@@ -1,16 +1,10 @@
 ﻿using Bonline.Context.MSSQL;
 using Bonline.Models;
-using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using System.Web.UI.WebControls;
-using Bonline.Database;
 using Bonline.Repositories;
 using Bonline.ViewModels;
-using Account = Bonline.Models.Account;
 
 namespace Bonline.Controllers
 {
@@ -27,7 +21,6 @@ namespace Bonline.Controllers
             string passregex = @"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
             bool isMailMatch = false;
             bool isPassMatch = false;
-
             if (acc.Email == null || acc.Password == null)
             {
                 ViewBag.Message1 = "Vul een email en wachtwoord in.";
@@ -39,10 +32,8 @@ namespace Bonline.Controllers
                 ViewBag.Message1 = "Herhaling wachtwoord niet gelijk. Let op spelfouten.";
                 return View();
             }
-
             isMailMatch = Regex.IsMatch(acc.Email, mailregex);
             isPassMatch = Regex.IsMatch(acc.Password, passregex);
-
             if (!isMailMatch && !isPassMatch)
             {
                 ViewBag.Message1 = "Vul een email en wachtwoord in.";
@@ -94,10 +85,9 @@ namespace Bonline.Controllers
             }
             if (account.Inactief)
             {
-                ViewBag.Message = "Uw account is inactief.";
+                ViewBag.Message = "Uw account is Inactief.";
                 return View();
             }
-
             HttpCookie c = ticket.Encrypt(account.Id.ToString());
             HttpContext.Response.Cookies.Add(c);
             if (account.Admin)
@@ -111,7 +101,7 @@ namespace Bonline.Controllers
         [HttpGet]
         public ActionResult Accounts(int id = 0)
         {
-            ListAcc_en_Acc viewModel = new ListAcc_en_Acc();
+            AccListAccViewModel viewModel = new AccListAccViewModel();
             if (id == 0)
             {
                 TicketAuth auth = new TicketAuth();

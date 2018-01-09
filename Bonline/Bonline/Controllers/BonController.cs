@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Bonline.Context.MSSQL;
 using Bonline.Database;
@@ -15,8 +14,7 @@ namespace Bonline.Controllers
     public class BonController : Controller
     {
         private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
-        private readonly ListBonEnBon _viewModel = new ListBonEnBon();
-
+        private readonly BonListBonViewModel _viewModel = new BonListBonViewModel();
 
         [HttpGet]
         public ActionResult Bon()
@@ -50,7 +48,6 @@ namespace Bonline.Controllers
             bon.Loc = new Locatie();
             bon.Loc.Id = 5;
             bon.imageId = 1;
-
             //added the reference to the context
             _bonRepository.InsertKassa(bon);
             return RedirectToAction("Bon");
@@ -66,24 +63,14 @@ namespace Bonline.Controllers
             return View(_viewModel);
         }
 
-
-
         [HttpGet]
         public ActionResult Details(int id = 0)
         {
-            try
-            {
-                Bon_en_Pic vm = new Bon_en_Pic();
-                vm.b = _bonRepository.SelectBon(id);
-                vm.image = _bonRepository.GetImage(vm.b.imageId);
-                ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(vm.image.Data, 0, vm.image.Data.Length);
-                return View(vm);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            BonPicViewModel vm = new BonPicViewModel();
+            vm.b = _bonRepository.SelectBon(id);
+            vm.image = _bonRepository.GetImage(vm.b.imageId);
+            ViewBag.Base64String = "data:image/png;base64," + Convert.ToBase64String(vm.image.Data, 0, vm.image.Data.Length);
+            return View(vm);
         }
 
         [HttpGet]
@@ -97,7 +84,7 @@ namespace Bonline.Controllers
         [HttpPost]
         public ActionResult Toevoegen(Bon b)
         {
-            if (b.Org == null || b.Description == null || b.Loc.Address ==  null)
+            if (b.Org == null || b.Description == null || b.Loc.Address == null)
             {
                 ViewBag.Message = "Vul uw gegevens in";
                 Bon bon = new Bon();

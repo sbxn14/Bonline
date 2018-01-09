@@ -2,7 +2,6 @@
 using System;
 using System.Data.SqlClient;
 using System.Linq;
-using Bonline.Models;
 
 namespace Bonline.Models
 {
@@ -23,23 +22,21 @@ namespace Bonline.Models
             Query = "SELECT * FROM dbo.Bon";
         }
 
-        public Bon(int accId, DateTime date, string description, int locatieid)
+        public Bon(int accId, DateTime date, string Description, int locatieid)
         {
             Acc.Id = accId;
             Date = date;
-            Description = description;
+            Description = Description;
             Loc.Id = locatieid;
-
         }
 
-        public Bon(int accid, DateTime date, string description, string locatie, string organisatie)
+        public Bon(int accid, DateTime date, string Description, string locatie, string organisatie)
         {
             Acc.Id = accid;
             Date = date;
-            Description = description;
+            Description = Description;
             Org = organisatie;
             Loc.Address = locatie;
-
         }
 
         public Bon(string org, string loc)
@@ -64,11 +61,8 @@ namespace Bonline.Models
             Loc.Id = reader.GetInt32(reader.GetOrdinal("LocatieID"));
             Date = reader.GetDateTime(reader.GetOrdinal("Datum"));
             imageId = reader.GetInt32(reader.GetOrdinal("Pic_ID"));
-
             Loc = Datamanager.LocList.FirstOrDefault(x => x.Id == Loc.Id);
             Acc = Datamanager.AccList.FirstOrDefault(x => x.Id == Acc.Id);
-
         }
-
     }
 }
