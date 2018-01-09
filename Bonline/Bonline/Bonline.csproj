@@ -146,12 +146,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\IAccountContext.cs" />
     <Compile Include="Context\IBonContext.cs" />
-    <Compile Include="Context\IOrganisatieContext.cs" />
-    <Compile Include="Context\ILocatieContext.cs" />
     <Compile Include="Context\MSSQL\MssqlAccountContext.cs" />
     <Compile Include="Context\MSSQL\MssqlBonContext.cs" />
-    <Compile Include="Context\MSSQL\MssqlOrganisatieContext.cs" />
-    <Compile Include="Context\MSSQL\MssqlLocatieContext.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BonController.cs" />
     <Compile Include="Controllers\DisplayController.cs" />
@@ -228,8 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Locatie\" />
-    <Folder Include="Views\Organisatie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

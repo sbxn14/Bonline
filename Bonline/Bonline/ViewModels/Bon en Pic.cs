@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Bonline.Models;
+﻿using Bonline.Models;
 
 namespace Bonline.ViewModels
 {

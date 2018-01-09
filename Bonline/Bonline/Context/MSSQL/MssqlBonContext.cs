@@ -15,19 +15,15 @@ namespace Bonline.Context.MSSQL
             {
                 string query = "INSERT INTO dbo.Locatie (Naam, OrgID, Address) VALUES (@naam, @orgid, @address)";
                 SqlCommand cmd = new SqlCommand(query);
-
                 cmd.Parameters.AddWithValue("@naam", "Tilburg");
                 cmd.Parameters.AddWithValue("@orgid", 1);
                 cmd.Parameters.AddWithValue("@address", b.Loc.Address);
-
                 Db.RunNonQuery(cmd);
             }
         }
 
         public int GetLocId(Bon b)
         {
-            try
-            {
                 using (SqlConnection conn = new SqlConnection(Db.ConnectionString))
                 {
                     conn.Open();
@@ -36,7 +32,6 @@ namespace Bonline.Context.MSSQL
                     cmd.Parameters.AddWithValue("@address", b.Loc.Address);
                     cmd.ExecuteNonQuery();
                     int locId = 0;
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -45,15 +40,8 @@ namespace Bonline.Context.MSSQL
                         }
                     }
                     conn.Close();
-
                     return locId;
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
         }
 
         public void InsertKassa(Bon b)
@@ -79,10 +67,8 @@ namespace Bonline.Context.MSSQL
             {
                 try
                 {
-
                     conn.Open();
-                    string query =
-                        "select organisatie.naam as organisatienaam, locatie.naam as locatienaam from locatie inner join organisatie on locatie.orgid = organisatie.id where locatie.id = @locid";
+                    string query = "select organisatie.naam as organisatienaam, locatie.naam as locatienaam from locatie inner join organisatie on locatie.orgid = organisatie.id where locatie.id = @locid";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@locid", b.Loc.Id);
                     cmd.ExecuteNonQuery();
@@ -109,11 +95,8 @@ namespace Bonline.Context.MSSQL
             }
         }
 
-
         public void Insert(Bon bon)
         {
-            try
-            {
                 using (new SqlConnection(Db.ConnectionString))
                 {
                     string query =
@@ -126,12 +109,6 @@ namespace Bonline.Context.MSSQL
                     cmd.Parameters.AddWithValue("@PicId", bon.imageId);
                     Db.RunNonQuery(cmd);
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
         }
 
         public List<Bon> Select()
@@ -139,7 +116,7 @@ namespace Bonline.Context.MSSQL
             return Db.RunQuery(new Bon());
         }
 
-        public ImageModel GetImage(int ImageId)
+        public ImageModel GetImage(int imageId)
         {
             ImageModel image = new ImageModel();
             string constr = Database.Db.ConnectionString;
@@ -147,7 +124,7 @@ namespace Bonline.Context.MSSQL
             {
                 string query = "SELECT * FROM tblFiles WHERE ID = @ImageId";
                 SqlCommand cmd = new SqlCommand(query);
-                cmd.Parameters.AddWithValue("@ImageId", ImageId);
+                cmd.Parameters.AddWithValue("@ImageId", imageId);
                 using (cmd)
                 {
                     cmd.CommandType = CommandType.Text;

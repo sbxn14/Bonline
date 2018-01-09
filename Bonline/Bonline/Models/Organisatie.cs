@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+﻿using System.Data.SqlClient;
 using Bonline.Database;
 
 namespace Bonline.Models
@@ -12,7 +8,6 @@ namespace Bonline.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Query { get; set; }
-
 
         public Organisatie()
         {

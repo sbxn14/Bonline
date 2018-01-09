@@ -24,8 +24,6 @@ namespace Bonline.Models
    OrgId = reader.GetInt32(reader.GetOrdinal("OrgID"));
    Name = reader.GetString(reader.GetOrdinal("Naam"));
    Address = reader.GetString(reader.GetOrdinal("Address"));
-
-
    Org = Datamanager.OrgList.FirstOrDefault(x => x.Id == OrgId);
   }
  }

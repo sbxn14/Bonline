@@ -13,7 +13,6 @@ namespace Bonline.Database
 
 			//connectionstring localhost   
 			//ConnectionString = "Data Source=LAPT OP-GICS0PBT;Initial Catalog=BonlineDatabase.dbo;Integrated Security=True";
-
 			//ConnectionString voor Azure database
 			ConnectionString = "Server=tcp:bonline.database.windows.net,1433;Database=Bon-Line;Uid=Kassabon@bonline;Pwd=Fontys2017;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;";
 		}
@@ -22,19 +21,16 @@ namespace Bonline.Database
 		{
 			SqlDataReader reader = null;
 			List<T> result = new List<T>();
-
 			using (SqlConnection con = new SqlConnection(ConnectionString))
 			{
 				using (SqlCommand cmd = con.CreateCommand())
 				{
 					cmd.CommandText = value.Query;
-
 					try
 					{
 						cmd.Connection.Open();
 						cmd.Prepare();
 						reader = cmd.ExecuteReader();
-
 						while (reader.Read())
 						{
 							T obj = new T();

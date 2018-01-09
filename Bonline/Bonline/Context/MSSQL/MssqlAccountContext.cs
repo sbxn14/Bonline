@@ -8,7 +8,6 @@ namespace Bonline.Context.MSSQL
 {
     public class MssqlAccountContext : IAccountContext
     {
-
         public void Insert(Account account)
         {
             using (new SqlConnection(Db.ConnectionString))
@@ -24,7 +23,6 @@ namespace Bonline.Context.MSSQL
             }
         }
 
-
         public List<Account> Select()
         {
             return Db.RunQuery(new Account());
@@ -32,23 +30,16 @@ namespace Bonline.Context.MSSQL
 
         public void UpdateInactief(Account account)
         {
-            try
+            using (new SqlConnection(Db.ConnectionString))
             {
-                using (new SqlConnection(Db.ConnectionString))
-                {
-                    //changed query: waardes komen overeen met de db
-                    string query = "UPDATE dbo.Account SET Inactief = @Inactief WHERE ID = @ID";
-                    SqlCommand cmd = new SqlCommand(query);
-                    cmd.Parameters.AddWithValue("@Inactief", account.Inactief);
-                    cmd.Parameters.AddWithValue("@ID", account.Id);
-                    Db.RunNonQuery(cmd);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                //changed query: waardes komen overeen met de db
+                string query = "UPDATE dbo.Account SET Inactief = @Inactief WHERE ID = @ID";
+                SqlCommand cmd = new SqlCommand(query);
+                cmd.Parameters.AddWithValue("@Inactief", account.Inactief);
+                cmd.Parameters.AddWithValue("@ID", account.Id);
+                Db.RunNonQuery(cmd);
             }
         }
+
     }
 }

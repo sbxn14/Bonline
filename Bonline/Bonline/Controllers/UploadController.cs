@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
-using System.Configuration;
 using System.Data.SqlClient;
 using Bonline.Models;
 
@@ -48,11 +46,9 @@ namespace Bonline.Controllers
             catch (Exception e)
             {
                 return View(GetFiles());
-
             }
             return View(GetFiles());
         }
-
 
         [HttpPost]
         public FileResult DownloadFile(int? fileId)
@@ -78,7 +74,6 @@ namespace Bonline.Controllers
                     con.Close();
                 }
             }
-
             return File(bytes, contentType, fileName);
         }
 
