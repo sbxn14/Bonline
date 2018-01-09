@@ -10,6 +10,7 @@
         <div class='group'>
             @using (Html.BeginForm("Toevoegen", "Bon", FormMethod.Post))
             {
+                @ViewBag.Message
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     @Html.LabelForModel("Adres", htmlAttributes: new { @class = "labell" })

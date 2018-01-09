@@ -17,7 +17,7 @@ namespace Bonline.Controllers
         private readonly BonRepository _bonRepository = new BonRepository(new MssqlBonContext());
         private readonly ListBonEnBon _viewModel = new ListBonEnBon();
 
-        
+
         [HttpGet]
         public ActionResult Bon()
         {
@@ -61,9 +61,9 @@ namespace Bonline.Controllers
         {
             TicketAuth _auth = new TicketAuth();
             List<Bon> gebruikerBonnen = _bonRepository.SelectBonnen(_auth.Decrypt()).ToList();
-            _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, gebruikerBonnen );
+            _viewModel.Bonnen = _bonRepository.GetBonnenMetOrgNaam(GekozenOrg, gebruikerBonnen);
             _viewModel.Organisaties = _bonRepository.GetAllOrgs();
-                return View(_viewModel);
+            return View(_viewModel);
         }
 
 
@@ -97,6 +97,20 @@ namespace Bonline.Controllers
         [HttpPost]
         public ActionResult Toevoegen(Bon b)
         {
+            if (b.Org == null || b.Description == null || b.Loc.Address ==  null)
+            {
+                ViewBag.Message = "Vul uw gegevens in";
+                Bon bon = new Bon();
+                b.Date = DateTime.Now;
+                return View(bon);
+            }
+            if (b.Date == DateTime.MinValue)
+            {
+                ViewBag.Message = "Vul een geldige datum in";
+                Bon bon = new Bon();
+                b.Date = DateTime.Now;
+                return View(bon);
+            }
             AccountRepository acccon = new AccountRepository(new MssqlAccountContext());
             b.Loc.Id = _bonRepository.GetLocId(b);
             if (b.Loc.Id == 0)

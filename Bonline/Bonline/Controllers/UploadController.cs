@@ -46,11 +46,13 @@ namespace Bonline.Controllers
                 }
             }
             catch (Exception e)
-            { return View(e); }
+            {
+                throw e;
+            }
 
             return View(GetFiles());
         }
-    
+
 
         [HttpPost]
         public FileResult DownloadFile(int? fileId)
